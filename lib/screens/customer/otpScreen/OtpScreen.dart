@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/components/forgotPasswordScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/utils/helpers.dart';
+import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
+import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 class SendOTPScreen extends StatelessWidget {
   static const routeName = "/sendOTP";
@@ -29,7 +31,7 @@ class SendOTPScreen extends StatelessWidget {
               height: 20,
             ),
             const Text(
-              "Please check your mobile number 071*****12 continue to reset your password",
+              "Please check your mobile number 091*****12 continue to reset your password",
               textAlign: TextAlign.center,
             ),
             const SizedBox(
@@ -37,40 +39,40 @@ class SendOTPScreen extends StatelessWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                    // OTPInput(),
-                    //OTPInput(),
-                    //OTPInput(),
-                    //OTPInput(),
-                    )
+              children: const [
+                OTPInput(),
+                OTPInput(),
+                OTPInput(),
+                OTPInput(),
               ],
             ),
             const SizedBox(
               height: 20,
             ),
-            SizedBox(
-              height: 50,
-              width: double.infinity,
-              child: ElevatedButton(
+            CustomBtn(
+                text: "Next",
+                color: AppColors.orange,
+                height: 50,
+                width: 450,
+                borderRadius: 8.0,
+                fontSize: 30,
+                textColor: Colors.white,
+                fontWeight: FontWeight.normal,
                 onPressed: () {
-                  Navigator.of(context)
-                      .pushReplacementNamed(NewPwScreen.routeName);
-                },
-                child: const Text("Next"),
-              ),
-            ),
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((BuildContext context) =>
+                              const NewPwScreen())));
+                }),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text("Didn't Recieve? "),
-                Text(
-                  "Click Here",
-                  style: TextStyle(
-                    color: AppColors.orange,
-                    fontWeight: FontWeight.bold,
-                  ),
+                CustomText(text: "Didn't Recieve? "),
+                CustomText(
+                  text: "Click Here",
+                  color: AppColors.orange,
                 )
               ],
             )
@@ -83,7 +85,7 @@ class SendOTPScreen extends StatelessWidget {
 
 class OTPInput extends StatelessWidget {
   const OTPInput({
-    required Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

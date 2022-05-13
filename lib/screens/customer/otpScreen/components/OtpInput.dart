@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 
 class OTPInput extends StatelessWidget {
-  const OTPInput({
-    required Key? key,
+  OTPInput({
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -21,10 +21,6 @@ class OTPInput extends StatelessWidget {
         children: const [
           Padding(
             padding: EdgeInsets.only(top: 18, left: 20),
-            child: Text(
-              "*",
-              style: TextStyle(fontSize: 45),
-            ),
           ),
           TextField(
             decoration: InputDecoration(border: InputBorder.none),

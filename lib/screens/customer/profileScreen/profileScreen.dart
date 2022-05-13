@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gebeta_food_delivery/screens/Address/add_address.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/components/CartHistoryScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
@@ -78,13 +79,20 @@ class ProfileScreen extends StatelessWidget {
                             text: 'settings',
                           ),
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          child: const CustomIcon(
-                            backgroundColor: Colors.white,
-                            icon: Icons.arrow_forward_ios,
-                            iconColor: AppColors.placeholder,
-                            size: 20,
+                        GestureDetector(
+                          onTap: () => Navigator.pop(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((BuildContext context) =>
+                                      const AddressScreen()))),
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 15),
+                            child: const CustomIcon(
+                              backgroundColor: Colors.white,
+                              icon: Icons.arrow_forward_ios,
+                              iconColor: AppColors.placeholder,
+                              size: 20,
+                            ),
                           ),
                         )
                       ],
