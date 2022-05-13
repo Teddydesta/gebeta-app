@@ -35,17 +35,6 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavDrawer(),
-      appBar: AppBar(
-        backgroundColor: AppColors.orange,
-        title: const CustomText(
-          text: "Gebeta Delivery",
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
-        elevation: 0,
-        centerTitle: true,
-      ),
       //body
       body: SizedBox.expand(
         child: PageView(

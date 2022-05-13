@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/searchScreen/components/searchBar.dart';
+import 'package:gebeta_food_delivery/utils/colors.dart';
+import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 class SearchScreen extends StatefulWidget {
   static const routeName = "/SearchScreen";
@@ -12,17 +14,17 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: const [
-                SearchBar(title: 'Search for restaurants, dishes'),
-              ],
-            ),
+    return Container(
+      child: Column(
+        children: [
+          Container(
+            height: 60,
+            width: double.maxFinite,
+            margin: EdgeInsets.only(top: 0),
+            color: AppColors.orange,
           ),
-        ),
+          SearchBar(title: "Search for restaurants, dishes")
+        ],
       ),
     );
   }

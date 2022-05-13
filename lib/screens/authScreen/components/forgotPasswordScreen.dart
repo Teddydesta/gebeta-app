@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:gebeta_food_delivery/screens/authScreen/signUp.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/utils/helpers.dart';
 import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/customInputText.dart';
-
 
 class NewPwScreen extends StatelessWidget {
   static const routeName = "/newPw";
@@ -56,7 +56,13 @@ class NewPwScreen extends StatelessWidget {
                   fontSize: 18,
                   textColor: Colors.white,
                   fontWeight: FontWeight.normal,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((BuildContext context) =>
+                                const SignUpPage())));
+                  },
                 ),
               ],
             ),

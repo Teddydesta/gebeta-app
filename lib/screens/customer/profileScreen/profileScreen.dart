@@ -16,6 +16,16 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.orange,
+        title: const CustomText(
+          text: "Gebeta Delivery",
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+        ),
+        elevation: 0,
+        centerTitle: true,
+      ),
       backgroundColor: Colors.white,
       body: Container(
         width: double.maxFinite,
