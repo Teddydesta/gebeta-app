@@ -18,13 +18,21 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: const CustomText(text: 'Add New Product'),
+        backgroundColor: AppColors.orange,
+        title: const CustomText(
+          text: 'Add New Product',
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
         centerTitle: true,
         leadingWidth: 80,
         leading: TextButton(
           child: const CustomText(
-              text: 'Cancel', color: AppColors.orange, fontSize: 17),
+            text: 'Cancel',
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -33,7 +41,12 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
         actions: [
           TextButton(
               onPressed: () {},
-              child: const CustomText(text: ' Save ', color: AppColors.orange))
+              child: const CustomText(
+                text: ' Save ',
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+              ))
         ],
       ),
       //

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
+import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 class RestaurantScreen extends StatefulWidget {
@@ -14,9 +15,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      margin: const EdgeInsets.only(
-        left: 10,
-      ),
+      margin: const EdgeInsets.only(left: 10, bottom: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -29,9 +28,26 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
           const SizedBox(
             height: 20,
           ),
-          const CustomText(
-            text: "Recommended",
-            fontWeight: FontWeight.bold,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const CustomText(
+                text: "Recommended",
+                fontWeight: FontWeight.bold,
+              ),
+              GestureDetector(
+                onTap: () => _menu(context),
+                child: Container(
+                  margin: const EdgeInsets.only(right: 5),
+                  height: 40,
+                  width: 80,
+                  decoration: BoxDecoration(
+                      color: AppColors.orange,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(child: CustomText(text: "MENU")),
+                ),
+              )
+            ],
           ),
           const SizedBox(
             height: 15,
@@ -300,4 +316,60 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
       ),
     );
   }
+}
+
+///
+///
+///
+///
+void _menu(context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return Container(
+        margin:
+            const EdgeInsets.only(top: 200, left: 0, right: 200, bottom: 300),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(10),
+            topRight: Radius.circular(10),
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextButton(
+              onPressed: () {},
+              child: CustomText(text: "Recommended"),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: CustomText(text: "doner"),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: CustomText(text: "chicken"),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: CustomText(text: "gril dish"),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: CustomText(text: "oven/firin"),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: CustomText(text: "pizza"),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: CustomText(text: "desert"),
+            ),
+          ],
+        ),
+      );
+    },
+  );
 }

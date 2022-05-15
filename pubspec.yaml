@@ -45,6 +45,7 @@ dependencies:
   geocoding: ^2.0.4
   geolocator: ^8.2.1
   get: ^4.6.3
+  quick_feedback: ^0.1.1
  
   
   

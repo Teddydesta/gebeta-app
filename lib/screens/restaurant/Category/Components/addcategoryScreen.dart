@@ -20,7 +20,12 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: AppColors.orange,
-        title: const CustomText(text: 'Add Category'),
+        title: const CustomText(
+          text: 'Add Category',
+          color: Colors.white,
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+        ),
         centerTitle: true,
         leadingWidth: 80,
         leading: InkWell(
@@ -38,8 +43,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Icon(Icons.arrow_back_ios_new_rounded,
-                    color: Colors.black, size: 17),
-                CustomText(text: 'Back', fontSize: 17, color: Colors.black)
+                    color: Colors.white, size: 24),
               ],
             ),
           ),
@@ -54,7 +58,12 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                   );
                 }
               },
-              child: const CustomText(text: 'Save', color: Colors.black))
+              child: const CustomText(
+                text: 'Save',
+                color: Colors.white,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ))
         ],
       ),
       body: Form(
@@ -78,7 +87,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                   // The validator receives the text that the user has entered.
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
+                      return 'category name is required';
                     }
                     return null;
                   },
@@ -92,7 +101,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                 // The validator receives the text that the user has entered.
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
+                    return 'description is required';
                   }
                   return null;
                 },

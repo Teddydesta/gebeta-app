@@ -81,3 +81,12 @@ class HelloCash extends StatelessWidget {
     );
   }
 }
+
+void _showFeedback(context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return Container();
+    },
+  );
+}

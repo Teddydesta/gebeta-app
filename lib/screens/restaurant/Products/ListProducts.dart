@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Products/AddNewProducts.dart';
+import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 class ListProductScreen extends StatefulWidget {
@@ -15,8 +16,13 @@ class _ListProductScreenState extends State<ListProductScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: const CustomText(text: 'List Products', fontSize: 19),
+        backgroundColor: AppColors.orange,
+        title: const CustomText(
+          text: 'List Products',
+          fontSize: 24,
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
         centerTitle: true,
         leadingWidth: 80,
         elevation: 0,
@@ -26,8 +32,7 @@ class _ListProductScreenState extends State<ListProductScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               Icon(Icons.arrow_back_ios_new_rounded,
-                  color: Colors.black, size: 17),
-              CustomText(text: 'Back', fontSize: 17, color: Colors.black)
+                  color: Colors.white, size: 24),
             ],
           ),
         ),
@@ -38,9 +43,19 @@ class _ListProductScreenState extends State<ListProductScreen> {
                 MaterialPageRoute(
                     builder: ((BuildContext context) => AddNewProductPage()))),
             child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((BuildContext context) =>
+                              AddNewProductPage())));
+                },
                 child: const CustomText(
-                    text: 'Add', fontSize: 17, color: Colors.black)),
+                  text: 'Add',
+                  fontSize: 24,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                )),
           )
         ],
       ),

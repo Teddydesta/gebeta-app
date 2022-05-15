@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/BasketScreen.dart';
+import 'package:gebeta_food_delivery/screens/customer/feedback_screen/feedback_screen.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/profile_screen/profile_screen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/profileScreen.dart';
@@ -58,7 +59,13 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.border_color),
             title: const Text('Feedback'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((BuildContext context) =>
+                          const FeedbackScreen())))
+            },
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app),

@@ -14,7 +14,11 @@ class CategoriesScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: AppColors.orange,
-        title: const CustomText(text: 'Categories'),
+        title: const CustomText(
+          text: 'Categories',
+          color: Colors.white,
+          fontSize: 24,
+        ),
         centerTitle: true,
         leadingWidth: 80,
         leading: InkWell(
@@ -27,12 +31,7 @@ class CategoriesScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               Icon(Icons.arrow_back_ios_new_rounded,
-                  color: AppColors.mainBlackColor, size: 17),
-              CustomText(
-                text: 'Back',
-                fontSize: 17,
-                color: Colors.black,
-              )
+                  color: Colors.white, size: 24),
             ],
           ),
         ),
@@ -47,7 +46,7 @@ class CategoriesScreen extends StatelessWidget {
                             const AddCategoryPage())));
               },
               child: const CustomText(
-                  text: 'Add', color: Colors.black, fontSize: 17))
+                  text: 'Add', color: Colors.white, fontSize: 24))
         ],
       ),
       body: Center(
