@@ -32,23 +32,24 @@ class _ListProductScreenState extends State<ListProductScreen> {
           ),
         ),
         actions: [
-          TextButton(
-              onPressed: () {
-                () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: ((BuildContext context) =>
-                            AddNewProductPage())));
-              },
-              child: const CustomText(
-                  text: 'Add', fontSize: 17, color: Colors.black))
+          GestureDetector(
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: ((BuildContext context) => AddNewProductPage()))),
+            child: TextButton(
+                onPressed: () {},
+                child: const CustomText(
+                    text: 'Add', fontSize: 17, color: Colors.black)),
+          )
         ],
       ),
+
       //
       body: GridView.builder(
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
-          itemCount: 20,
+          itemCount: 5,
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200,
               childAspectRatio: 2,
@@ -61,12 +62,11 @@ class _ListProductScreenState extends State<ListProductScreen> {
               child: Row(
                 children: [
                   Container(
-                    height: 70,
-                    width: 50,
+                    height: 100,
+                    width: 100,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
                       fit: BoxFit.cover,
-                      scale: 7,
                       image: AssetImage("assets/images/real/western.png"),
                     )),
                   ),

@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.orange,
         title: const CustomText(
-          text: "Gebeta Delivery",
+          text: "Gebeta ",
           fontSize: 24,
           fontWeight: FontWeight.bold,
         ),

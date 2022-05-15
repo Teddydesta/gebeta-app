@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/BasketScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
-import 'package:gebeta_food_delivery/screens/customer/profileScreen/profileScreen.dart';
+import 'package:gebeta_food_delivery/screens/customer/profile_screen/profile_screen.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/profileScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 
 class NavDrawer extends StatelessWidget {

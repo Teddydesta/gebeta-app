@@ -1,7 +1,8 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/cartScreen.dart';
-import 'package:gebeta_food_delivery/screens/customer/profileScreen/profileScreen.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/Orders/Ordersscreen.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/profileScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Category/CategoryPage.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Products/ListProducts.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
@@ -53,8 +54,8 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
           children: const <Widget>[
             ListProductScreen(),
             CategoriesScreen(),
-            CartScreen(),
-            ProfileScreen(),
+            OrdersScreen(),
+            RestaurantProfileScreen(),
           ],
         ),
       ),
@@ -70,8 +71,8 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
           BottomNavyBarItem(
               activeColor: AppColors.orange,
               inactiveColor: Colors.black,
-              title: const Text('Home'),
-              icon: const Icon(Icons.home)),
+              title: const Text('Product'),
+              icon: const Icon(Icons.add)),
           BottomNavyBarItem(
               activeColor: AppColors.orange,
               inactiveColor: Colors.black87,
@@ -81,7 +82,7 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
             activeColor: AppColors.orange,
             inactiveColor: Colors.black87,
             title: const Text('Orders'),
-            icon: const Icon(Icons.request_page),
+            icon: const Icon(Icons.checklist_outlined),
           ),
           BottomNavyBarItem(
               activeColor: AppColors.orange,

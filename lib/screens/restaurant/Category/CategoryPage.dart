@@ -57,19 +57,20 @@ class CategoriesScreen extends StatelessWidget {
                 context: context,
                 removeTop: true,
                 child: ListView.builder(
-                    itemCount: 10,
+                    itemCount: 5,
                     itemBuilder: (_, index) {
                       return Container(
+                        padding: const EdgeInsets.only(left: 25),
                         child: Row(
                           children: const [
-                            Icon(Icons.food_bank),
+                            Icon(Icons.icecream),
                             SizedBox(
                               width: 25,
                             ),
                             CustomText(text: "Ice Cream")
                           ],
                         ),
-                        color: Colors.grey[50],
+                        color: Colors.grey[100],
                         height: 75,
                         width: double.maxFinite,
                         //color: AppColors.orange,

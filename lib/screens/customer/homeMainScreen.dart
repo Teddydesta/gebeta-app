@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/HomeScreen/homeScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/BasketScreen.dart';
-import 'package:gebeta_food_delivery/screens/customer/profileScreen/profileScreen.dart';
+import 'package:gebeta_food_delivery/screens/customer/profile_screen/profile_screen.dart';
 import 'package:gebeta_food_delivery/screens/customer/searchScreen/searchScreen.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/profileScreen.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 import '../../utils/colors.dart';
@@ -63,7 +64,7 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
               activeColor: AppColors.orange,
               inactiveColor: Colors.black,
               title: const Text('Nearby'),
-              icon: const Icon(Icons.home_filled)),
+              icon: const Icon(Icons.local_restaurant_outlined)),
           BottomNavyBarItem(
               activeColor: AppColors.orange,
               inactiveColor: Colors.black,

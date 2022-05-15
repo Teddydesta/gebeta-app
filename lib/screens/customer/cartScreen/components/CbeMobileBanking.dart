@@ -64,35 +64,35 @@ class CbeMobileBankingCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const CustomText(
+              children: const [
+                CustomText(
                     text:
                         "1. Open CBE Mobile banking application and enter your PIN"),
-                const SizedBox(
+                SizedBox(
                   height: 10,
                 ),
-                const CustomText(text: "2. Tap Utility"),
-                const SizedBox(
+                CustomText(text: "2. Tap Utility"),
+                SizedBox(
                   height: 10,
                 ),
-                const CustomText(text: "3.  Tap Utility Payment"),
-                const SizedBox(
+                CustomText(text: "3.  Tap Utility Payment"),
+                SizedBox(
                   height: 10,
                 ),
-                const CustomText(text: "4.  Tap WeBirr"),
-                const SizedBox(
+                CustomText(text: "4.  Tap WeBirr"),
+                SizedBox(
                   height: 10,
                 ),
-                const CustomText(text: "5. Enter Payment code"),
-                const SizedBox(
+                CustomText(text: "5. Enter Payment code"),
+                SizedBox(
                   height: 10,
                 ),
-                const CustomText(text: "6. Enter your reason for payment"),
-                const SizedBox(
+                CustomText(text: "6. Enter your reason for payment"),
+                SizedBox(
                   height: 10,
                 ),
-                const CustomText(text: "7. Confirm the payment"),
-                const SizedBox(
+                CustomText(text: "7. Confirm the payment"),
+                SizedBox(
                   height: 10,
                 ),
               ],

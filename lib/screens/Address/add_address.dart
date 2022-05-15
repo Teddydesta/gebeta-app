@@ -25,7 +25,6 @@ class _AddressScreenState extends State<AddressScreen> {
   void initState() {
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,8 +42,8 @@ class _AddressScreenState extends State<AddressScreen> {
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
-              border:
-                  Border.all(width: 2, color: Theme.of(context).primaryColor),
+              border: Border.all(
+                  width: 2, color: Theme.of(context).primaryColorDark),
             ),
             child: Stack(
               children: [
