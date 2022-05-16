@@ -7,6 +7,7 @@ import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/utils/helpers.dart';
 import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
+import 'package:gebeta_food_delivery/widgets/customText.dart';
 import 'package:gebeta_food_delivery/widgets/formFilld.dart';
 
 class NewPwScreen extends StatelessWidget {
@@ -24,6 +25,7 @@ class NewPwScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
                   height: 20,
@@ -50,21 +52,19 @@ class NewPwScreen extends StatelessWidget {
                       fontSize: 24,
                       height: 35,
                       width: 80,
-                      borderRadius: 8,
+                      borderRadius: 15,
                       color: AppColors.orange,
                     ),
                   ],
                 ),
-                Text("New Password", style: Helper.getTheme(context).headline6),
                 const SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
-                const Text(
-                  "Please enter your Phone to recieve a code to create a new password ",
-                  textAlign: TextAlign.center,
+                const CustomText(
+                  text: "New Password",
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
                 const FormFieldWidget(
                   hintText: "Current Password",

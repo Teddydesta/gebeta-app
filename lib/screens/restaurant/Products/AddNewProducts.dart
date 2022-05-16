@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
+import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 
 import '../../../widgets/customText.dart';
 
@@ -178,7 +179,10 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
                           const CustomText(text: 'Select Category'),
                         ],
                       ),
-                      const Icon(Icons.navigate_next_rounded)
+                      const CustomIcon(
+                        icon: Icons.navigate_next_rounded,
+                        iconSize: 24,
+                      )
                     ],
                   ),
                 ),
@@ -189,4 +193,26 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
       ),
     );
   }
+}
+
+void _deleteCategories(context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return Container(
+          margin:
+              const EdgeInsets.only(top: 250, bottom: 250, right: 80, left: 80),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Container(
+            margin: const EdgeInsets.only(left: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [],
+            ),
+          ));
+    },
+  );
 }
