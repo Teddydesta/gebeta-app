@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/BasketScreen.dart';
-import 'package:gebeta_food_delivery/screens/customer/cartScreen/components/AbyssiniaCard.dart';
-import 'package:gebeta_food_delivery/screens/customer/cartScreen/components/CbeBirrCard.dart';
-import 'package:gebeta_food_delivery/screens/customer/cartScreen/components/CbeMobileBanking.dart';
-import 'package:gebeta_food_delivery/screens/customer/cartScreen/components/HelloCashCard.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';

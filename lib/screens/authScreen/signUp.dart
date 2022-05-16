@@ -7,7 +7,6 @@ import 'package:gebeta_food_delivery/screens/authScreen/components/signUpBtn.dar
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 
-
 class SignUpPage extends StatelessWidget {
   static const routeName = "/SignUpScreen";
   const SignUpPage({Key? key}) : super(key: key);

@@ -1,12 +1,9 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/HomeScreen/homeScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/BasketScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/profile_screen/profile_screen.dart';
 import 'package:gebeta_food_delivery/screens/customer/searchScreen/searchScreen.dart';
-import 'package:gebeta_food_delivery/screens/restaurant/profileScreen.dart';
-import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 import '../../utils/colors.dart';
 

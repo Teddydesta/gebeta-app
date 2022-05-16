@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 
@@ -21,8 +19,7 @@ class CustomTextInput extends StatelessWidget {
       width: double.maxFinite,
       height: 50,
       decoration: BoxDecoration(
-          color: AppColors.placeholderBg,
-          borderRadius: BorderRadius.circular(10)),
+          color: Colors.grey[100], borderRadius: BorderRadius.circular(5)),
       child: TextField(
         decoration: InputDecoration(
           border: InputBorder.none,

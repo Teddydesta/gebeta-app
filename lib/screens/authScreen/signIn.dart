@@ -3,14 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/Home/SelectRoleScreen.dart';
 import 'package:gebeta_food_delivery/screens/animation/scaleRoute.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/components/forgotPasswordScreen.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/components/signInBtn.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signUp.dart';
+import 'package:gebeta_food_delivery/screens/customer/otpScreen/OtpScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
-
-
-
 
 class SignInPage extends StatefulWidget {
   static const routeName = "/SignInScreen";
@@ -119,7 +116,7 @@ class _SignInPageState extends State<SignInPage> {
                         context,
                         MaterialPageRoute(
                             builder: ((BuildContext context) =>
-                                const NewPwScreen()))),
+                                const SendOTPScreen()))),
                     child: SizedBox(
                       width: double.infinity,
                       child: Text(

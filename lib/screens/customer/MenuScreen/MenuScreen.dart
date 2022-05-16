@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/customer/cartScreen/components/PaymentScreen.dart';
-import 'package:gebeta_food_delivery/utils/colors.dart';
-import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
-import 'package:quick_feedback/quick_feedback.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({Key? key}) : super(key: key);
@@ -15,7 +11,7 @@ class MenuScreen extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Quick Feedback'),
+          title: const Text('Quick Feedback'),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -23,7 +19,7 @@ class MenuScreen extends StatelessWidget {
               child: FlatButton(
                 onPressed: () => _showFeedback(
                     context), // this will trigger the feedback modal
-                child: Text('Menu'),
+                child: const Text('Menu'),
               ),
             ),
           ),
@@ -52,31 +48,31 @@ void _showFeedback(context) {
           children: [
             TextButton(
               onPressed: () {},
-              child: CustomText(text: "Recommended"),
+              child: const CustomText(text: "Recommended"),
             ),
             TextButton(
               onPressed: () {},
-              child: CustomText(text: "doner"),
+              child: const CustomText(text: "doner"),
             ),
             TextButton(
               onPressed: () {},
-              child: CustomText(text: "chicken"),
+              child: const CustomText(text: "chicken"),
             ),
             TextButton(
               onPressed: () {},
-              child: CustomText(text: "gril dish"),
+              child: const CustomText(text: "gril dish"),
             ),
             TextButton(
               onPressed: () {},
-              child: CustomText(text: "oven/firin"),
+              child: const CustomText(text: "oven/firin"),
             ),
             TextButton(
               onPressed: () {},
-              child: CustomText(text: "pizza"),
+              child: const CustomText(text: "pizza"),
             ),
             TextButton(
               onPressed: () {},
-              child: CustomText(text: "desert"),
+              child: const CustomText(text: "desert"),
             ),
           ],
         ),

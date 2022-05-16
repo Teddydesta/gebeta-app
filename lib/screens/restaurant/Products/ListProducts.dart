@@ -41,14 +41,15 @@ class _ListProductScreenState extends State<ListProductScreen> {
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: ((BuildContext context) => AddNewProductPage()))),
+                    builder: ((BuildContext context) =>
+                        const AddNewProductPage()))),
             child: TextButton(
                 onPressed: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: ((BuildContext context) =>
-                              AddNewProductPage())));
+                              const AddNewProductPage())));
                 },
                 child: const CustomText(
                   text: 'Add',
@@ -72,7 +73,9 @@ class _ListProductScreenState extends State<ListProductScreen> {
               mainAxisSpacing: 20),
           itemBuilder: (context, i) {
             return InkWell(
-              onTap: () {},
+              onTap: () {
+                _deleteProduct(context);
+              },
               onLongPress: () {},
               child: Row(
                 children: [
@@ -101,4 +104,21 @@ class _ListProductScreenState extends State<ListProductScreen> {
           }),
     );
   }
+}
+
+void _deleteProduct(context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return Container(
+        margin:
+            const EdgeInsets.only(top: 160, bottom: 160, right: 50, left: 50),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: const Text("hdhhd"),
+      );
+    },
+  );
 }

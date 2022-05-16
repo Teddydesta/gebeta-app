@@ -2,10 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signUp.dart';
+import 'package:gebeta_food_delivery/screens/customer/profile_screen/profile_screen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/utils/helpers.dart';
 import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
-import 'package:gebeta_food_delivery/widgets/customInputText.dart';
+import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
+import 'package:gebeta_food_delivery/widgets/formFilld.dart';
 
 class NewPwScreen extends StatelessWidget {
   static const routeName = "/newPw";
@@ -26,6 +28,33 @@ class NewPwScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((BuildContext context) =>
+                                  const ProfileScreen()))),
+                      child: const CustomIcon(
+                        icon: Icons.close,
+                        iconColor: AppColors.orange,
+                        iconSize: 24,
+                        backgroundColor: Colors.white,
+                      ),
+                    ),
+                    const CustomBtn(
+                      text: "Save",
+                      textColor: Colors.white,
+                      fontSize: 24,
+                      height: 35,
+                      width: 80,
+                      borderRadius: 8,
+                      color: AppColors.orange,
+                    ),
+                  ],
+                ),
                 Text("New Password", style: Helper.getTheme(context).headline6),
                 const SizedBox(
                   height: 20,
@@ -37,12 +66,35 @@ class NewPwScreen extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                const CustomTextInput(hintText: "New Password"),
+                const FormFieldWidget(
+                  hintText: "Current Password",
+                  isPassword: false,
+                  keyboardType: TextInputType.text,
+                  maxLine: 1,
+                  readOnly: false,
+                  labelText: "Pasword",
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                const FormFieldWidget(
+                  hintText: "New Password",
+                  isPassword: false,
+                  keyboardType: TextInputType.text,
+                  maxLine: 1,
+                  readOnly: false,
+                  labelText: "Pasword",
+                ),
                 const SizedBox(
                   height: 20,
                 ),
-                const CustomTextInput(
+                const FormFieldWidget(
                   hintText: "Confirm Password",
+                  isPassword: false,
+                  keyboardType: TextInputType.text,
+                  maxLine: 1,
+                  readOnly: false,
+                  labelText: "Pasword",
                 ),
                 const SizedBox(
                   height: 20,

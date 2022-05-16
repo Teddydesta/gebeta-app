@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/Address/add_address.dart';
 import 'package:gebeta_food_delivery/screens/Home/SelectRoleScreen.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
-import 'package:gebeta_food_delivery/screens/customer/otpScreen/OtpScreen.dart';
-import 'package:gebeta_food_delivery/screens/restaurant/Products/AddNewProducts.dart';
 
 void main() {
   runApp(const MyApp());

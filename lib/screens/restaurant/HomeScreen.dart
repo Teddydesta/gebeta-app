@@ -1,6 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/customer/cartScreen/cartScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Orders/Ordersscreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/profileScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Category/CategoryPage.dart';

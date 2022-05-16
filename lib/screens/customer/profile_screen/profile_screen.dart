@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/Address/add_address.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/components/forgotPasswordScreen.dart';
+import 'package:gebeta_food_delivery/screens/authScreen/components/new_passwordscreen.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.dart';
-import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/profile_screen/components/profile_setting.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
@@ -414,7 +412,7 @@ class ProfileScreen extends StatelessWidget {
                             text: "logout",
                             color: AppColors.orange,
                             height: 50,
-                            width: 400,
+                            width: 450,
                             borderRadius: 8.0,
                             fontSize: 30,
                             textColor: Colors.white,

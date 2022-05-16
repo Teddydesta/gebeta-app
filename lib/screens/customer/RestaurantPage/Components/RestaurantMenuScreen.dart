@@ -44,7 +44,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                   decoration: BoxDecoration(
                       color: AppColors.orange,
                       borderRadius: BorderRadius.circular(10)),
-                  child: Center(child: CustomText(text: "MENU")),
+                  child: const Center(child: const CustomText(text: "MENU")),
                 ),
               )
             ],
@@ -341,31 +341,31 @@ void _menu(context) {
           children: [
             TextButton(
               onPressed: () {},
-              child: CustomText(text: "Recommended"),
+              child: const CustomText(text: "Recommended"),
             ),
             TextButton(
               onPressed: () {},
-              child: CustomText(text: "doner"),
+              child: const CustomText(text: "doner"),
             ),
             TextButton(
               onPressed: () {},
-              child: CustomText(text: "chicken"),
+              child: const CustomText(text: "chicken"),
             ),
             TextButton(
               onPressed: () {},
-              child: CustomText(text: "gril dish"),
+              child: const CustomText(text: "gril dish"),
             ),
             TextButton(
               onPressed: () {},
-              child: CustomText(text: "oven/firin"),
+              child: const CustomText(text: "oven/firin"),
             ),
             TextButton(
               onPressed: () {},
-              child: CustomText(text: "pizza"),
+              child: const CustomText(text: "pizza"),
             ),
             TextButton(
               onPressed: () {},
-              child: CustomText(text: "desert"),
+              child: const CustomText(text: "desert"),
             ),
           ],
         ),

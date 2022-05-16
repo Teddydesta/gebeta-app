@@ -24,15 +24,15 @@ class OrdersScreen extends StatelessWidget {
                       MaterialPageRoute(
                           builder: ((BuildContext context) =>
                               const RestaurantProfileScreen()))),
-                  child: CustomIcon(
+                  child: const CustomIcon(
                     icon: Icons.arrow_back_ios,
                     iconSize: 24,
                     iconColor: AppColors.orange,
                     backgroundColor: Colors.white,
                   ),
                 ),
-                SizedBox(width: 80),
-                CustomText(
+                const SizedBox(width: 80),
+                const CustomText(
                   text: "List of Orders",
                   fontSize: 24,
                 ),
@@ -62,7 +62,7 @@ class OrdersScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(text: "Order Id: 2"),
+                  const CustomText(text: "Order Id: 2"),
                   const SizedBox(
                     height: 10,
                   ),

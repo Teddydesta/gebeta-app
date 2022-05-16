@@ -20,10 +20,10 @@ class _SearchScreenState extends State<SearchScreen> {
           Container(
             height: 60,
             width: double.maxFinite,
-            margin: EdgeInsets.only(top: 0),
+            margin: const EdgeInsets.only(top: 0),
             color: AppColors.orange,
           ),
-          SearchBar(title: "Search for restaurants, dishes")
+          const SearchBar(title: "Search for restaurants, dishes")
         ],
       ),
     );
