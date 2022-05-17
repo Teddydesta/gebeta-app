@@ -14,13 +14,11 @@ class FeedbackScreen extends StatelessWidget {
           title: Text('Quick Feedback'),
         ),
         body: SingleChildScrollView(
-          child: Container(
-            child: Center(
-              child: FlatButton(
-                onPressed: () => _showFeedback(
-                    context), // this will trigger the feedback modal
-                child: Text('Feedback'),
-              ),
+          child: Center(
+            child: TextButton(
+              onPressed: () => _showFeedback(
+                  context), // this will trigger the feedback modal
+              child: Text('Feedback'),
             ),
           ),
         ),

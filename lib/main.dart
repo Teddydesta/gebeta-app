@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/Home/SelectRoleScreen.dart';
+import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Gebeta App',
-      home: SelectRoleScreen(),
+      home: SignInPage(),
     );
   }
 }

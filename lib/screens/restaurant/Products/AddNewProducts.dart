@@ -179,9 +179,16 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
                           const CustomText(text: 'Select Category'),
                         ],
                       ),
-                      const CustomIcon(
-                        icon: Icons.navigate_next_rounded,
-                        iconSize: 24,
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      GestureDetector(
+                        onTap: (() => _deleteCategories(context)),
+                        child: const CustomIcon(
+                          backgroundColor: Colors.white,
+                          icon: Icons.arrow_forward_ios,
+                          iconSize: 24,
+                        ),
                       )
                     ],
                   ),
@@ -200,17 +207,29 @@ void _deleteCategories(context) {
     context: context,
     builder: (context) {
       return Container(
-          margin:
-              const EdgeInsets.only(top: 250, bottom: 250, right: 80, left: 80),
+          margin: const EdgeInsets.only(top: 400, bottom: 0, right: 0, left: 0),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(30),
           ),
           child: Container(
-            margin: const EdgeInsets.only(left: 10),
+            margin: const EdgeInsets.only(left: 30),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [],
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(left: 100, top: 20),
+                  height: 5,
+                  width: 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.grey),
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                CustomText(text: "Select category"),
+              ],
             ),
           ));
     },

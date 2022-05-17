@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/components/new_passwordscreen.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.dart';
+import 'package:gebeta_food_delivery/screens/customer/address_screen/address_screen.dart';
 import 'package:gebeta_food_delivery/screens/customer/profile_screen/components/profile_setting.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
@@ -157,42 +158,91 @@ class ProfileScreen extends StatelessWidget {
                       height: 5,
                     ),
 
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((BuildContext context) =>
+                                  const Addressscreen()))),
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 10, right: 10),
+                        height: 60,
+                        width: double.maxFinite,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.grey[300]),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            AccountWidget(
+                              appIcon: const CustomIcon(
+                                backgroundColor: Colors.green,
+                                icon: Icons.location_on,
+                                iconColor: Colors.white,
+                                iconSize: 24,
+                                size: 38,
+                              ),
+                              customText: const CustomText(
+                                text: 'Add Your Address',
+                                color: Colors.black,
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(right: 10),
+                              child: const CustomIcon(
+                                iconSize: 22,
+                                icon: Icons.arrow_forward_ios,
+                                iconColor: AppColors.placeholder,
+                                size: 20,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                     const SizedBox(
                       height: 5,
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 10, right: 10),
-                      height: 60,
-                      width: double.maxFinite,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[300]),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          AccountWidget(
-                            appIcon: const CustomIcon(
-                              backgroundColor: Colors.black,
-                              icon: Icons.dark_mode,
-                              iconColor: Colors.white,
-                              iconSize: 24,
-                              size: 38,
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((BuildContext context) =>
+                                  const ProfileScreen()))),
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 10, right: 10),
+                        height: 60,
+                        width: double.maxFinite,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.grey[300]),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            AccountWidget(
+                              appIcon: const CustomIcon(
+                                backgroundColor: Colors.black,
+                                icon: Icons.dark_mode,
+                                iconColor: Colors.white,
+                                iconSize: 24,
+                                size: 38,
+                              ),
+                              customText: const CustomText(
+                                text: 'Dark Mode',
+                                color: Colors.black,
+                              ),
                             ),
-                            customText: const CustomText(
-                              text: 'Dark Mode',
-                              color: Colors.black,
+                            Container(
+                              margin: const EdgeInsets.only(right: 10),
+                              child: const CustomIcon(
+                                iconSize: 22,
+                                icon: Icons.arrow_forward_ios,
+                                iconColor: AppColors.placeholder,
+                                size: 20,
+                              ),
                             ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(right: 10),
-                            child: const CustomIcon(
-                              iconSize: 22,
-                              icon: Icons.arrow_forward_ios,
-                              iconColor: AppColors.placeholder,
-                              size: 20,
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(

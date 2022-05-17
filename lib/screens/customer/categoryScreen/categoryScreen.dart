@@ -16,7 +16,7 @@ class CategoryScreen extends StatelessWidget {
         onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-                builder: ((BuildContext context) => RestaurantMainScreen()))),
+                builder: ((BuildContext context) => const RestaurantMainScreen()))),
         child: ListView.builder(
             padding:
                 const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),

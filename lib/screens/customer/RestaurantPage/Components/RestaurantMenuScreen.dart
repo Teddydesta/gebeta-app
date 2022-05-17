@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
-import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 class RestaurantScreen extends StatefulWidget {
