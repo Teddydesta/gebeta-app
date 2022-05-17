@@ -68,7 +68,7 @@ class ProfileSettingScreen extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            CustomText(text: "Last Name"),
+            const CustomText(text: "Last Name"),
             const FormFieldWidget(
               hintText: "desta",
               isPassword: false,
@@ -80,7 +80,7 @@ class ProfileSettingScreen extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            CustomText(text: "Phone Number"),
+            const CustomText(text: "Phone Number"),
             const FormFieldWidget(
               hintText: "+251-",
               isPassword: false,

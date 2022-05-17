@@ -29,7 +29,7 @@ class HelloCash extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.only(left: 380),
               child: const CustomIcon(
-                icon: Icons.arrow_back_ios,
+                icon: Icons.close,
                 backgroundColor: Colors.white,
                 iconColor: AppColors.orange,
                 iconSize: 24,
@@ -82,11 +82,3 @@ class HelloCash extends StatelessWidget {
   }
 }
 
-void _showFeedback(context) {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return Container();
-    },
-  );
-}

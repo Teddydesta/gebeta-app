@@ -603,25 +603,25 @@ void _cbeBirr(context) {
               margin: const EdgeInsets.only(left: 5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   CustomText(text: "1. Dial *847#"),
-                  const SizedBox(
+                  SizedBox(
                     height: 10,
                   ),
-                  const CustomText(text: "2. choose 3 (Pay Bill)"),
-                  const SizedBox(
+                  CustomText(text: "2. choose 3 (Pay Bill)"),
+                  SizedBox(
                     height: 10,
                   ),
-                  const CustomText(text: "3. choose 5 (WeBirr)"),
-                  const SizedBox(
+                  CustomText(text: "3. choose 5 (WeBirr)"),
+                  SizedBox(
                     height: 10,
                   ),
-                  const CustomText(text: "4. Enter the payment code"),
-                  const SizedBox(
+                  CustomText(text: "4. Enter the payment code"),
+                  SizedBox(
                     height: 10,
                   ),
-                  const CustomText(text: "5. Enter 1 to confirm the payment"),
-                  const SizedBox(
+                  CustomText(text: "5. Enter 1 to confirm the payment"),
+                  SizedBox(
                     height: 10,
                   ),
                 ],

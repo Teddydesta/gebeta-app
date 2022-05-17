@@ -21,13 +21,13 @@ class CategoryCard extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
-          child: Container(
+          child: SizedBox(
             width: 100,
             height: 100,
             child: _image,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(

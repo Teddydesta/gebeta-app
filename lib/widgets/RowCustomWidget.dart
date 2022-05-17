@@ -13,48 +13,46 @@ class RowCustomWidget extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          CustomIcon(
-            icon: icon,
-            iconColor: AppColors.orange,
-          ),
-          Column(
-            children: const [
-              CustomText(
-                text: "TUNA SANDWICH",
-                fontWeight: FontWeight.bold,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              CustomText(
-                text:
-                    "Tuna meat mixed with our chipotle, mayonnaise filled with egg and luttce",
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              CustomText(
-                text: "ETB250",
-              ),
-            ],
-          ),
-          const SizedBox(
-            width: 30,
-          ),
-          Container(
-            height: 30,
-            width: 60,
-            decoration: BoxDecoration(
-              color: AppColors.orange,
-              borderRadius: BorderRadius.circular(20.0),
+    return Row(
+      children: [
+        CustomIcon(
+          icon: icon,
+          iconColor: AppColors.orange,
+        ),
+        Column(
+          children: const [
+            CustomText(
+              text: "TUNA SANDWICH",
+              fontWeight: FontWeight.bold,
             ),
-            child: const CustomText(text: "Add"),
+            SizedBox(
+              height: 10,
+            ),
+            CustomText(
+              text:
+                  "Tuna meat mixed with our chipotle, mayonnaise filled with egg and luttce",
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            CustomText(
+              text: "ETB250",
+            ),
+          ],
+        ),
+        const SizedBox(
+          width: 30,
+        ),
+        Container(
+          height: 30,
+          width: 60,
+          decoration: BoxDecoration(
+            color: AppColors.orange,
+            borderRadius: BorderRadius.circular(20.0),
           ),
-        ],
-      ),
+          child: const CustomText(text: "Add"),
+        ),
+      ],
     );
   }
 }

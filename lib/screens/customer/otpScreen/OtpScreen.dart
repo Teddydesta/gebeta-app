@@ -6,6 +6,7 @@ import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/utils/helpers.dart';
 import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
+import 'package:gebeta_food_delivery/widgets/text_form_field.dart';
 
 class SendOTPScreen extends StatelessWidget {
   static const routeName = "/sendOTP";
@@ -40,10 +41,22 @@ class SendOTPScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
-                OTPInput(),
-                OTPInput(),
-                OTPInput(),
-                OTPInput(),
+                TextFormFieldWidget(
+                  hintText: "0",
+                  keyboardType: TextInputType.number,
+                ),
+                TextFormFieldWidget(
+                  hintText: "0",
+                  keyboardType: TextInputType.number,
+                ),
+                TextFormFieldWidget(
+                  hintText: "0",
+                  keyboardType: TextInputType.number,
+                ),
+                TextFormFieldWidget(
+                  hintText: "0",
+                  keyboardType: TextInputType.number,
+                ),
               ],
             ),
             const SizedBox(
@@ -80,39 +93,5 @@ class SendOTPScreen extends StatelessWidget {
         ),
       ),
     ));
-  }
-}
-
-class OTPInput extends StatelessWidget {
-  const OTPInput({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 60,
-      height: 60,
-      decoration: ShapeDecoration(
-        color: AppColors.placeholderBg,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
-      child: Stack(
-        children: const [
-          Padding(
-            padding: EdgeInsets.only(top: 18, left: 20),
-            child: Text(
-              "*",
-              style: TextStyle(fontSize: 45),
-            ),
-          ),
-          TextField(
-            decoration: InputDecoration(border: InputBorder.none),
-          ),
-        ],
-      ),
-    );
   }
 }

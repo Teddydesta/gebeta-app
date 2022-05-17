@@ -3,7 +3,6 @@ import 'package:gebeta_food_delivery/screens/customer/cartScreen/BasketScreen.da
 import 'package:gebeta_food_delivery/screens/customer/feedback_screen/feedback_screen.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/profile_screen/profile_screen.dart';
-import 'package:gebeta_food_delivery/screens/restaurant/profileScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 
 class NavDrawer extends StatelessWidget {
