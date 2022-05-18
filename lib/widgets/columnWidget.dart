@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
+import 'package:gebeta_food_delivery/utils/dimensions.dart';
 import 'package:gebeta_food_delivery/widgets/commonIconWidget.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
@@ -14,11 +15,8 @@ class ColumnWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CustomText(text: text),
-        const SizedBox(
-          height: 10.0,
-        ),
-        const SizedBox(
-          height: 2,
+        SizedBox(
+          height: Dimensions.height10,
         ),
         Row(
           children: [
@@ -31,7 +29,7 @@ class ColumnWidget extends StatelessWidget {
                 );
               }),
             ),
-            const SizedBox(
+            SizedBox(
               width: 10,
             ),
             const CustomText(
@@ -45,7 +43,7 @@ class ColumnWidget extends StatelessWidget {
               text: "99",
               fontSize: 12,
             ),
-            const SizedBox(
+            SizedBox(
               width: 10,
             ),
             const CustomText(
@@ -54,8 +52,8 @@ class ColumnWidget extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: Dimensions.height20,
         ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,

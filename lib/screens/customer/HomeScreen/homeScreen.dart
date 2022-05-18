@@ -19,12 +19,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    //print("current height::" + MediaQuery.of(context).size.height.toString());
+
     return Scaffold(
       drawer: NavDrawer(),
       appBar: AppBar(
-        backgroundColor: AppColors.orange,
+        backgroundColor: Colors.white,
         title: const CustomText(
-          text: "Gebeta ",
+          text: "GEBETA ",
           fontSize: 24,
           fontWeight: FontWeight.bold,
         ),
@@ -34,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(
         child: Column(
           children: [
+            Divider(),
             Expanded(
                 child: SingleChildScrollView(
               child: Column(

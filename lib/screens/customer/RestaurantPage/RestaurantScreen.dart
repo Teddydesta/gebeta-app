@@ -5,6 +5,7 @@ import 'package:gebeta_food_delivery/screens/customer/RestaurantPage/Components/
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/searchScreen/components/searchBar.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
+import 'package:gebeta_food_delivery/utils/dimensions.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
@@ -33,7 +34,7 @@ class _RestaurantMainScreenState extends State<RestaurantMainScreen> {
             backgroundColor: AppColors.orange,
           ),
         ),
-        title: CustomText(text: "Barok Hotel"),
+        title: CustomText(text: "BABIS BISTRO"),
         centerTitle: true,
         backgroundColor: AppColors.orange,
         elevation: 0,
@@ -136,21 +137,19 @@ class _RestaurantMainScreenState extends State<RestaurantMainScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    height: 180,
+                    height: Dimensions.height180,
                     width: double.maxFinite,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius10),
                         image: DecorationImage(
                             fit: BoxFit.cover,
                             image: AssetImage(
-                                "assets/images/real/restaurant2.png"))),
-                    child: CustomText(text: "Barok"),
+                                "assets/images/restaurant_cover.png"))),
                   ),
                   SearchBar(title: 'Search for restaurants, dishes'),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  RestaurantScreen(),
+                  SizedBox(height: Dimensions.height15),
+                  RestaurantScreenDetails(),
                 ],
               ),
             )),

@@ -11,14 +11,14 @@ class FeedbackScreen extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Quick Feedback'),
+          title: const Text('Quick Feedback'),
         ),
         body: SingleChildScrollView(
           child: Center(
             child: TextButton(
               onPressed: () => _showFeedback(
                   context), // this will trigger the feedback modal
-              child: Text('Feedback'),
+              child: const Text('Feedback'),
             ),
           ),
         ),

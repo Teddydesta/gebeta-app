@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/RestaurantPage/RestaurantScreen.dart';
+import 'package:gebeta_food_delivery/utils/dimensions.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({Key? key}) : super(key: key);
@@ -7,7 +8,7 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
+      height: Dimensions.pageViewContainer,
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -16,7 +17,8 @@ class CategoryScreen extends StatelessWidget {
         onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-                builder: ((BuildContext context) => const RestaurantMainScreen()))),
+                builder: ((BuildContext context) =>
+                    const RestaurantMainScreen()))),
         child: ListView.builder(
             padding:
                 const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
@@ -24,7 +26,7 @@ class CategoryScreen extends StatelessWidget {
             itemCount: 5,
             itemBuilder: (_, i) {
               return Container(
-                height: 100,
+                height: Dimensions.pageView,
                 width: 120,
                 margin: const EdgeInsets.only(right: 10.0),
                 decoration: BoxDecoration(

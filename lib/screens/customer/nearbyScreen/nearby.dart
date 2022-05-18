@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/RestaurantPage/RestaurantScreen.dart';
+import 'package:gebeta_food_delivery/utils/dimensions.dart';
 import 'package:gebeta_food_delivery/widgets/columnWidget.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
@@ -51,8 +52,8 @@ class _NearByScreenState extends State<NearByScreen> {
               ),
             ],
           ),
-          const SizedBox(
-            height: 15,
+          SizedBox(
+            height: Dimensions.height15,
           ),
           ListView.builder(
               shrinkWrap: true,
@@ -66,9 +67,9 @@ class _NearByScreenState extends State<NearByScreen> {
                           builder: ((BuildContext context) =>
                               const RestaurantMainScreen()))),
                   child: Container(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    margin:
-                        const EdgeInsets.only(left: 0, right: 10, bottom: 10.0),
+                    padding: EdgeInsets.only(bottom: Dimensions.height10),
+                    margin: EdgeInsets.only(
+                        left: 0, right: 10, bottom: Dimensions.height10),
                     child: Row(
                       children: [
                         Container(
@@ -111,7 +112,7 @@ class _NearByScreenState extends State<NearByScreen> {
                             child: const Padding(
                               padding: EdgeInsets.only(left: 20.0, right: 10.0),
                               child: ColumnWidget(
-                                text: 'Barok Restaurant',
+                                text: 'Babis Bistro',
                               ),
                             ),
                           ),

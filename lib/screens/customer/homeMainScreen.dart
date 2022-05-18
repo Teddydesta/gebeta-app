@@ -32,6 +32,8 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //print("current height::" + MediaQuery.of(context).size.height.toString());
+    // print("current width::" + MediaQuery.of(context).size.width.toString());
     return Scaffold(
       //body
       body: SizedBox.expand(

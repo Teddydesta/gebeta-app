@@ -5,6 +5,7 @@ import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.
 import 'package:gebeta_food_delivery/screens/customer/address_screen/address_screen.dart';
 import 'package:gebeta_food_delivery/screens/customer/profile_screen/components/profile_setting.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
+import 'package:gebeta_food_delivery/utils/dimensions.dart';
 import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/accountWidget.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
@@ -18,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       drawer: const NavDrawer(),
       appBar: AppBar(
-        backgroundColor: AppColors.orange,
+        backgroundColor: Colors.blue,
         title: const CustomText(
           text: "Profile ",
           fontSize: 24,
@@ -30,13 +31,12 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Container(
         width: double.maxFinite,
-        margin: const EdgeInsets.only(top: 20),
+        margin: EdgeInsets.only(top: Dimensions.height20),
         child: Column(
           children: [
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //Profile
                     Center(
@@ -51,20 +51,20 @@ class ProfileScreen extends StatelessWidget {
                                     AssetImage("assets/images/real/user.jpg"))),
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: Dimensions.height10,
                     ),
                     Divider(
                       color: Colors.grey[300],
                     ),
                     Container(
-                      margin: const EdgeInsets.only(left: 15),
+                      margin: EdgeInsets.only(left: Dimensions.width15),
                       child: const CustomText(
                         text: "Account",
                         fontSize: 24,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: Dimensions.height10),
 
                     //Phone Number
                     GestureDetector(
@@ -101,6 +101,7 @@ class ProfileScreen extends StatelessWidget {
                               child: const CustomIcon(
                                 iconSize: 22,
                                 icon: Icons.arrow_forward_ios,
+                                backgroundColor: Colors.white12,
                                 iconColor: AppColors.placeholder,
                                 size: 20,
                               ),
@@ -145,6 +146,7 @@ class ProfileScreen extends StatelessWidget {
                               margin: const EdgeInsets.only(right: 10),
                               child: const CustomIcon(
                                 iconSize: 22,
+                                backgroundColor: Colors.white12,
                                 icon: Icons.arrow_forward_ios,
                                 iconColor: AppColors.placeholder,
                                 size: 20,
@@ -191,6 +193,7 @@ class ProfileScreen extends StatelessWidget {
                               margin: const EdgeInsets.only(right: 10),
                               child: const CustomIcon(
                                 iconSize: 22,
+                                backgroundColor: Colors.white12,
                                 icon: Icons.arrow_forward_ios,
                                 iconColor: AppColors.placeholder,
                                 size: 20,
@@ -237,6 +240,7 @@ class ProfileScreen extends StatelessWidget {
                               child: const CustomIcon(
                                 iconSize: 22,
                                 icon: Icons.arrow_forward_ios,
+                                backgroundColor: Colors.white12,
                                 iconColor: AppColors.placeholder,
                                 size: 20,
                               ),
@@ -276,6 +280,7 @@ class ProfileScreen extends StatelessWidget {
                             child: const CustomIcon(
                               iconSize: 22,
                               icon: Icons.arrow_forward_ios,
+                              backgroundColor: Colors.white12,
                               iconColor: AppColors.placeholder,
                               size: 20,
                             ),
@@ -324,6 +329,7 @@ class ProfileScreen extends StatelessWidget {
                             child: const CustomIcon(
                               iconSize: 22,
                               icon: Icons.arrow_forward_ios,
+                              backgroundColor: Colors.white12,
                               iconColor: AppColors.placeholder,
                               size: 20,
                             ),
@@ -362,6 +368,7 @@ class ProfileScreen extends StatelessWidget {
                             child: const CustomIcon(
                               iconSize: 22,
                               icon: Icons.arrow_forward_ios,
+                              backgroundColor: Colors.white12,
                               iconColor: AppColors.placeholder,
                               size: 20,
                             ),
@@ -399,6 +406,7 @@ class ProfileScreen extends StatelessWidget {
                             child: const CustomIcon(
                               iconSize: 22,
                               icon: Icons.arrow_forward_ios,
+                              backgroundColor: Colors.white12,
                               iconColor: AppColors.placeholder,
                               size: 20,
                             ),
@@ -415,7 +423,8 @@ class ProfileScreen extends StatelessWidget {
                       height: 60,
                       width: double.maxFinite,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radius10),
                           color: Colors.grey[300]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -434,8 +443,9 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            margin: const EdgeInsets.only(right: 10),
+                            margin: EdgeInsets.only(right: Dimensions.width10),
                             child: const CustomIcon(
+                              backgroundColor: Colors.white12,
                               iconSize: 22,
                               icon: Icons.arrow_forward_ios,
                               iconColor: AppColors.placeholder,
@@ -456,13 +466,15 @@ class ProfileScreen extends StatelessWidget {
                               builder: ((BuildContext context) =>
                                   const SignInPage()))),
                       child: Container(
-                        margin: const EdgeInsets.only(
-                            left: 20, right: 20, bottom: 10),
+                        margin: EdgeInsets.only(
+                            left: Dimensions.width20,
+                            right: Dimensions.width20,
+                            bottom: Dimensions.height10),
                         child: CustomBtn(
                             text: "logout",
-                            color: AppColors.orange,
-                            height: 50,
-                            width: 450,
+                            color: Colors.blue,
+                            height: Dimensions.height40,
+                            width: Dimensions.width450,
                             borderRadius: 8.0,
                             fontSize: 30,
                             textColor: Colors.white,

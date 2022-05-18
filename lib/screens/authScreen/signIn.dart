@@ -7,6 +7,7 @@ import 'package:gebeta_food_delivery/screens/authScreen/components/signInBtn.dar
 import 'package:gebeta_food_delivery/screens/authScreen/signUp.dart';
 import 'package:gebeta_food_delivery/screens/customer/otpScreen/OtpScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
+import 'package:gebeta_food_delivery/utils/dimensions.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 
 class SignInPage extends StatefulWidget {
@@ -26,9 +27,10 @@ class _SignInPageState extends State<SignInPage> {
 
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 30),
+        padding: EdgeInsets.only(
+            left: Dimensions.width10, right: 20, top: 0, bottom: 0),
         width: double.infinity,
-        height: double.infinity,
+        height: MediaQuery.of(context).size.height,
         color: Colors.white70,
         child: Column(
           children: <Widget>[
@@ -39,22 +41,23 @@ class _SignInPageState extends State<SignInPage> {
                 children: <Widget>[
                   Container(
                     width: double.maxFinite,
-                    height: 150,
+                    height: Dimensions.containerHeight180,
                     alignment: Alignment.center,
                     child: Image.asset(
                       "assets/images/gebeta_logo.png",
                     ),
                   ),
-                  const SizedBox(
-                    height: 15,
+                  SizedBox(
+                    height: Dimensions.height15,
                   ),
                   TextField(
                     keyboardType: TextInputType.number,
                     showCursor: true,
                     decoration: InputDecoration(
                       labelText: "Phone number",
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(Dimensions.radius10)),
                         borderSide: BorderSide(
                           width: 0,
                           style: BorderStyle.none,
@@ -81,8 +84,9 @@ class _SignInPageState extends State<SignInPage> {
                     showCursor: true,
                     decoration: InputDecoration(
                       labelText: "password",
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(Dimensions.radius10)),
                         borderSide: BorderSide(
                           width: 0,
                           style: BorderStyle.none,
@@ -108,8 +112,8 @@ class _SignInPageState extends State<SignInPage> {
                       hintText: "Password",
                     ),
                   ),
-                  const SizedBox(
-                    height: 5,
+                  SizedBox(
+                    height: Dimensions.height10,
                   ),
                   GestureDetector(
                     onTap: () => Navigator.push(
@@ -131,8 +135,8 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 5,
+                  SizedBox(
+                    height: Dimensions.height10,
                   ),
                   GestureDetector(
                       onTap: () => Navigator.push(

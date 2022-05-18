@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
+import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 
 class SearchBar extends StatelessWidget {
   final String title;
@@ -11,28 +12,34 @@ class SearchBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Container(
-        margin: const EdgeInsets.only(top: 15),
+        margin: const EdgeInsets.only(top: 5),
         height: 50,
         width: double.infinity,
-        decoration: const ShapeDecoration(
-          shape: StadiumBorder(),
-          color: AppColors.placeholderBg,
-        ),
+        decoration: BoxDecoration(),
         child: TextField(
+          onTap: (() {}),
           decoration: InputDecoration(
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-                borderSide: const BorderSide(color: AppColors.orange)),
-            prefixIcon: Image.asset(
-              "assets/images/virtual/search_filled.png",
-              height: 30.0,
+            border: const OutlineInputBorder(
+              borderSide: BorderSide(
+                color: AppColors.orange,
+              ),
+            ),
+            suffixIcon: GestureDetector(
+              onTap: () {},
+              child: const CustomIcon(
+                icon: Icons.search,
+                backgroundColor: Colors.white30,
+                iconColor: Colors.black,
+                iconSize: 24,
+              ),
             ),
             hintText: title,
             hintStyle: const TextStyle(
-              color: Color(0xFF666666),
+              color: Colors.black,
               fontSize: 14,
             ),
             contentPadding: const EdgeInsets.only(
+              left: 20,
               top: 17,
             ),
           ),
