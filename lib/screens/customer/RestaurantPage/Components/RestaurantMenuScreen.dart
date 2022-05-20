@@ -43,11 +43,11 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                 child: Container(
                   margin: EdgeInsets.only(right: Dimensions.width10),
                   height: Dimensions.height40,
-                  width: 80,
+                  width: 100,
                   decoration: BoxDecoration(
-                      color: AppColors.orange,
+                      color: Colors.lightBlue,
                       borderRadius: BorderRadius.circular(Dimensions.radius20)),
-                  child: const Center(child: CustomText(text: "MENU")),
+                  child: const Center(child: CustomText(text: "MENU",color: Colors.white,)),
                 ),
               )
             ],
@@ -122,14 +122,14 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                             GestureDetector(
                               onTap: (() {}),
                               child: Container(
-                                height: 30,
+                                height: 35,
                                 width: 80,
                                 decoration: BoxDecoration(
-                                  color: AppColors.orange,
+                                  color: Colors.lightBlue,
                                   borderRadius: BorderRadius.circular(20.0),
                                 ),
                                 child: const Center(
-                                    child: CustomText(text: "Add")),
+                                    child: CustomText(text: "Add",color: Colors.white,)),
                               ),
                             ),
                           ],
@@ -216,11 +216,11 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                                 height: 30,
                                 width: 80,
                                 decoration: BoxDecoration(
-                                  color: AppColors.orange,
+                                  color: Colors.lightBlue,
                                   borderRadius: BorderRadius.circular(20.0),
                                 ),
                                 child: const Center(
-                                    child: CustomText(text: "Add")),
+                                    child: CustomText(text: "Add",color: Colors.white,)),
                               ),
                             ),
                           ],
@@ -307,12 +307,12 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                                 height: Dimensions.height30,
                                 width: Dimensions.width80,
                                 decoration: BoxDecoration(
-                                  color: AppColors.orange,
+                                  color: Colors.lightBlue,
                                   borderRadius: BorderRadius.circular(
                                       Dimensions.radius20),
                                 ),
                                 child: const Center(
-                                    child: CustomText(text: "Add")),
+                                    child: CustomText(text: "Add",color: Colors.white)),
                               ),
                             ),
                           ],

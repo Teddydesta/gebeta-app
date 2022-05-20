@@ -21,7 +21,7 @@ class _SearchScreenState extends State<SearchScreen> {
             height: 60,
             width: double.maxFinite,
             margin: const EdgeInsets.only(top: 0),
-            color: AppColors.orange,
+            color: Colors.lightBlue,
           ),
           const SearchBar(title: "Search for restaurants, dishes")
         ],

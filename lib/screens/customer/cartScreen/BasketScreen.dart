@@ -30,24 +30,7 @@ class BasketScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        height: Dimensions.height40,
-                        width: Dimensions.width100,
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(Dimensions.radius20),
-                          image: const DecorationImage(
-                              image:
-                                  AssetImage("assets/images/gebeta-logo.png")),
-                        ),
-                      ),
-                      const CustomText(
-                        text: "Babis Bistro",
-                        fontSize: 24,
-                      ),
-                      SizedBox(
-                        width: Dimensions.width450,
-                      ),
+                      
                       GestureDetector(
                           onTap: () => Navigator.push(
                               context,
@@ -57,8 +40,18 @@ class BasketScreen extends StatelessWidget {
                           child: const CustomIcon(
                             icon: Icons.arrow_back_ios,
                             backgroundColor: Colors.white,
+                            iconColor: Colors.lightBlue,
                             iconSize: 24,
-                          )),
+                          ),),
+                          SizedBox(
+                        width: Dimensions.width80,
+                      ),
+                      const CustomText(
+                        text: "EFFOI PIZZA ",
+                        fontSize: 24,
+                        fontWeight: FontWeight.normal,
+                      ),
+                      
                     ],
                   ),
                 ],
@@ -76,7 +69,7 @@ class BasketScreen extends StatelessWidget {
                     icon: Icons.circle_outlined,
                     backgroundColor: Colors.white,
                     iconSize: 20,
-                    iconColor: AppColors.placeholder),
+                    iconColor: Colors.lightBlue),
                 SizedBox(
                   width: 25,
                 ),
@@ -195,7 +188,7 @@ class BasketScreen extends StatelessWidget {
                       CustomIcon(
                         icon: Icons.circle_outlined,
                         iconSize: 20,
-                        iconColor: AppColors.placeholder,
+                        iconColor: Colors.lightBlue,
                         backgroundColor: Colors.white,
                       ),
                       SizedBox(
@@ -224,13 +217,13 @@ class BasketScreen extends StatelessWidget {
                           const PaymentScreen()))),
               child: CustomBtn(
                 text: "PROCEED TO PAY",
-                color: AppColors.orange,
+                color: Colors.lightBlue,
                 height: 50,
                 width: 400,
-                borderRadius: 8.0,
+                borderRadius: 35.0,
                 fontSize: 18,
                 textColor: Colors.white,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.normal,
                 onPressed: () {
                   Navigator.push(
                       context,

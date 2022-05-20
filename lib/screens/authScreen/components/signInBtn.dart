@@ -12,7 +12,7 @@ class SignInButtonWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+        borderRadius: BorderRadius.all(Radius.circular(35.0)),
         boxShadow: <BoxShadow>[
           BoxShadow(
             color: Color(0xFFfbab66),

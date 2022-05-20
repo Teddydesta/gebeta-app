@@ -60,23 +60,23 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
         },
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-              activeColor: AppColors.orange,
+              activeColor: Colors.lightBlue,
               inactiveColor: Colors.black,
               title: const Text('Nearby'),
               icon: const Icon(Icons.local_restaurant_outlined)),
           BottomNavyBarItem(
-              activeColor: AppColors.orange,
+              activeColor: Colors.lightBlue,
               inactiveColor: Colors.black,
               title: const Text('Search'),
               icon: const Icon(Icons.search)),
           BottomNavyBarItem(
-            activeColor: AppColors.orange,
+            activeColor: Colors.lightBlue,
             inactiveColor: Colors.black,
             title: const Text('Cart'),
             icon: const Icon(Icons.shopping_basket_outlined),
           ),
           BottomNavyBarItem(
-              activeColor: AppColors.orange,
+              activeColor: Colors.lightBlue,
               inactiveColor: Colors.black,
               title: const Text('Profile'),
               icon: const Icon(Icons.person)),

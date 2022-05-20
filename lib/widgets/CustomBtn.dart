@@ -9,14 +9,14 @@ class CustomBtn extends StatelessWidget {
   final double height;
   final double width;
   final double borderRadius;
-  final Color? textColor;
+  final Color textColor;
   final FontWeight fontWeight;
   final double fontSize;
   final VoidCallback? onPressed;
 
   const CustomBtn({
     required this.text,
-    this.color = const Color(0x00f07945),
+    this.color = Colors.white,
     this.height = 50,
     this.width = double.infinity,
     this.borderRadius = 8.0,

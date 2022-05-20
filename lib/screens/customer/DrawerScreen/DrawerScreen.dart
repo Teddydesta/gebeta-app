@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/BasketScreen.dart';
-import 'package:gebeta_food_delivery/screens/customer/feedback_screen/feedback_screen.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/profile_screen/profile_screen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
@@ -16,7 +15,7 @@ class NavDrawer extends StatelessWidget {
         children: <Widget>[
           const DrawerHeader(
             decoration: BoxDecoration(
-              color: AppColors.orange,
+              color: Colors.lightBlue,
               image: DecorationImage(
                 fit: BoxFit.fill,
                 image: AssetImage('assets/images/gebeta_logo.png'),
@@ -63,7 +62,7 @@ class NavDrawer extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: ((BuildContext context) =>
-                          const FeedbackScreen())))
+                          const Drawer())))
             },
           ),
           ListTile(

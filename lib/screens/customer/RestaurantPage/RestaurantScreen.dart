@@ -31,12 +31,12 @@ class _RestaurantMainScreenState extends State<RestaurantMainScreen> {
             icon: Icons.arrow_back_ios,
             iconColor: Colors.white,
             iconSize: 24,
-            backgroundColor: AppColors.orange,
+            backgroundColor: Colors.lightBlue,
           ),
         ),
-        title: CustomText(text: "BABIS BISTRO"),
+        title: CustomText(text: "BABIS BISTRO",color: Colors.white,fontWeight: FontWeight.bold,fontSize: 28,),
         centerTitle: true,
-        backgroundColor: AppColors.orange,
+        backgroundColor: Colors.lightBlue,
         elevation: 0,
         actions: [
           PopupMenuButton(

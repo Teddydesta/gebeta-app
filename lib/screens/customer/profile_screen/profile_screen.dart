@@ -19,10 +19,11 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       drawer: const NavDrawer(),
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.white,
         title: const CustomText(
           text: "Profile ",
-          fontSize: 24,
+          fontSize: 34,
+          color: Colors.lightBlue,
           fontWeight: FontWeight.bold,
         ),
         elevation: 0,
@@ -33,10 +34,12 @@ class ProfileScreen extends StatelessWidget {
         width: double.maxFinite,
         margin: EdgeInsets.only(top: Dimensions.height20),
         child: Column(
+          
           children: [
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //Profile
                     Center(
@@ -466,16 +469,17 @@ class ProfileScreen extends StatelessWidget {
                               builder: ((BuildContext context) =>
                                   const SignInPage()))),
                       child: Container(
+                        height: 50,
                         margin: EdgeInsets.only(
                             left: Dimensions.width20,
                             right: Dimensions.width20,
-                            bottom: Dimensions.height10),
+                            bottom: Dimensions.height20),
                         child: CustomBtn(
                             text: "logout",
-                            color: Colors.blue,
+                            color: Colors.lightBlue,
                             height: Dimensions.height40,
                             width: Dimensions.width450,
-                            borderRadius: 8.0,
+                            borderRadius: 35.0,
                             fontSize: 30,
                             textColor: Colors.white,
                             fontWeight: FontWeight.normal,

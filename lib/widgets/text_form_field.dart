@@ -38,6 +38,12 @@ class TextFormFieldWidget extends StatelessWidget {
                   FocusScope.of(context).nextFocus();
                 }
               }),
+              validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'category name is required';
+                    }
+                    return null;
+                  },
               style: Theme.of(context).textTheme.headline6,
               keyboardType: TextInputType.number,
               textAlign: TextAlign.center,

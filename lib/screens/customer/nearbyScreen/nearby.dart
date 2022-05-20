@@ -27,6 +27,7 @@ class _NearByScreenState extends State<NearByScreen> {
               const CustomText(
                 text: 'Popular ',
                 fontSize: 24,
+                color: Colors.lightBlue,
               ),
               const SizedBox(
                 width: 1,

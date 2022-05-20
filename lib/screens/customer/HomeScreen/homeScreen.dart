@@ -27,8 +27,9 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.white,
         title: const CustomText(
           text: "GEBETA ",
-          fontSize: 24,
+          fontSize: 34,
           fontWeight: FontWeight.bold,
+          color: Colors.lightBlue,
         ),
         elevation: 0,
         centerTitle: true,
