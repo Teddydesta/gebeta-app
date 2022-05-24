@@ -29,7 +29,7 @@ class SearchBar extends StatelessWidget {
               child: const CustomIcon(
                 icon: Icons.search,
                 backgroundColor: Colors.white30,
-                iconColor: Colors.lightBlue,
+                iconColor: AppColors.orange,
                 iconSize: 24,
               ),
             ),

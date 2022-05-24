@@ -35,6 +35,7 @@ class OrdersScreen extends StatelessWidget {
                 const CustomText(
                   text: "List of Orders",
                   fontSize: 24,
+                  color: AppColors.orange,
                 ),
               ],
             ),

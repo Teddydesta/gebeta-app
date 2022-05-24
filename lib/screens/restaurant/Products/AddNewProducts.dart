@@ -19,10 +19,10 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppColors.orange,
+        backgroundColor: Colors.white,
         title: const CustomText(
           text: 'Add New Product',
-          color: Colors.white,
+          color: AppColors.orange,
           fontWeight: FontWeight.bold,
         ),
         centerTitle: true,
@@ -30,7 +30,7 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
         leading: TextButton(
           child: const CustomText(
             text: 'Cancel',
-            color: Colors.white,
+            color: AppColors.orange,
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
@@ -44,7 +44,7 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
               onPressed: () {},
               child: const CustomText(
                 text: ' Save ',
-                color: Colors.white,
+                color: AppColors.orange,
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
               ))

@@ -13,9 +13,10 @@ class NavDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          const DrawerHeader(
+           DrawerHeader(
+             
             decoration: BoxDecoration(
-              color: Colors.lightBlue,
+              color: AppColors.orange,
               image: DecorationImage(
                 fit: BoxFit.fill,
                 image: AssetImage('assets/images/gebeta_logo.png'),

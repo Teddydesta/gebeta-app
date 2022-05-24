@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Category/CategoryPage.dart';
-import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 class AddCategoryPage extends StatefulWidget {
@@ -19,10 +18,10 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppColors.orange,
+        backgroundColor: Colors.white,
         title: const CustomText(
           text: 'Add Category',
-          color: Colors.white,
+          color: Colors.lightBlue,
           fontSize: 24,
           fontWeight: FontWeight.bold,
         ),
@@ -43,7 +42,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Icon(Icons.arrow_back_ios_new_rounded,
-                    color: Colors.white, size: 24),
+                    color: Colors.lightBlue, size: 24),
               ],
             ),
           ),
@@ -60,7 +59,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
               },
               child: const CustomText(
                 text: 'Save',
-                color: Colors.white,
+                color: Colors.lightBlue,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ))

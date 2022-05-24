@@ -46,6 +46,7 @@ class SendOTPScreen extends StatelessWidget {
                   keyboardType: TextInputType.number,
                 ),
                 TextFormFieldWidget(
+                  
                   hintText: "0",
                   keyboardType: TextInputType.number,
                 ),

@@ -25,12 +25,12 @@ class SelectRoleScreen extends StatelessWidget {
                     child: CustomText(
                       text: "How Do You Want to Continue ?",
                       fontSize: 24,
-                      color: Colors.black,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   decoration: BoxDecoration(
-                      color: AppColors.orange,
+                      color: Colors.lightBlue,
                       borderRadius: BorderRadius.circular(10.0)),
                 ),
                 const SizedBox(
@@ -45,7 +45,7 @@ class SelectRoleScreen extends StatelessWidget {
                   child: CustomBtn(
                     text: "CUSTOMER",
                     color: AppColors.orange,
-                    height: 150,
+                    height: 200,
                     width: 400,
                     borderRadius: 8.0,
                     fontSize: 30,
@@ -71,8 +71,8 @@ class SelectRoleScreen extends StatelessWidget {
                               const RestaurantHomeScreen()))),
                   child: CustomBtn(
                     text: "RESTAURANT",
-                    color: AppColors.orange,
-                    height: 150,
+                    color: Colors.lightBlue,
+                    height: 200,
                     width: 400,
                     borderRadius: 8.0,
                     fontSize: 30,

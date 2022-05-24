@@ -20,9 +20,10 @@ class RestaurantProfileScreen extends StatelessWidget {
     return Scaffold(
       drawer: const NavDrawer(),
       appBar: AppBar(
-        backgroundColor: AppColors.orange,
+        backgroundColor: Colors.white,
         title: const CustomText(
-          text: "Gebeta Delivery",
+          text: "Profile ",
+          color: AppColors.orange,
           fontSize: 24,
           fontWeight: FontWeight.bold,
         ),
@@ -57,7 +58,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       height: 20,
                     ),
                     Divider(
-                      color: Colors.grey[300],
+                      color: Colors.grey[100],
                     ),
                     Container(
                       margin: const EdgeInsets.only(left: 15),
@@ -75,7 +76,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[300]),
+                          color: Colors.grey[100]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -120,7 +121,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey[300]),
+                            color: Colors.grey[100]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -158,7 +159,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[300]),
+                          color: Colors.grey[100]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -195,7 +196,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[300]),
+                          color: Colors.grey[100]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -250,7 +251,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey[300]),
+                            color: Colors.grey[100]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -295,7 +296,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey[300]),
+                            color: Colors.grey[100]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -340,7 +341,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey[300]),
+                            color: Colors.grey[100]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -379,7 +380,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[300]),
+                          color: Colors.grey[100]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -427,7 +428,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[300]),
+                          color: Colors.grey[100]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -466,7 +467,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[300]),
+                          color: Colors.grey[100]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -503,7 +504,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[300]),
+                          color: Colors.grey[100]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -541,7 +542,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[300]),
+                          color: Colors.grey[100]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -582,13 +583,13 @@ class RestaurantProfileScreen extends StatelessWidget {
                                   const SignInPage()))),
                       child: Container(
                         margin: const EdgeInsets.only(
-                            left: 20, right: 20, bottom: 10),
+                            left: 20, right: 20, bottom: 30),
                         child: CustomBtn(
                             text: "logout",
                             color: AppColors.orange,
                             height: 50,
                             width: 400,
-                            borderRadius: 8.0,
+                            borderRadius: 5.0,
                             fontSize: 30,
                             textColor: Colors.white,
                             fontWeight: FontWeight.normal,

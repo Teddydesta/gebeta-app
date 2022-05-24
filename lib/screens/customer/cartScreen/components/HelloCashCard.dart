@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/customer/cartScreen/components/PaymentScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
-import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 class HelloCash extends StatelessWidget {
@@ -20,22 +18,7 @@ class HelloCash extends StatelessWidget {
       ),
       child: Column(
         children: [
-          GestureDetector(
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: ((BuildContext context) =>
-                        const PaymentScreen()))),
-            child: Container(
-              margin: const EdgeInsets.only(left: 380),
-              child: const CustomIcon(
-                icon: Icons.close,
-                backgroundColor: Colors.white,
-                iconColor: AppColors.orange,
-                iconSize: 24,
-              ),
-            ),
-          ),
+          
           Container(
             margin: const EdgeInsets.only(top: 20),
             height: 5,

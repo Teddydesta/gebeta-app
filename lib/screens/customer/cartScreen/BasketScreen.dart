@@ -3,7 +3,6 @@ import 'package:gebeta_food_delivery/screens/customer/cartScreen/components/Paym
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/utils/dimensions.dart';
-import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
@@ -14,7 +13,7 @@ class BasketScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: SingleChildScrollView(
+      
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -38,16 +37,16 @@ class BasketScreen extends StatelessWidget {
                                   builder: ((BuildContext context) =>
                                       const HomeMainScreen()))),
                           child: const CustomIcon(
-                            icon: Icons.arrow_back_ios,
+                            icon: Icons.arrow_back_outlined,
                             backgroundColor: Colors.white,
-                            iconColor: Colors.lightBlue,
+                            iconColor: AppColors.orange,
                             iconSize: 24,
                           ),),
                           SizedBox(
                         width: Dimensions.width80,
                       ),
                       const CustomText(
-                        text: "EFFOI PIZZA ",
+                        text: "BABIS BISTRO ",
                         fontSize: 24,
                         fontWeight: FontWeight.normal,
                       ),
@@ -60,16 +59,14 @@ class BasketScreen extends StatelessWidget {
             Divider(
               color: Colors.grey[300],
             ),
-            SizedBox(
-              width: Dimensions.width15,
-            ),
+            
             Row(
               children: const [
                 CustomIcon(
                     icon: Icons.circle_outlined,
                     backgroundColor: Colors.white,
                     iconSize: 20,
-                    iconColor: Colors.lightBlue),
+                    iconColor: AppColors.orange),
                 SizedBox(
                   width: 25,
                 ),
@@ -182,17 +179,17 @@ class BasketScreen extends StatelessWidget {
                   const CustomText(
                     text: "Order Type",
                   ),
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 5),
                   Row(
-                    children: const [
+                    children:  [
                       CustomIcon(
-                        icon: Icons.circle_outlined,
-                        iconSize: 20,
-                        iconColor: Colors.lightBlue,
-                        backgroundColor: Colors.white,
-                      ),
+            icon: Icons.circle_outlined,
+            iconColor: AppColors.orange,
+            backgroundColor: Colors.white,
+            iconSize: 24,
+          ),
                       SizedBox(
-                        width: 15,
+                        width: 10,
                       ),
                       CustomText(text: "Delivery"),
                     ],
@@ -215,27 +212,25 @@ class BasketScreen extends StatelessWidget {
                   MaterialPageRoute(
                       builder: ((BuildContext context) =>
                           const PaymentScreen()))),
-              child: CustomBtn(
-                text: "PROCEED TO PAY",
-                color: Colors.lightBlue,
+              child: 
+              Container(
+                child: Center(
+                  child: CustomText(text: "PROCEED TO PAY",color: Colors.white,),
+                  
+                ),
                 height: 50,
-                width: 400,
-                borderRadius: 35.0,
-                fontSize: 18,
-                textColor: Colors.white,
-                fontWeight: FontWeight.normal,
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((BuildContext context) =>
-                              const PaymentScreen())));
-                },
+                width: double.maxFinite,
+                margin: const EdgeInsets.only(bottom: 0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
+                  color: Colors.black,
+                  
+                ),
               ),
             ),
           ],
         ),
-      ),
+      
     );
   }
 }

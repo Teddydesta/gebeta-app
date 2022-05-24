@@ -60,6 +60,7 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
       ),
       //Botom Nav bar
       bottomNavigationBar: BottomNavyBar(
+        backgroundColor: Colors.grey[200],
         showElevation: false,
         selectedIndex: _currentIndex,
         onItemSelected: (index) {

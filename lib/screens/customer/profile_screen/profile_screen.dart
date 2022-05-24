@@ -23,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
         title: const CustomText(
           text: "Profile ",
           fontSize: 34,
-          color: Colors.lightBlue,
+          color: AppColors.orange,
           fontWeight: FontWeight.bold,
         ),
         elevation: 0,
@@ -36,11 +36,15 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           
           children: [
+            Divider(
+                      color: AppColors.orange,
+                    ),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    
                     //Profile
                     Center(
                       child: Container(
@@ -58,13 +62,13 @@ class ProfileScreen extends StatelessWidget {
                       height: Dimensions.height10,
                     ),
                     Divider(
-                      color: Colors.grey[300],
+                      color: Colors.grey[100],
                     ),
                     Container(
                       margin: EdgeInsets.only(left: Dimensions.width15),
                       child: const CustomText(
                         text: "Account",
-                        fontSize: 24,
+                        fontSize: 22,
                       ),
                     ),
                     SizedBox(height: Dimensions.height10),
@@ -82,7 +86,7 @@ class ProfileScreen extends StatelessWidget {
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey[300]),
+                            color: Colors.grey[50]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -96,7 +100,7 @@ class ProfileScreen extends StatelessWidget {
                               ),
                               customText: const CustomText(
                                 text: 'Profile Setting',
-                                color: Colors.black,
+                                fontSize: 18,
                               ),
                             ),
                             Container(
@@ -129,7 +133,7 @@ class ProfileScreen extends StatelessWidget {
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey[300]),
+                            color: Colors.grey[50]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -142,7 +146,8 @@ class ProfileScreen extends StatelessWidget {
                               ),
                               customText: const CustomText(
                                 text: 'Change password',
-                                color: Colors.black,
+                               
+                                fontSize: 18,
                               ),
                             ),
                             Container(
@@ -175,7 +180,7 @@ class ProfileScreen extends StatelessWidget {
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey[300]),
+                            color: Colors.grey[50]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -189,7 +194,7 @@ class ProfileScreen extends StatelessWidget {
                               ),
                               customText: const CustomText(
                                 text: 'Add Your Address',
-                                color: Colors.black,
+                               fontSize: 18,
                               ),
                             ),
                             Container(
@@ -221,7 +226,7 @@ class ProfileScreen extends StatelessWidget {
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey[300]),
+                            color: Colors.grey[50]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -235,7 +240,7 @@ class ProfileScreen extends StatelessWidget {
                               ),
                               customText: const CustomText(
                                 text: 'Dark Mode',
-                                color: Colors.black,
+                               fontSize: 18,
                               ),
                             ),
                             Container(
@@ -261,7 +266,7 @@ class ProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[300]),
+                          color: Colors.grey[50]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -275,7 +280,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             customText: const CustomText(
                               text: 'Orders',
-                              color: Colors.black,
+                              fontSize: 18,
                             ),
                           ),
                           Container(
@@ -298,7 +303,7 @@ class ProfileScreen extends StatelessWidget {
                       margin: const EdgeInsets.only(left: 15),
                       child: const CustomText(
                         text: "Personal",
-                        fontSize: 24,
+                        fontSize: 22,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -310,7 +315,7 @@ class ProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[300]),
+                          color: Colors.grey[50]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -324,7 +329,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             customText: const CustomText(
                               text: 'Privacy Policy',
-                              color: Colors.black,
+                              fontSize: 18,
                             ),
                           ),
                           Container(
@@ -350,7 +355,7 @@ class ProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[300]),
+                          color: Colors.grey[50]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -363,7 +368,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             customText: const CustomText(
                               text: 'Security',
-                              color: Colors.black,
+                            fontSize: 18,
                             ),
                           ),
                           Container(
@@ -388,7 +393,7 @@ class ProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[300]),
+                          color: Colors.grey[50]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -401,7 +406,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             customText: const CustomText(
                               text: 'Term & Conditions',
-                              color: Colors.black,
+                              fontSize: 18,
                             ),
                           ),
                           Container(
@@ -428,7 +433,7 @@ class ProfileScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(Dimensions.radius10),
-                          color: Colors.grey[300]),
+                          color: Colors.grey[50]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -442,7 +447,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             customText: const CustomText(
                               text: 'Help',
-                              color: Colors.black,
+                              fontSize: 18,
                             ),
                           ),
                           Container(
@@ -471,15 +476,15 @@ class ProfileScreen extends StatelessWidget {
                       child: Container(
                         height: 50,
                         margin: EdgeInsets.only(
-                            left: Dimensions.width20,
-                            right: Dimensions.width20,
-                            bottom: Dimensions.height20),
+                            left: Dimensions.width10,
+                            right: Dimensions.width10,
+                            bottom: Dimensions.height40),
                         child: CustomBtn(
-                            text: "logout",
-                            color: Colors.lightBlue,
+                            text: "LOGOUT",
+                            color: AppColors.orange,
                             height: Dimensions.height40,
                             width: Dimensions.width450,
-                            borderRadius: 35.0,
+                            borderRadius: 5.0,
                             fontSize: 30,
                             textColor: Colors.white,
                             fontWeight: FontWeight.normal,

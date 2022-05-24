@@ -22,6 +22,8 @@ class _RestaurantMainScreenState extends State<RestaurantMainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        
+         iconTheme: IconThemeData(color: AppColors.orange),
         leading: GestureDetector(
           onTap: () => Navigator.push(
               context,
@@ -29,14 +31,14 @@ class _RestaurantMainScreenState extends State<RestaurantMainScreen> {
                   builder: ((BuildContext context) => const HomeMainScreen()))),
           child: const CustomIcon(
             icon: Icons.arrow_back_ios,
-            iconColor: Colors.white,
+            iconColor: AppColors.orange,
             iconSize: 24,
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: Colors.white,
           ),
         ),
-        title: CustomText(text: "BABIS BISTRO",color: Colors.white,fontWeight: FontWeight.bold,fontSize: 28,),
+        title: CustomText(text: "BABIS BISTRO",color: AppColors.orange,fontWeight: FontWeight.bold,fontSize: 28,),
         centerTitle: true,
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.white,
         elevation: 0,
         actions: [
           PopupMenuButton(

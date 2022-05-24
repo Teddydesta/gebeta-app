@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Addressscreen extends StatelessWidget {
@@ -17,10 +16,11 @@ class Addressscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       body: Stack(
         children: [
           Container(
-            height: 180,
+            height: MediaQuery.of(context).size.height,
             width: double.maxFinite,
             child: const GoogleMap(
               myLocationButtonEnabled: true,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/RestaurantPage/RestaurantScreen.dart';
+import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/utils/dimensions.dart';
 import 'package:gebeta_food_delivery/widgets/columnWidget.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
@@ -27,7 +28,7 @@ class _NearByScreenState extends State<NearByScreen> {
               const CustomText(
                 text: 'Popular ',
                 fontSize: 24,
-                color: Colors.lightBlue,
+                color: AppColors.orange,
               ),
               const SizedBox(
                 width: 1,
@@ -62,6 +63,9 @@ class _NearByScreenState extends State<NearByScreen> {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return GestureDetector(
+                  onLongPress: (() {
+                Feedback.forLongPress(context);
+                  }),
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(

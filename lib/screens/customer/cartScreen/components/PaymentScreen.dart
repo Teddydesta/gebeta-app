@@ -248,22 +248,7 @@ void _helloCash(context) {
         ),
         child: Column(
           children: [
-            GestureDetector(
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((BuildContext context) =>
-                          const PaymentScreen()))),
-              child: Container(
-                margin: const EdgeInsets.only(left: 380),
-                child: const CustomIcon(
-                  icon: Icons.arrow_back_ios,
-                  backgroundColor: Colors.white,
-                  iconColor: AppColors.orange,
-                  iconSize: 24,
-                ),
-              ),
-            ),
+           
             Container(
               margin: const EdgeInsets.only(top: 20),
               height: 5,
@@ -442,9 +427,10 @@ void _cbeMobileBanking(context) {
         child: Column(
           children: [
             Container(
-              height: 150,
+              height: 100,
               width: double.maxFinite,
-              decoration: const BoxDecoration(
+              decoration:  BoxDecoration(
+                
                 color: AppColors.orange,
                 image: DecorationImage(
                   fit: BoxFit.cover,
@@ -456,19 +442,7 @@ void _cbeMobileBanking(context) {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  GestureDetector(
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((BuildContext context) =>
-                                const PaymentScreen()))),
-                    child: const CustomIcon(
-                      icon: Icons.arrow_back_ios,
-                      iconColor: Colors.white,
-                      iconSize: 25,
-                      backgroundColor: AppColors.orange,
-                    ),
-                  ),
+                  
                   const SizedBox(
                     height: 25,
                   ),

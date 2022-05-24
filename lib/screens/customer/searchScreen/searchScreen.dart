@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/searchScreen/components/searchBar.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
-import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 class SearchScreen extends StatefulWidget {
   static const routeName = "/SearchScreen";
@@ -21,7 +20,7 @@ class _SearchScreenState extends State<SearchScreen> {
             height: 60,
             width: double.maxFinite,
             margin: const EdgeInsets.only(top: 0),
-            color: Colors.lightBlue,
+            color: AppColors.orange,
           ),
           const SearchBar(title: "Search for restaurants, dishes")
         ],

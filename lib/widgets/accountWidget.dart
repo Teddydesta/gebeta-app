@@ -11,7 +11,7 @@ class AccountWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[300],
+      color: Colors.grey[40],
       padding: const EdgeInsets.only(
         left: 20,
       ),

@@ -19,11 +19,11 @@ class _ListProductScreenState extends State<ListProductScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppColors.orange,
+        backgroundColor: Colors.white,
         title: const CustomText(
           text: 'List Products',
           fontSize: 24,
-          color: Colors.white,
+          color: AppColors.orange,
           fontWeight: FontWeight.bold,
         ),
         centerTitle: true,
@@ -39,7 +39,7 @@ class _ListProductScreenState extends State<ListProductScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               Icon(Icons.arrow_back_ios_new_rounded,
-                  color: Colors.white, size: 24),
+                  color: AppColors.orange, size: 24),
             ],
           ),
         ),
@@ -61,7 +61,7 @@ class _ListProductScreenState extends State<ListProductScreen> {
                 child: const CustomText(
                   text: 'Add',
                   fontSize: 24,
-                  color: Colors.white,
+                  color: AppColors.orange,
                   fontWeight: FontWeight.bold,
                 )),
           )

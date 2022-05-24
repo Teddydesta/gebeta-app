@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/customer/cartScreen/components/PaymentScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
-import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 class CbeMobileBankingCard extends StatelessWidget {
@@ -30,28 +28,14 @@ class CbeMobileBankingCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GestureDetector(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((BuildContext context) =>
-                              const PaymentScreen()))),
-                  child: const CustomIcon(
-                    icon: Icons.arrow_back_ios,
-                    iconColor: Colors.white,
-                    iconSize: 25,
-                    backgroundColor: AppColors.orange,
-                  ),
-                ),
+                
                 const SizedBox(
                   height: 25,
                 ),
               ],
             ),
           ),
-          const SizedBox(
-            height: 25,
-          ),
+          
           const CustomText(
             text: "Please follow the following instruction",
             textAlign: TextAlign.start,

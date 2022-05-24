@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FormFieldWidget extends StatelessWidget {
@@ -35,13 +36,21 @@ class FormFieldWidget extends StatelessWidget {
         maxLines: maxLine,
         readOnly: readOnly,
         keyboardType: keyboardType,
+        
         decoration: InputDecoration(
+       
+
+
           border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red, width: 2.0),
             borderRadius: BorderRadius.circular(5.0),
           ),
           contentPadding: const EdgeInsets.only(left: 15.0),
           hintText: hintText,
           hintStyle: GoogleFonts.getFont('Roboto', color: Colors.grey),
+          focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.orange, width: 2.0),
+                ),
         ),
         validator: validator,
       ),

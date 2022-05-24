@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gebeta_food_delivery/screens/customer/cartScreen/BasketScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/utils/dimensions.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
@@ -45,8 +46,8 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                   height: Dimensions.height40,
                   width: 100,
                   decoration: BoxDecoration(
-                      color: Colors.lightBlue,
-                      borderRadius: BorderRadius.circular(Dimensions.radius20)),
+                      color: AppColors.orange,
+                      borderRadius: BorderRadius.circular(5)),
                   child: const Center(child: CustomText(text: "MENU",color: Colors.white,)),
                 ),
               )
@@ -78,7 +79,7 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height: Dimensions.height15,
+                          height: 35,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,12 +121,33 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                               width: 30,
                             ),
                             GestureDetector(
-                              onTap: (() {}),
+                              onTap: (){
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                     Row(
+                                       children: [
+                                          CustomText(text: "${1} items  | " ,color: Colors.white,),
+                                      CustomText(text: "ETB 231.00",color: Colors.white,),
+                                       ],
+                                     ),
+                                      GestureDetector(
+                                         onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((BuildContext context) =>
+                                      const BasketScreen()))),
+                                         child: CustomText(text: "View basket",color: Colors.white,))
+                                    ],
+                                  ))
+                                );
+                              },
                               child: Container(
                                 height: 35,
                                 width: 80,
                                 decoration: BoxDecoration(
-                                  color: Colors.lightBlue,
+                                  color: AppColors.orange,
                                   borderRadius: BorderRadius.circular(20.0),
                                 ),
                                 child: const Center(
@@ -211,12 +233,33 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                               width: 35,
                             ),
                             GestureDetector(
-                              onTap: (() {}),
+                              onTap: (){
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                     Row(
+                                       children: [
+                                          CustomText(text: "${1} items  | " ,color: Colors.white,),
+                                      CustomText(text: "ETB 231.00",color: Colors.white,),
+                                       ],
+                                     ),
+                                      GestureDetector(
+                                         onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((BuildContext context) =>
+                                      const BasketScreen()))),
+                                         child: CustomText(text: "View basket",color: Colors.white,))
+                                    ],
+                                  ))
+                                );
+                              },
                               child: Container(
                                 height: 30,
                                 width: 80,
                                 decoration: BoxDecoration(
-                                  color: Colors.lightBlue,
+                                  color: AppColors.orange,
                                   borderRadius: BorderRadius.circular(20.0),
                                 ),
                                 child: const Center(
@@ -297,17 +340,38 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                               ],
                             ),
                             SizedBox(
-                              width: Dimensions.width100,
+                              width: Dimensions.width80,
                             ),
                             GestureDetector(
-                              onTap: (() {}),
+                              onTap: (){
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                     Row(
+                                       children: [
+                                          CustomText(text: "${1} items  | " ,color: Colors.white,),
+                                      CustomText(text: "ETB 231.00",color: Colors.white,),
+                                       ],
+                                     ),
+                                      GestureDetector(
+                                         onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((BuildContext context) =>
+                                      const BasketScreen()))),
+                                         child: CustomText(text: "View basket",color: Colors.white,))
+                                    ],
+                                  ))
+                                );
+                              },
                               child: Container(
                                 margin:
                                     EdgeInsets.only(right: Dimensions.width10),
                                 height: Dimensions.height30,
                                 width: Dimensions.width80,
                                 decoration: BoxDecoration(
-                                  color: Colors.lightBlue,
+                                  color: AppColors.orange,
                                   borderRadius: BorderRadius.circular(
                                       Dimensions.radius20),
                                 ),
@@ -328,9 +392,6 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
   }
 }
 
-///
-///
-///
 ///
 void _menu(context) {
   showDialog(
