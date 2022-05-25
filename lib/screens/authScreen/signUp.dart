@@ -6,23 +6,74 @@ import 'package:gebeta_food_delivery/screens/animation/scaleRoute.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/components/signUpBtn.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
+import 'package:gebeta_food_delivery/widgets/customText.dart';
 import 'package:gebeta_food_delivery/widgets/formFilld.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   static const routeName = "/SignUpScreen";
   const SignUpPage({Key? key}) : super(key: key);
 
   @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  bool showPassword=true;
+  String? _phone;
+  String? _password;
+  final _formKey=GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
+     Size size = MediaQuery.of(context).size;
+     _validatePassword(String value){
+       if(value.length <4)
+         return 'password must be greater than 4';
+         else
+          return null;
+     }
+_validatePhone(String value){
+  if(value.length<10 || value.length>13)
+     return 'phone number must greater than 10';
+     else
+        String pattern=r'(^(?:[+0]9)?[0-9]{10,12}$)';
+        //RegExp regExp =new RegExp(Pattern);
+       // if(!regExp.hasMatch(value)) return 'please enter valis phone number';
+        return null;
+
+}
+_showSnackBar(context,text){
+  ScaffoldMessenger.of(context).showSnackBar(new SnackBar(content: CustomText(text: text)));
+}
+
     String defaultFontFamily = 'Roboto-Light.ttf';
     double defaultFontSize = 14;
+
+
+//Form(
+        //key: _formKey,
+      //  child: SingleChildScrollView(
+        //  padding: EdgeInsets.all(10.0),
+        //  child: Column(
+          //  crossAxisAlignment: CrossAxisAlignment.center,
+           // children: [
+           //   Container(
+             //   width: 100,
+               // height: 100,
+               // decoration: BoxDecoration(
+                //  shape: BoxShape.circle,
+               // ),
+                //child: Image(image: AssetImage("assetName")),
+             // ),
+          //  ],
+         // ),
+       // ),),
 
     return Scaffold(
       body: Container(
         padding:
             const EdgeInsets.only(left: 20, right: 20, top: 35, bottom: 30),
-        width: double.infinity,
-        height: double.infinity,
+       width: double.infinity,
+       height: double.infinity,
         color: Colors.white70,
         child: Column(
           children: <Widget>[
@@ -63,6 +114,13 @@ class SignUpPage extends StatelessWidget {
                       readOnly: false,
                       labelText: "Pasword",
                     ),
+                     const SizedBox(
+                        height: 15,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.text,
+                        
+                      ),
                     
                     const SizedBox(
                       height: 15,

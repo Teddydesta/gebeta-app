@@ -22,7 +22,8 @@ class PaymentScreen extends StatelessWidget {
             child: const Icon(Icons.arrow_back_ios)),
         elevation: 0,
         backgroundColor: AppColors.orange,
-        title: const CustomText(text: "Payments"),
+        centerTitle: true,
+        title:  CustomText(text: "PAYMENT",color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold,),
       ),
       drawer: const NavDrawer(),
       body: Container(
@@ -37,7 +38,7 @@ class PaymentScreen extends StatelessWidget {
                     height: 30,
                     width: 40,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
+                     
                       image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage(
@@ -69,7 +70,7 @@ class PaymentScreen extends StatelessWidget {
                     height: 30,
                     width: 40,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
+                     
                       image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage("assets/images/real/CBE-birr.png"),
@@ -103,11 +104,11 @@ class PaymentScreen extends StatelessWidget {
                     height: 30,
                     width: 40,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
+                      
                       image: const DecorationImage(
                         fit: BoxFit.cover,
                         image:
-                            AssetImage("assets/images/real/Mobile banking.png"),
+                            AssetImage("assets/images/cbe mobile bank.png"),
                       ),
                     ),
                   ),
@@ -138,10 +139,10 @@ class PaymentScreen extends StatelessWidget {
                     height: 30,
                     width: 40,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      
                       image: const DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage("assets/images/real/abysinia.png"),
+                        image: AssetImage("assets/images/abyssinia.png"),
                       ),
                     ),
                   ),
@@ -172,7 +173,7 @@ class PaymentScreen extends StatelessWidget {
                     height: 30,
                     width: 40,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
+                 
                       image: const DecorationImage(
                         image: AssetImage("assets/images/real/hello cash.png"),
                       ),
@@ -301,39 +302,35 @@ void _abyssinia(context) {
     context: context,
     builder: (context) {
       return Container(
+        decoration: BoxDecoration(
+color: Colors.white,
+borderRadius: BorderRadius.circular(8.0),
+        ),
         margin:
             const EdgeInsets.only(top: 140, bottom: 140, right: 10, left: 10),
-        color: Colors.white,
+        
         child: Column(
           children: [
             Container(
-              height: 150,
+              height: 200,
               width: double.maxFinite,
-              decoration: const BoxDecoration(
+              decoration:  BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8.0),
+                  topRight: Radius.circular(8.0),
+                ),
                 color: AppColors.orange,
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(
-                    "assets/images/real/abysinia.png",
+                    "assets/images/abyssinia.png",
                   ),
                 ),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  GestureDetector(
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((BuildContext context) =>
-                                const PaymentScreen()))),
-                    child: const CustomIcon(
-                      icon: Icons.arrow_back_ios,
-                      iconColor: AppColors.orange,
-                      iconSize: 25,
-                      backgroundColor: Colors.white,
-                    ),
-                  ),
+                  
                   const SizedBox(
                     height: 25,
                   ),
@@ -421,21 +418,27 @@ void _cbeMobileBanking(context) {
     context: context,
     builder: (context) {
       return Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8.0),
+        ),
         margin:
             const EdgeInsets.only(top: 140, bottom: 140, right: 10, left: 10),
-        color: Colors.white,
+        
         child: Column(
           children: [
             Container(
-              height: 100,
+              height: 200,
               width: double.maxFinite,
               decoration:  BoxDecoration(
-                
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0),
+                topRight: Radius.circular(8.0),
+                ),
                 color: AppColors.orange,
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(
-                    "assets/images/real/Mobile banking.png",
+                    "assets/images/cbe mobile bank.png",
                   ),
                 ),
               ),
@@ -524,39 +527,36 @@ void _cbeBirr(context) {
     context: context,
     builder: (context) {
       return Container(
+        
         margin:
             const EdgeInsets.only(top: 140, bottom: 140, right: 10, left: 10),
-        color: Colors.white,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              color: Colors.white,
+            ),
+        
         child: Column(
           children: [
             Container(
-              height: 150,
+              height: 200,
               width: double.maxFinite,
-              decoration: const BoxDecoration(
+              decoration:  BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8.0),
+                  topRight: Radius.circular(8.0),
+                ),
                 color: AppColors.orange,
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(
-                    "assets/images/real/CBE-birr.png",
+                    "assets/images/cbe.png",
                   ),
                 ),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  GestureDetector(
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((BuildContext context) =>
-                                const PaymentScreen()))),
-                    child: const CustomIcon(
-                      icon: Icons.arrow_back_ios,
-                      iconColor: Colors.white,
-                      iconSize: 25,
-                      backgroundColor: AppColors.orange,
-                    ),
-                  ),
+             
                   const SizedBox(
                     height: 25,
                   ),

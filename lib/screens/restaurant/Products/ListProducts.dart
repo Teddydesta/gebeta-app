@@ -132,13 +132,7 @@ void _deleteProduct(context) {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const CustomText(
-                      text: "Gebeta Delivery",
-                      fontSize: 24,
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
+                    
                     GestureDetector(
                       onTap: () => Navigator.push(
                           context,
@@ -195,21 +189,18 @@ void _deleteProduct(context) {
                 ),
                 Container(
                   margin: const EdgeInsets.only(left: 20, right: 20, bottom: 0),
-                  child: CustomBtn(
-                      text: "Delete",
-                      color: AppColors.orange,
+                  child: Container(
+                     child: Center(child: CustomText( text: "REMOVE",
+                     color: Colors.white,fontWeight: FontWeight.bold,),),
+                      
                       height: 50,
                       width: 450,
-                      borderRadius: 8.0,
-                      fontSize: 30,
-                      textColor: Colors.white,
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((BuildContext context) =>
-                                    const ListProductScreen())));
-                      }),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                     
+                     ),
                 ),
               ],
             ),

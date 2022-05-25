@@ -18,12 +18,17 @@ class BasketScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              color: Colors.white,
+              padding: EdgeInsets.only(left: 10),
+              height: 100,
+              color: AppColors.orange,
               margin: EdgeInsets.only(
-                  top: Dimensions.height40,
-                  left: Dimensions.width15,
-                  right: Dimensions.width10),
+                  top: 0,
+                  
+                  bottom: 0
+                  ),
+                  
               child: Row(
+                
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
@@ -37,18 +42,19 @@ class BasketScreen extends StatelessWidget {
                                   builder: ((BuildContext context) =>
                                       const HomeMainScreen()))),
                           child: const CustomIcon(
-                            icon: Icons.arrow_back_outlined,
-                            backgroundColor: Colors.white,
-                            iconColor: AppColors.orange,
+                            icon: Icons.arrow_back_ios,
+                            backgroundColor: AppColors.orange,
+                            iconColor: Colors.white,
                             iconSize: 24,
                           ),),
                           SizedBox(
-                        width: Dimensions.width80,
+                        width: 150,
                       ),
                       const CustomText(
-                        text: "BABIS BISTRO ",
+                        text: "BABIS ",
                         fontSize: 24,
-                        fontWeight: FontWeight.normal,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
                       ),
                       
                     ],
@@ -56,10 +62,7 @@ class BasketScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Divider(
-              color: Colors.grey[300],
-            ),
-            
+          
             Row(
               children: const [
                 CustomIcon(

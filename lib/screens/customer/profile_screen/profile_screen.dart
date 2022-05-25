@@ -37,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
           
           children: [
             Divider(
-                      color: AppColors.orange,
+                      color: AppColors.placeholder,
                     ),
             Expanded(
               child: SingleChildScrollView(
@@ -467,36 +467,30 @@ class ProfileScreen extends StatelessWidget {
                     const SizedBox(
                       height: 65,
                     ),
-                    GestureDetector(
-                      onTap: () => Navigator.pop(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((BuildContext context) =>
-                                  const SignInPage()))),
-                      child: Container(
-                        height: 50,
+                    
+                      Container(
+                        
                         margin: EdgeInsets.only(
                             left: Dimensions.width10,
                             right: Dimensions.width10,
                             bottom: Dimensions.height40),
-                        child: CustomBtn(
-                            text: "LOGOUT",
-                            color: AppColors.orange,
-                            height: Dimensions.height40,
-                            width: Dimensions.width450,
-                            borderRadius: 5.0,
-                            fontSize: 30,
-                            textColor: Colors.white,
-                            fontWeight: FontWeight.normal,
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((BuildContext context) =>
-                                          const SignInPage())));
-                            }),
+                        child: Container(
+                        
+                        child: Container(
+                     child: Center(child: CustomText( text: "LOGOUT",
+                     color: Colors.white,fontWeight: FontWeight.bold,),),
+                      
+                      height: 50,
+                      width: 450,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(5),
                       ),
-                    ),
+                     
+                     ),
+                      ),
+                      ),
+                    
                   ],
                 ),
               ),

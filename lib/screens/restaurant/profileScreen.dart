@@ -76,7 +76,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[100]),
+                          color: Colors.grey[50]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -99,6 +99,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                               iconSize: 22,
                               icon: Icons.arrow_forward_ios,
                               iconColor: AppColors.placeholder,
+                              backgroundColor: Colors.white10,
                               size: 20,
                             ),
                           ),
@@ -121,7 +122,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey[100]),
+                            color: Colors.grey[50]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -142,6 +143,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                               child: const CustomIcon(
                                 iconSize: 22,
                                 icon: Icons.arrow_forward_ios,
+                                backgroundColor: Colors.white10,
                                 iconColor: AppColors.placeholder,
                                 size: 20,
                               ),
@@ -159,7 +161,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[100]),
+                          color: Colors.grey[50]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -181,6 +183,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                               iconSize: 22,
                               icon: Icons.arrow_forward_ios,
                               iconColor: AppColors.placeholder,
+                              backgroundColor: Colors.white10,
                               size: 20,
                             ),
                           ),
@@ -196,7 +199,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[100]),
+                          color: Colors.grey[50]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -219,6 +222,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                               iconSize: 22,
                               icon: Icons.arrow_forward_ios,
                               iconColor: AppColors.placeholder,
+                              backgroundColor: Colors.white10,
                               size: 20,
                             ),
                           ),
@@ -251,7 +255,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey[100]),
+                            color: Colors.grey[50]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -274,6 +278,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                                 iconSize: 22,
                                 icon: Icons.arrow_forward_ios,
                                 iconColor: AppColors.placeholder,
+                                backgroundColor: Colors.white10,
                                 size: 20,
                               ),
                             ),
@@ -296,7 +301,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey[100]),
+                            color: Colors.grey[50]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -319,6 +324,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                                 iconSize: 22,
                                 icon: Icons.arrow_forward_ios,
                                 iconColor: AppColors.placeholder,
+                                backgroundColor: Colors.white10,
                                 size: 20,
                               ),
                             ),
@@ -341,7 +347,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey[100]),
+                            color: Colors.grey[50]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -364,6 +370,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                                 iconSize: 22,
                                 icon: Icons.arrow_forward_ios,
                                 iconColor: AppColors.placeholder,
+                                backgroundColor: Colors.white10,
                                 size: 20,
                               ),
                             ),
@@ -380,7 +387,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[100]),
+                          color: Colors.grey[50]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -403,6 +410,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                               iconSize: 22,
                               icon: Icons.arrow_forward_ios,
                               iconColor: AppColors.placeholder,
+                              backgroundColor: Colors.white10,
                               size: 20,
                             ),
                           ),
@@ -428,7 +436,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[100]),
+                          color: Colors.grey[50]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -451,6 +459,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                               iconSize: 22,
                               icon: Icons.arrow_forward_ios,
                               iconColor: AppColors.placeholder,
+                              backgroundColor: Colors.white10,
                               size: 20,
                             ),
                           ),
@@ -467,7 +476,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[100]),
+                          color: Colors.grey[50]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -489,6 +498,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                               iconSize: 22,
                               icon: Icons.arrow_forward_ios,
                               iconColor: AppColors.placeholder,
+                              backgroundColor: Colors.white10,
                               size: 20,
                             ),
                           ),
@@ -504,7 +514,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[100]),
+                          color: Colors.grey[50]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -526,6 +536,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                               iconSize: 22,
                               icon: Icons.arrow_forward_ios,
                               iconColor: AppColors.placeholder,
+                              backgroundColor: Colors.white10,
                               size: 20,
                             ),
                           ),
@@ -542,7 +553,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey[100]),
+                          color: Colors.grey[50]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -565,6 +576,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                               iconSize: 22,
                               icon: Icons.arrow_forward_ios,
                               iconColor: AppColors.placeholder,
+                              backgroundColor: Colors.white10,
                               size: 20,
                             ),
                           ),
@@ -583,23 +595,19 @@ class RestaurantProfileScreen extends StatelessWidget {
                                   const SignInPage()))),
                       child: Container(
                         margin: const EdgeInsets.only(
-                            left: 20, right: 20, bottom: 30),
-                        child: CustomBtn(
-                            text: "logout",
-                            color: AppColors.orange,
-                            height: 50,
-                            width: 400,
-                            borderRadius: 5.0,
-                            fontSize: 30,
-                            textColor: Colors.white,
-                            fontWeight: FontWeight.normal,
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((BuildContext context) =>
-                                          const HomeMainScreen())));
-                            }),
+                            left: 10, right: 10, bottom: 30),
+                        child: Container(
+                     child: Center(child: CustomText( text: "LOGOUT",
+                     color: Colors.white,fontWeight: FontWeight.bold,),),
+                      
+                      height: 50,
+                      width: 450,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                     
+                     ),
                       ),
                     ),
                   ],

@@ -30,8 +30,8 @@ class SelectRoleScreen extends StatelessWidget {
                     ),
                   ),
                   decoration: BoxDecoration(
-                      color: Colors.lightBlue,
-                      borderRadius: BorderRadius.circular(10.0)),
+                      color: Colors.greenAccent,
+                      borderRadius: BorderRadius.circular(5.0)),
                 ),
                 const SizedBox(
                   height: 25.0,
@@ -44,10 +44,10 @@ class SelectRoleScreen extends StatelessWidget {
                               const HomeMainScreen()))),
                   child: CustomBtn(
                     text: "CUSTOMER",
-                    color: AppColors.orange,
+                    color:Colors.orangeAccent,
                     height: 200,
                     width: 400,
-                    borderRadius: 8.0,
+                    borderRadius: 5.0,
                     fontSize: 30,
                     textColor: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -71,10 +71,10 @@ class SelectRoleScreen extends StatelessWidget {
                               const RestaurantHomeScreen()))),
                   child: CustomBtn(
                     text: "RESTAURANT",
-                    color: Colors.lightBlue,
+                    color: Colors.grey,
                     height: 200,
                     width: 400,
-                    borderRadius: 8.0,
+                    borderRadius: 5.0,
                     fontSize: 30,
                     textColor: Colors.white,
                     fontWeight: FontWeight.bold,

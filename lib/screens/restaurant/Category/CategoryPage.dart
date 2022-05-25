@@ -106,13 +106,7 @@ void _deleteCategories(context) {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const CustomText(
-                      text: "Gebeta Delivery",
-                      fontSize: 24,
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
+                    
                     GestureDetector(
                       onTap: () => Navigator.push(
                           context,
@@ -138,56 +132,49 @@ void _deleteCategories(context) {
                 const SizedBox(
                   height: 15,
                 ),
-                Container(
-                  margin: const EdgeInsets.only(right: 10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0),
-                    color: Colors.grey[50],
-                  ),
-                  child: Row(
-                    children: [
-                      const CustomIcon(
-                        backgroundColor: Colors.white70,
-                        icon: Icons.local_pizza,
-                        iconSize: 32,
-                      ),
-                      const SizedBox(
-                        width: 30,
-                      ),
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          height: 80,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          child: const CustomText(text: "Burger", fontSize: 24),
+                Row(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(left: 5),
+                      height: 80,
+                      width: 80,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage("assets/images/real/pizza2.jpg"),
+                      )),
+                    ),
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 15),
+                        height: 80,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.0),
+                          color: Colors.grey[50],
                         ),
+                        child: const CustomText(text: "Burger", fontSize: 24),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 const SizedBox(
                   height: 60,
                 ),
                 Container(
                   margin: const EdgeInsets.only(left: 20, right: 20, bottom: 0),
-                  child: CustomBtn(
-                      text: "Delete",
-                      color: AppColors.orange,
+                  child: Container(
+                     child: Center(child: CustomText( text: "REMOVE",
+                     color: Colors.white,fontWeight: FontWeight.bold,),),
+                      
                       height: 50,
                       width: 450,
-                      borderRadius: 25.0,
-                      fontSize: 30,
-                      textColor: Colors.white,
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((BuildContext context) =>
-                                    const CategoriesScreen())));
-                      }),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                     
+                     ),
                 ),
               ],
             ),
