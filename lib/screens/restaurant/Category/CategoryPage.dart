@@ -19,6 +19,7 @@ class CategoriesScreen extends StatelessWidget {
         title: const CustomText(
           text: 'CATEGORIES',
           color: Colors.black,
+          fontWeight: FontWeight.bold,
           fontSize: 24,
         ),
         centerTitle: true,
@@ -52,7 +53,7 @@ class CategoriesScreen extends StatelessWidget {
                 width: 70,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Colors.green,
+                  color: AppColors.orange,
                 ),
                 child: Center(
                   child: const CustomText(
@@ -90,10 +91,10 @@ class CategoriesScreen extends StatelessWidget {
                              
 height: 40,
 width: 50,
-child: Center(child: CustomText(text: "Edit",)),
+child: Center(child: CustomIcon(icon: Icons.edit,iconColor: AppColors.orange,iconSize: 24,backgroundColor: Colors.white10,),),
 decoration: BoxDecoration(
   borderRadius: BorderRadius.circular(5),
-  color: Colors.green
+  
 ),
                               ),
                             ],

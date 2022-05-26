@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Category/CategoryPage.dart';
+import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 class AddCategoryPage extends StatefulWidget {
@@ -21,7 +22,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
         backgroundColor: Colors.white,
         title: const CustomText(
           text: 'Add Category',
-          color: Colors.lightBlue,
+          color: Colors.black,
           fontSize: 24,
           fontWeight: FontWeight.bold,
         ),
@@ -42,7 +43,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Icon(Icons.arrow_back_ios_new_rounded,
-                    color: Colors.lightBlue, size: 24),
+                    color: Colors.black, size: 24),
               ],
             ),
           ),
@@ -51,18 +52,25 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
         actions: [
           TextButton(
               onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Processing Data')),
-                  );
-                }
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((BuildContext context) =>
+                            const AddCategoryPage())));
               },
-              child: const CustomText(
-                text: 'Save',
-                color: Colors.lightBlue,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ))
+              child: Container(
+                height: 35,
+                width: 70,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: AppColors.orange,
+                ),
+                child: Center(
+                  child: const CustomText(
+                      text: 'SAVE', color: Colors.white, fontSize: 24,
+                      fontWeight: FontWeight.bold,),
+                ),
+              ),)
         ],
       ),
       body: Form(

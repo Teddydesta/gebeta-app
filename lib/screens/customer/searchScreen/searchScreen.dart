@@ -13,17 +13,19 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Container(
-            height: 60,
-            width: double.maxFinite,
-            margin: const EdgeInsets.only(top: 0),
-            color: AppColors.orange,
-          ),
-          const SearchBar(title: "Search for restaurants, dishes")
-        ],
+    return Material(
+      child: Container(
+        child: Column(
+          children: [
+            Container(
+              height: 60,
+              width: double.maxFinite,
+              margin: const EdgeInsets.only(top: 0),
+              color: AppColors.orange,
+            ),
+            const SearchBar(title: "Search for restaurants, dishes")
+          ],
+        ),
       ),
     );
   }

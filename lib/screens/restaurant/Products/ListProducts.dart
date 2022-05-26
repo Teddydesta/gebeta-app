@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gebeta_food_delivery/screens/customer/RestaurantPage/RestaurantScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/HomeScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Products/AddNewProducts.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
+import 'package:gebeta_food_delivery/widgets/columnWidget.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 class ListProductScreen extends StatefulWidget {
@@ -45,7 +47,6 @@ class _ListProductScreenState extends State<ListProductScreen> {
         ),
         actions: [
 
-
           GestureDetector(
             onTap: () => Navigator.push(
                 context,
@@ -53,77 +54,124 @@ class _ListProductScreenState extends State<ListProductScreen> {
                     builder: ((BuildContext context) =>
                         const AddNewProductPage()))),
             child: Container(
-              margin: EdgeInsets.only(top: 15,right: 10),
-              height: 10,
+            
+              child: TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((BuildContext context) =>
+                            const AddNewProductPage())));
+              },
+              child: Container(
+                height: 35,
                 width: 70,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Colors.green,
+                  color: AppColors.orange,
                 ),
-              child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((BuildContext context) =>
-                                const AddNewProductPage())));
-                  },
-                  child:  Center(
+                child: Center(
                   child: const CustomText(
                       text: 'Add', color: Colors.white, fontSize: 24,
                       fontWeight: FontWeight.bold,),
-                ),),
+                ),
+              ),)
             ),
           )
         ],
       ),
       body: Container(
-        margin: EdgeInsets.only(top: 0),
-        height: MediaQuery.of(context).size.height,
-        child: PageView.builder(
-          scrollDirection: Axis.vertical,
-            //physics: const BouncingScrollPhysics(),
-
-            itemCount: 5,
-            itemBuilder: (context, i) {
-              return Container(
-               margin: EdgeInsets.only(top: 0),
-               width: double.maxFinite,
-                child: Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 10),
-                      height: 100,
-                      width: 90,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/real/pizza2.jpg"),
-                      )),
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 120,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.0),
-                          color: Colors.grey[50],
-                        ),
-                        child:  Column(
-                          children: [
-                            CustomIcon(icon: Icons.edit,iconColor: AppColors.orange,backgroundColor: Colors.white10,),
-                            CustomText(text: "Burger", fontSize: 16),
-                            SizedBox(height: 10,),
-                            CustomText(text: "ETB120",color: AppColors.orange,),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }),
+      margin: const EdgeInsets.only(top: 10,
+        left: 10,
       ),
+      child: Column(
+        children: [
+         
+             
+        
+          ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onLongPress: (() {
+                Feedback.forLongPress(context);
+                  }),
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((BuildContext context) =>
+                              const ListProductScreen()))),
+                  child: Container(
+                     decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+
+                                    blurRadius: 2,
+                                    offset: const Offset(
+                                        0, 1), // changes position of shadow
+                                  ),
+                                ],
+                                borderRadius: const BorderRadius.only(
+                                    topRight: const Radius.circular(5.0),
+                                    bottomRight: const Radius.circular(5.0)),
+                                color: Colors.white),
+                    padding: EdgeInsets.only(bottom: 10),
+                    margin: EdgeInsets.only(
+                        left: 0, right: 10, bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: 120,
+                          height: 120,
+                          decoration: BoxDecoration(
+                             
+                              
+                             
+                              image: const DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image:
+                                      AssetImage("assets/images/real/breakfast.jpg"))),
+                        ),
+                        Expanded(
+                          child: Container(
+                            height: 120,
+                            decoration: BoxDecoration(
+                                
+                                borderRadius: const BorderRadius.only(
+                                    topRight: const Radius.circular(5.0),
+                                    bottomRight: const Radius.circular(5.0)),
+                                color: Colors.white),
+                            child:  Container(
+                              padding: EdgeInsets.only(top: 15,left: 20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                               children: [
+                                 CustomText(text: "BURGER",fontWeight: FontWeight.bold,),
+                                 SizedBox(height: 10,),
+                                  CustomText(text: "Product Description"),
+                                 SizedBox(height: 15,),
+                                 CustomText(text: "110.00",color: AppColors.orange,),
+                               ],
+                                
+                              ),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: (() => _deleteProduct(context)),
+                          child: CustomIcon(icon: Icons.delete,backgroundColor: Colors.white,)),
+                      ],
+                    ),
+                  ),
+                );
+              }),
+        ],
+        ),
+    )
     );
   }
 }
@@ -182,7 +230,7 @@ void _deleteProduct(context) {
                       decoration: const BoxDecoration(
                           image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage("assets/images/real/pizza2.jpg"),
+                        image: AssetImage("assets/images/real/breakfast.jpg"),
                       )),
                     ),
                     Expanded(
@@ -194,7 +242,7 @@ void _deleteProduct(context) {
                           borderRadius: BorderRadius.circular(5.0),
                           color: Colors.grey[50],
                         ),
-                        child: const CustomText(text: "Burger", fontSize: 24),
+                        child: const CustomText(text: "BURGER", fontSize: 24),
                       ),
                     ),
                   ],

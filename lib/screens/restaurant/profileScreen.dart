@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/components/new_passwordscreen.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.dart';
-import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 
 import 'package:gebeta_food_delivery/screens/restaurant/Category/CategoryPage.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/Orders/Ordersscreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Products/ListProducts.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
-import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/accountWidget.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
@@ -364,16 +363,26 @@ class RestaurantProfileScreen extends StatelessWidget {
                                 color: Colors.black,
                               ),
                             ),
-                            Container(
-                              margin: const EdgeInsets.only(right: 10),
-                              child: const CustomIcon(
-                                iconSize: 22,
-                                icon: Icons.arrow_forward_ios,
-                                iconColor: AppColors.placeholder,
-                                backgroundColor: Colors.white10,
-                                size: 20,
+                            
+                          
+                              Container(
+                                margin: const EdgeInsets.only(right: 10),
+                                child:  GestureDetector(
+                                  onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((BuildContext context) =>
+                                  const OrdersScreen()))),
+                                  child: CustomIcon(
+                                    iconSize: 22,
+                                    icon: Icons.arrow_forward_ios,
+                                    iconColor: AppColors.placeholder,
+                                    backgroundColor: Colors.white10,
+                                    size: 20,
+                                  ),
+                                ),
                               ),
-                            ),
+                            
                           ],
                         ),
                       ),
@@ -592,21 +601,19 @@ class RestaurantProfileScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: ((BuildContext context) =>
-                                  const SignInPage()))),
+                                   SignInPage()))),
                       child: Container(
                         margin: const EdgeInsets.only(
                             left: 10, right: 10, bottom: 30),
                         child: Container(
                      child: Center(child: CustomText( text: "LOGOUT",
-                     color: Colors.white,fontWeight: FontWeight.bold,),),
-                      
+                     color: Colors.white,fontWeight: FontWeight.bold,),),                     
                       height: 50,
                       width: 450,
                       decoration: BoxDecoration(
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(5),
-                      ),
-                     
+                      ),                   
                      ),
                       ),
                     ),

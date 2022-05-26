@@ -21,8 +21,9 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const CustomText(
-          text: 'Add New Product',
-          color: AppColors.orange,
+          text: 'ADD PRODUCT',
+          fontSize: 24,
+          color: Colors.black,
           fontWeight: FontWeight.bold,
         ),
         centerTitle: true,
@@ -30,8 +31,8 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
         leading: TextButton(
           child: const CustomText(
             text: 'Cancel',
-            color: AppColors.orange,
-            fontSize: 24,
+            color: Colors.black,
+            fontSize: 22,
             fontWeight: FontWeight.bold,
           ),
           onPressed: () {
@@ -41,16 +42,19 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
         elevation: 0,
         actions: [
           TextButton(
+            style: ButtonStyle(
+            
+            ),
               onPressed: () {},
               child: const CustomText(
-                text: ' Save ',
+                text: ' SAVE ',
                 color: AppColors.orange,
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
               ))
         ],
       ),
-      //
+      
       body: Form(
         key: _keyForm,
         child: ListView(

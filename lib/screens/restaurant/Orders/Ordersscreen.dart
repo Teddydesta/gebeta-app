@@ -27,15 +27,16 @@ class OrdersScreen extends StatelessWidget {
                   child: const CustomIcon(
                     icon: Icons.arrow_back_ios,
                     iconSize: 24,
-                    iconColor: AppColors.orange,
+                    iconColor: Colors.black,
                     backgroundColor: Colors.white,
                   ),
                 ),
                 const SizedBox(width: 80),
                 const CustomText(
-                  text: "List of Orders",
+                  text: "List Of Orders",
                   fontSize: 24,
-                  color: AppColors.orange,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
               ],
             ),
@@ -47,6 +48,7 @@ class OrdersScreen extends StatelessWidget {
             color: AppColors.placeholder,
           ),
           GestureDetector(
+            
             onTap: (() => Navigator.push(
                 context,
                 MaterialPageRoute(
