@@ -17,8 +17,8 @@ class CategoriesScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const CustomText(
-          text: 'Categories',
-          color: AppColors.orange,
+          text: 'CATEGORIES',
+          color: Colors.black,
           fontSize: 24,
         ),
         centerTitle: true,
@@ -33,7 +33,7 @@ class CategoriesScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               Icon(Icons.arrow_back_ios_new_rounded,
-                  color: AppColors.orange, size: 24),
+                  color: Colors.black, size: 24),
             ],
           ),
         ),
@@ -47,8 +47,19 @@ class CategoriesScreen extends StatelessWidget {
                         builder: ((BuildContext context) =>
                             const AddCategoryPage())));
               },
-              child: const CustomText(
-                  text: 'Add', color: AppColors.orange, fontSize: 24))
+              child: Container(
+                height: 35,
+                width: 70,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.green,
+                ),
+                child: Center(
+                  child: const CustomText(
+                      text: 'Add', color: Colors.white, fontSize: 24,
+                      fontWeight: FontWeight.bold,),
+                ),
+              ),)
         ],
       ),
       body: Center(
@@ -65,12 +76,26 @@ class CategoriesScreen extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.only(left: 25),
                           child: Row(
-                            children: const [
+                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children:  [
                               Icon(Icons.icecream),
                               SizedBox(
                                 width: 25,
                               ),
-                              CustomText(text: "Ice Cream")
+                              CustomText(text: "Ice Cream"),
+                              SizedBox(
+                                width: 180,
+                              ),
+                              Container(
+                             
+height: 40,
+width: 50,
+child: Center(child: CustomText(text: "Edit",)),
+decoration: BoxDecoration(
+  borderRadius: BorderRadius.circular(5),
+  color: Colors.green
+),
+                              ),
                             ],
                           ),
                           color: Colors.grey[100],

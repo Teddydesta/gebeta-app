@@ -64,12 +64,14 @@ class BasketScreen extends StatelessWidget {
             ),
           
             Row(
-              children: const [
+              children:  [
                 CustomIcon(
                     icon: Icons.circle_outlined,
                     backgroundColor: Colors.white,
-                    iconSize: 20,
-                    iconColor: AppColors.orange),
+                    
+                    iconSize: 22,
+                    iconColor: AppColors.orange
+                    ),
                 SizedBox(
                   width: 25,
                 ),
@@ -77,9 +79,17 @@ class BasketScreen extends StatelessWidget {
                 SizedBox(
                   width: 45,
                 ),
-                CustomIcon(
-                  icon: Icons.remove,
-                  backgroundColor: Colors.white,
+                Container(
+                  height: 25,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(35),
+                  ),
+                  child: CustomIcon(
+                    icon: Icons.remove,
+                    backgroundColor: AppColors.placeholder,
+                    iconSize: 24,
+                  ),
                 ),
                 SizedBox(
                   width: 10,
@@ -88,9 +98,17 @@ class BasketScreen extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                CustomIcon(
-                  icon: Icons.add,
-                  backgroundColor: Colors.white,
+                Container(
+                  height: 25,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(35),),
+                  child: CustomIcon(
+                    icon: Icons.add,
+                    backgroundColor: AppColors.placeholder,
+                    
+                    iconSize: 24,
+                  ),
                 ),
                 SizedBox(
                   width: 15,
@@ -218,7 +236,7 @@ class BasketScreen extends StatelessWidget {
               child: 
               Container(
                 child: Center(
-                  child: CustomText(text: "PROCEED TO PAY",color: Colors.white,),
+                  child: CustomText(text: "CHECKOUT",color: Colors.white,),
                   
                 ),
                 height: 50,

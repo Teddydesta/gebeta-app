@@ -21,9 +21,9 @@ class _ListProductScreenState extends State<ListProductScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const CustomText(
-          text: 'List Products',
+          text: 'PRODUCTS',
           fontSize: 24,
-          color: AppColors.orange,
+          color: Colors.black,
           fontWeight: FontWeight.bold,
         ),
         centerTitle: true,
@@ -39,76 +39,91 @@ class _ListProductScreenState extends State<ListProductScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               Icon(Icons.arrow_back_ios_new_rounded,
-                  color: AppColors.orange, size: 24),
+                  color: Colors.black, size: 24),
             ],
           ),
         ),
         actions: [
+
+
           GestureDetector(
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: ((BuildContext context) =>
                         const AddNewProductPage()))),
-            child: TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((BuildContext context) =>
-                              const AddNewProductPage())));
-                },
-                child: const CustomText(
-                  text: 'Add',
-                  fontSize: 24,
-                  color: AppColors.orange,
-                  fontWeight: FontWeight.bold,
-                )),
+            child: Container(
+              margin: EdgeInsets.only(top: 15,right: 10),
+              height: 10,
+                width: 70,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.green,
+                ),
+              child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((BuildContext context) =>
+                                const AddNewProductPage())));
+                  },
+                  child:  Center(
+                  child: const CustomText(
+                      text: 'Add', color: Colors.white, fontSize: 24,
+                      fontWeight: FontWeight.bold,),
+                ),),
+            ),
           )
         ],
       ),
+      body: Container(
+        margin: EdgeInsets.only(top: 0),
+        height: MediaQuery.of(context).size.height,
+        child: PageView.builder(
+          scrollDirection: Axis.vertical,
+            //physics: const BouncingScrollPhysics(),
 
-      //
-      body: GridView.builder(
-          physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
-          itemCount: 5,
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200,
-              childAspectRatio: 2,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20),
-          itemBuilder: (context, i) {
-            return InkWell(
-              onTap: () {
-                _deleteProduct(context);
-              },
-              onLongPress: () {},
-              child: Row(
-                children: [
-                  Container(
-                    height: 80,
-                    width: 90,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage("assets/images/real/pizza2.jpg"),
-                    )),
-                  ),
-                  Expanded(
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.0),
-                        color: Colors.grey[50],
-                      ),
-                      child: const CustomText(text: "Burger", fontSize: 16),
+            itemCount: 5,
+            itemBuilder: (context, i) {
+              return Container(
+               margin: EdgeInsets.only(top: 0),
+               width: double.maxFinite,
+                child: Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 10),
+                      height: 100,
+                      width: 90,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage("assets/images/real/pizza2.jpg"),
+                      )),
                     ),
-                  ),
-                ],
-              ),
-            );
-          }),
+                    Expanded(
+                      child: Container(
+                        height: 120,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.0),
+                          color: Colors.grey[50],
+                        ),
+                        child:  Column(
+                          children: [
+                            CustomIcon(icon: Icons.edit,iconColor: AppColors.orange,backgroundColor: Colors.white10,),
+                            CustomText(text: "Burger", fontSize: 16),
+                            SizedBox(height: 10,),
+                            CustomText(text: "ETB120",color: AppColors.orange,),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+      ),
     );
   }
 }

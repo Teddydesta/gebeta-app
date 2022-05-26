@@ -468,27 +468,34 @@ class ProfileScreen extends StatelessWidget {
                       height: 65,
                     ),
                     
-                      Container(
-                        
-                        margin: EdgeInsets.only(
-                            left: Dimensions.width10,
-                            right: Dimensions.width10,
-                            bottom: Dimensions.height40),
+                      GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((BuildContext context) =>
+                                  const SignInPage()))),
                         child: Container(
+                          
+                          margin: EdgeInsets.only(
+                              left: Dimensions.width10,
+                              right: Dimensions.width10,
+                              bottom: Dimensions.height40),
+                          child: Container(
+                          
+                          child: Container(
+                                           child: Center(child: CustomText( text: "LOGOUT",
+                                           color: Colors.white,fontWeight: FontWeight.bold,),),
                         
-                        child: Container(
-                     child: Center(child: CustomText( text: "LOGOUT",
-                     color: Colors.white,fontWeight: FontWeight.bold,),),
-                      
-                      height: 50,
-                      width: 450,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                     
-                     ),
-                      ),
+                        height: 50,
+                        width: 450,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                                           
+                                           ),
+                        ),
+                        ),
                       ),
                     
                   ],
