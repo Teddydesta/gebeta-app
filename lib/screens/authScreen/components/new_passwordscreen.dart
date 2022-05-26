@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signUp.dart';
 import 'package:gebeta_food_delivery/screens/customer/profile_screen/profile_screen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
@@ -102,22 +103,31 @@ class NewPwScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                CustomBtn(
-                  text: "NEXT",
-                  color: AppColors.orange,
-                  height: 50,
-                  width: double.infinity,
-                  borderRadius: 5.0,
-                  fontSize: 18,
-                  textColor: Colors.white,
-                  fontWeight: FontWeight.normal,
-                  onPressed: () {
-                    Navigator.push(
+                GestureDetector(
+                  onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: ((BuildContext context) =>
-                                const SignUpPage())));
-                  },
+                                const SignInPage()))),
+                  child: Container(
+                    child: Center(child: CustomText(text: "NEXT",fontWeight: FontWeight.bold,fontSize: 24,)),
+                  //  color: AppColors.orange,
+                    height: 50,
+                    width: double.infinity,
+                    
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0),
+                    gradient: LinearGradient(
+                            colors: [AppColors.orange, Color(0xFFfbab66)],
+                            begin: FractionalOffset(0.2, 0.2),
+                            end: FractionalOffset(1.0, 1.0),
+                            stops: [0.0, 1.0],
+                            tileMode: TileMode.clamp),
+                  ),
+                    
+                   
+                    
+                  ),
                 ),
               ],
             ),

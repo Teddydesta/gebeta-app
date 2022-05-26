@@ -6,6 +6,7 @@ import 'package:gebeta_food_delivery/screens/animation/scaleRoute.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/components/signUpBtn.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
+import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 import 'package:gebeta_food_delivery/widgets/formFilld.dart';
 
@@ -69,113 +70,182 @@ _showSnackBar(context,text){
        // ),),
 
     return Scaffold(
-      body: Container(
-        padding:
-            const EdgeInsets.only(left: 20, right: 20, top: 35, bottom: 30),
-       width: double.infinity,
-       height: double.infinity,
-        color: Colors.white70,
-        child: Column(
-          children: <Widget>[
-            Flexible(
-              flex: 15,
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      width: 300,
-                      height: 200,
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/images/gebeta_logo.png",
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    FormFieldWidget(
+      appBar: AppBar(
+        backgroundColor: AppColors.orange,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Form(
+         key: _formKey,
+          
+            
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Flexible(
+                  flex: 15,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          width: 300,
+                          height: 200,
+                          alignment: Alignment.center,
+                          child: Image.asset(
+                            "assets/images/gebeta_logo.png",
+                          ),
+                        ),
                         
-                      hintText: "Name",
-                      isPassword: false,
-                      keyboardType: TextInputType.text,
-                      maxLine: 1,
-                      readOnly: false,
-                      labelText: "Pasword",
-                    ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      const FormFieldWidget(
-                      hintText: " Phone number",
-                      isPassword: false,
-                      keyboardType: TextInputType.text,
-                      maxLine: 1,
-                      readOnly: false,
-                      labelText: "Pasword",
-                    ),
-                     const SizedBox(
-                        height: 15,
-                      ),
-                      TextFormField(
-                        keyboardType: TextInputType.text,
                         
-                      ),
-                    
-                    const SizedBox(
-                      height: 15,
+                          SizedBox(height: 15,),
+                        TextFormField(
+                            
+                         // hintText: "Name",
+                         //isPassword: false,
+                          keyboardType: TextInputType.text,
+                          //maxLine: 1,
+                          readOnly: false,
+                          decoration: InputDecoration(
+                            hintText: "940502345",
+                            // hide max character counter
+                                    counter: Offstage(),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0)
+                          ),
+                          prefixIcon: Container(
+                                    margin: EdgeInsets.only(left: 10),
+                                    width: 80,
+                                    child: Row(
+                                      children: [
+                                        CustomIcon(
+                                          icon: Icons.phone,
+                                          iconColor: AppColors.orange,
+                                          backgroundColor: Colors.white,
+                                         iconSize: 22,
+                                        ),
+                                        SizedBox(width: 5),
+                                        Text(
+                                          '+251',
+                                          style: TextStyle(fontSize: 17),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                        ),
+                        
+                          ),
+                          SizedBox(height: 15,),
+                           TextFormField(
+                            obscureText: showPassword,
+                     
+                          keyboardType: TextInputType.text,
+                          //maxLine: 1,
+                          readOnly: false,
+                          decoration: InputDecoration(
+                            hintText: "password",
+                            // hide max character counter
+                                    counter: Offstage(),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          
+                           prefixIcon: Container(
+                                    margin: EdgeInsets.only(left: 10),
+                                    width: 80,
+                                    child: Row(
+                                      children: [
+                                        CustomIcon(
+                                          icon: Icons.key,
+                                          iconColor: AppColors.orange,
+                                          backgroundColor: Colors.white10,
+                                          
+                                         iconSize: 22,
+                                        ),
+                                      
+                                        
+                                      ],
+                                    ),
+                                  ),
+                          suffixIcon: IconButton(
+                                      icon: Icon(showPassword
+                                          ? Icons.visibility
+                                          : Icons.visibility_off),
+                                      onPressed: () {
+                                        setState(() {
+                                          showPassword = !showPassword;
+                                        });
+                                      }),
+                          //labelText: "Pasword",
+                        ),
+                          ), 
+                          SizedBox(height: 15),
+                          SignUpButtonWidget(),
+                          FacebookGoogleLogin(),
+                      ],
                     ),
-                    const SignUpButtonWidget(),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const FacebookGoogleLogin()
-                  ],
+                  ),
                 ),
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "Already have an account? ",
-                      style: TextStyle(
-                        color: const Color(0xFF666666),
-                        fontFamily: defaultFontFamily,
-                        fontSize: defaultFontSize,
-                        fontStyle: FontStyle.normal,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context, ScaleRoute(page: const SignInPage()));
-                      },
-                      // ignore: avoid_unnecessary_containers
-                      child: Container(
-                        child: Text(
-                          "Sign In",
+                Flexible(
+                  flex: 1,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Already have an account? ",
                           style: TextStyle(
-                            color: AppColors.orange,
+                            color: const Color(0xFF666666),
                             fontFamily: defaultFontFamily,
                             fontSize: defaultFontSize,
                             fontStyle: FontStyle.normal,
                           ),
                         ),
-                      ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context, ScaleRoute(page: const SignInPage()));
+                          },
+                          // ignore: avoid_unnecessary_containers
+                          child: Container(
+                            child: Text(
+                              "Sign In",
+                              style: TextStyle(
+                                color: AppColors.orange,
+                                fontFamily: defaultFontFamily,
+                                fontSize: defaultFontSize,
+                                fontStyle: FontStyle.normal,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
+                  ),
+                )
+              ],
+            ),
+          ),
       ),
+      
     );
   }
 }

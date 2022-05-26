@@ -18,9 +18,17 @@ class BasketScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              padding: EdgeInsets.only(left: 10),
+              padding: EdgeInsets.only(left: 10,top: 20),
               height: 100,
-              color: AppColors.orange,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+            colors: [AppColors.orange, Color(0xFFfbab66)],
+            begin: FractionalOffset(0.2, 0.2),
+            end: FractionalOffset(1.0, 1.0),
+            stops: [0.0, 1.0],
+            tileMode: TileMode.clamp),
+              ),
+              //color: AppColors.orange,
               margin: EdgeInsets.only(
                   top: 0,
                   

@@ -21,7 +21,7 @@ class SignUpButtonWidget extends StatelessWidget {
           ),
         ],
         gradient: LinearGradient(
-            colors: [AppColors.orange, AppColors.orange],
+            colors: [AppColors.orange, Color(0xFFfbab66)],
             begin: FractionalOffset(0.2, 0.2),
             end: FractionalOffset(1.0, 1.0),
             stops: [0.0, 1.0],
