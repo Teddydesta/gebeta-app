@@ -79,30 +79,33 @@ _showSnackBar(context,text){
         backgroundColor: AppColors.orange,
         elevation: 0,
         centerTitle: true,
-        actions: [GestureDetector(
-          onTap: () => Navigator.pop(
+        actions: [
+          
+           GestureDetector(
+            onTap: () => Navigator.pop(
                           context,
                           MaterialPageRoute(
                               builder: ((BuildContext context) =>
                                    HomeMainScreen()))),
-          child: Container(
-            height: 30,
-            width: 80,
-            margin: EdgeInsets.only(right: 10,top: 2,bottom: 7),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-            colors: [AppColors.orange, Color(0xFFfbab66)],
-            begin: FractionalOffset(0.2, 0.2),
-            end: FractionalOffset(1.0, 1.0),
-            stops: [0.0, 1.0],
-            tileMode: TileMode.clamp),
-
-              
-        borderRadius: BorderRadius.circular(10.0),
-       // color: Colors.white,
+            child: Container(
+              height: 30,
+              width: 80,
+              margin: EdgeInsets.only(right: 10,top: 2,bottom: 7),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+              colors: [AppColors.orange, Color(0xFFfbab66)],
+              begin: FractionalOffset(0.2, 0.2),
+              end: FractionalOffset(1.0, 1.0),
+              stops: [0.0, 1.0],
+              tileMode: TileMode.clamp),
+          
+                
+                  borderRadius: BorderRadius.circular(10.0),
+                 // color: Colors.white,
+              ),
+              child: Center(child: CustomText(text: "GUEST",fontWeight: FontWeight.bold,fontSize: 22,)),
             ),
-            child: Center(child: CustomText(text: "GUEST",fontWeight: FontWeight.bold,fontSize: 22,)),
-          ),
+          
         ),],
         
       ),
@@ -132,10 +135,11 @@ _showSnackBar(context,text){
                         
                         
                           SizedBox(height: 15,),
+
+
                         TextFormField(
                             
-                         // hintText: "Name",
-                         //isPassword: false,
+                        
                           keyboardType: TextInputType.text,
                           //maxLine: 1,
                           readOnly: false,

@@ -83,7 +83,7 @@ class _ListProductScreenState extends State<ListProductScreen> {
                 ),
               ),)
             ),
-          )
+          ),
         ],
       ),
       body: Container(
@@ -93,8 +93,6 @@ class _ListProductScreenState extends State<ListProductScreen> {
       child: Column(
         children: [
          
-             
-        
           ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),

@@ -48,7 +48,6 @@ class OrdersScreen extends StatelessWidget {
             color: AppColors.placeholder,
           ),
           GestureDetector(
-            
             onTap: (() => Navigator.push(
                 context,
                 MaterialPageRoute(

@@ -111,6 +111,48 @@ _showSnackBar(context,text){
                           //maxLine: 1,
                           readOnly: false,
                           decoration: InputDecoration(
+                           
+                            // hide max character counter
+                                    counter: Offstage(),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0)
+                          ),
+                          prefixIcon: Container(
+                                    margin: EdgeInsets.only(left: 10),
+                                    width: 80,
+                                    child: Row(
+                                      children: [
+                                        CustomIcon(
+                                          icon: Icons.person,
+                                          iconColor: AppColors.orange,
+                                          backgroundColor: Colors.white,
+                                         iconSize: 22,
+                                        ),
+                                        SizedBox(width: 5),
+                                        
+                                      ],
+                                    ),
+                                  ),
+                                  
+                                   hintText: "Name",
+                        ),
+                        
+                          ),
+                          SizedBox(height: 15,),
+                           TextFormField(
+                            
+                         // hintText: "Name",
+                         //isPassword: false,
+                          keyboardType: TextInputType.text,
+                          //maxLine: 1,
+                          readOnly: false,
+                          decoration: InputDecoration(
                             hintText: "940502345",
                             // hide max character counter
                                     counter: Offstage(),

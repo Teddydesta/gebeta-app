@@ -19,13 +19,22 @@ class SearchBar extends StatelessWidget {
         child: TextField(
           onTap: (() {}),
           decoration: InputDecoration(
-            border: const OutlineInputBorder(
-              borderSide: BorderSide(
-                color: AppColors.orange,
-              ),
-            ),
+                           
+                          
+                                    counter: Offstage(),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0)
+                          ),
             suffixIcon: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                
+              },
               child: const CustomIcon(
                 icon: Icons.search,
                 backgroundColor: Colors.white30,

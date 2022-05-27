@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
@@ -13,6 +15,7 @@ class AddNewProductPage extends StatefulWidget {
 
 class _AddNewProductPageState extends State<AddNewProductPage> {
   final _keyForm = GlobalKey<FormState>();
+  File imageFile;
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +44,43 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
         ),
         elevation: 0,
         actions: [
-          TextButton(
-            style: ButtonStyle(
+           GestureDetector(
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: ((BuildContext context) =>
+                        const AddNewProductPage()))),
+            child: Container(
             
+              child: TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((BuildContext context) =>
+                            const AddNewProductPage())));
+              },
+              child: Container(
+                height: 35,
+                width: 70,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  gradient: LinearGradient(
+                            colors: [AppColors.orange, Color(0xFFfbab66)],
+                            begin: FractionalOffset(0.2, 0.2),
+                            end: FractionalOffset(1.0, 1.0),
+                            stops: [0.0, 1.0],
+                            tileMode: TileMode.clamp),
+                 // color: AppColors.orange,
+                ),
+                child: Center(
+                  child: const CustomText(
+                      text: 'SAVE', color: Colors.white, fontSize: 24,
+                      fontWeight: FontWeight.bold,),
+                ),
+              ),)
             ),
-              onPressed: () {},
-              child: const CustomText(
-                text: ' SAVE ',
-                color: AppColors.orange,
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              ))
+          ),
         ],
       ),
       

@@ -24,13 +24,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       drawer: NavDrawer(),
       appBar: AppBar(
-        iconTheme: IconThemeData(color: AppColors.orange),
-        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: AppColors.orange,
+        
         title:  CustomText(
           text: "GEBETA ",
           fontSize: 34,
           fontWeight: FontWeight.bold,
-          color: AppColors.orange,
+          color: Colors.black,
         ),
         elevation: 0,
         centerTitle: true,
