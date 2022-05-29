@@ -77,7 +77,7 @@ class SendOTPScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: ((BuildContext context) =>
-                              const NewPwScreen())));
+                              const NewPasswordScreen())));
                 }),
             const SizedBox(height: 20),
             Row(

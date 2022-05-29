@@ -380,6 +380,7 @@ class FacebookGoogleLogin extends StatelessWidget {
           ],
         ),
       ],
-    ));
+    ),
+    );
   }
 }

@@ -114,7 +114,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: ((BuildContext context) =>
-                                  const NewPwScreen()))),
+                                  const NewPasswordScreen()))),
                       child: Container(
                         margin: const EdgeInsets.only(left: 10, right: 10),
                         height: 60,

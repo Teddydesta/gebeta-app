@@ -19,11 +19,12 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       drawer: const NavDrawer(),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: AppColors.orange,
         title: const CustomText(
-          text: "Profile ",
+          text: "profile ",
           fontSize: 34,
-          color: AppColors.orange,
+          color: AppColors.mainBlackColor,
           fontWeight: FontWeight.bold,
         ),
         elevation: 0,
@@ -32,13 +33,11 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Container(
         width: double.maxFinite,
-        margin: EdgeInsets.only(top: Dimensions.height20),
+        margin: EdgeInsets.only(top: Dimensions.height10),
         child: Column(
           
           children: [
-            Divider(
-                      color: AppColors.placeholder,
-                    ),
+            
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -126,7 +125,7 @@ class ProfileScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: ((BuildContext context) =>
-                                  const NewPwScreen()))),
+                                  const NewPasswordScreen()))),
                       child: Container(
                         margin: const EdgeInsets.only(left: 10, right: 10),
                         height: 60,
@@ -211,52 +210,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    GestureDetector(
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((BuildContext context) =>
-                                  const ProfileScreen()))),
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 10, right: 10),
-                        height: 60,
-                        width: double.maxFinite,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey[50]),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            AccountWidget(
-                              appIcon: const CustomIcon(
-                                backgroundColor: Colors.black,
-                                icon: Icons.dark_mode,
-                                iconColor: Colors.white,
-                                iconSize: 24,
-                                size: 38,
-                              ),
-                              customText: const CustomText(
-                                text: 'Dark Mode',
-                               fontSize: 18,
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(right: 10),
-                              child: const CustomIcon(
-                                iconSize: 22,
-                                icon: Icons.arrow_forward_ios,
-                                backgroundColor: Colors.white12,
-                                iconColor: AppColors.placeholder,
-                                size: 20,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                   
                     const SizedBox(
                       height: 5,
                     ),

@@ -43,8 +43,18 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
                 child: SingleChildScrollView(
               child: Column(
-                children: const [
+            crossAxisAlignment: CrossAxisAlignment.start,
+                children:  [
+                  
                   SearchBar(title: 'Search for restaurants, dishes'),
+                  Container(
+                    padding: EdgeInsets.only(left: 15),
+                    child: CustomText(
+                text: 'popular ',
+                fontSize: 24,
+                color: AppColors.mainBlackColor,
+              ),
+                  ),
                   SizedBox(
                     height: 5,
                   ),

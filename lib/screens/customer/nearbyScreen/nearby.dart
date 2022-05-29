@@ -25,10 +25,14 @@ class _NearByScreenState extends State<NearByScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const CustomText(
-                text: 'Popular ',
-                fontSize: 24,
-                color: AppColors.orange,
+              Container(
+                padding: EdgeInsets.only(left: 5),
+                child: const CustomText(
+
+                  text: 'restaurants ',
+                  fontSize: 24,
+                  color: AppColors.mainBlackColor,
+                ),
               ),
               const SizedBox(
                 width: 1,

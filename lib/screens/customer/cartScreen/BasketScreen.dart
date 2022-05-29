@@ -6,9 +6,46 @@ import 'package:gebeta_food_delivery/utils/dimensions.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
-class BasketScreen extends StatelessWidget {
+class BasketScreen extends StatefulWidget {
   const BasketScreen({Key? key}) : super(key: key);
 
+  @override
+  State<BasketScreen> createState() => _BasketScreenState();
+}
+
+class _BasketScreenState extends State<BasketScreen> {
+  int _counter=0;
+
+  //increment function
+  void _incrementCounter(){
+    setState(() {
+      _counter++;
+    });
+  }
+  //Decrement function
+  void _decrementCounter(){
+
+
+    
+    setState(() {
+      
+      if(_counter <= 0){
+       
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar
+
+      (content: Container(
+
+        height: 20,
+        
+  
+        child: CustomText(text: "Product value must be positive",color: Colors.white,),),));
+      }
+      else{
+_counter--;
+      }
+    });
+    
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,7 +96,7 @@ class BasketScreen extends StatelessWidget {
                         width: 150,
                       ),
                       const CustomText(
-                        text: "BABIS ",
+                        text: "REMAS ",
                         fontSize: 24,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -87,41 +124,59 @@ class BasketScreen extends StatelessWidget {
                 SizedBox(
                   width: 45,
                 ),
-                Container(
-                  height: 25,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(35),
-                  ),
-                  child: CustomIcon(
-                    icon: Icons.remove,
-                    backgroundColor: AppColors.placeholder,
-                    iconSize: 24,
+                GestureDetector(
+                  onTap: _decrementCounter,
+                  child: Container(
+                    height: 35,
+                    decoration: BoxDecoration(
+                       gradient: LinearGradient(
+            colors: [AppColors.orange, Color(0xFFfbab66)],
+            begin: FractionalOffset(0.2, 0.2),
+            end: FractionalOffset(1.0, 1.0),
+            stops: [0.0, 1.0],
+            tileMode: TileMode.clamp),
+                     // color: Colors.red,
+                      borderRadius: BorderRadius.circular(35),
+                    ),
+                    child: CustomIcon(
+                      icon: Icons.remove,
+                     // backgroundColor: Colors.white,
+                      iconSize: 24,
+                    ),
                   ),
                 ),
                 SizedBox(
                   width: 10,
                 ),
-                CustomText(text: "0"),
+                CustomText(text: '$_counter',fontSize: 22,),
                 SizedBox(
                   width: 10,
                 ),
-                Container(
-                  height: 25,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(35),),
-                  child: CustomIcon(
-                    icon: Icons.add,
-                    backgroundColor: AppColors.placeholder,
-                    
-                    iconSize: 24,
+                GestureDetector(
+                  onTap: _incrementCounter,
+                  child: Container(
+                    height: 35,
+                    decoration: BoxDecoration(
+                       gradient: LinearGradient(
+            colors: [AppColors.orange, Color(0xFFfbab66)],
+            begin: FractionalOffset(0.2, 0.2),
+            end: FractionalOffset(1.0, 1.0),
+            stops: [0.0, 1.0],
+            tileMode: TileMode.clamp),
+                     // color: Colors.red,
+                      borderRadius: BorderRadius.circular(35),),
+                    child: CustomIcon(
+                      icon: Icons.add,
+                      //backgroundColor: AppColors.orange,
+                      
+                      iconSize: 24,
+                    ),
                   ),
                 ),
                 SizedBox(
                   width: 15,
                 ),
-                CustomText(text: "ETB120")
+                CustomText(text: 'ETB90.0 ')
               ],
             ),
             const SizedBox(

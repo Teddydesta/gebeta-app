@@ -15,7 +15,7 @@ class AddNewProductPage extends StatefulWidget {
 
 class _AddNewProductPageState extends State<AddNewProductPage> {
   final _keyForm = GlobalKey<FormState>();
-  File imageFile;
+  late File imageFile;
 
   @override
   Widget build(BuildContext context) {

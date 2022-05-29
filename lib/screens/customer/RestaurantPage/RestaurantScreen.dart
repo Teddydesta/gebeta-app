@@ -36,7 +36,7 @@ class _RestaurantMainScreenState extends State<RestaurantMainScreen> {
             backgroundColor: Colors.white,
           ),
         ),
-        title: CustomText(text: "BABIS BISTRO",color: AppColors.orange,fontWeight: FontWeight.bold,fontSize: 28,),
+        title: CustomText(text: "REMAS RESTAURANT",color: Colors.black,fontWeight: FontWeight.bold,fontSize: 28,),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
