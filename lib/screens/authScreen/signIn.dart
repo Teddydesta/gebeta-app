@@ -9,6 +9,7 @@ import 'package:gebeta_food_delivery/screens/authScreen/components/socialMediaBu
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signUp.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
+import 'package:gebeta_food_delivery/screens/customer/otpScreen/OtpScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
@@ -156,6 +157,7 @@ _showSnackBar(context,text){
                                             BorderSide(color: Colors.orange),
                                         borderRadius: BorderRadius.circular(8.0)
                           ),
+                          
                           prefixIcon: Container(
                                     margin: EdgeInsets.only(left: 10),
                                     width: 80,
@@ -200,6 +202,7 @@ _showSnackBar(context,text){
                           ),
                           
                            prefixIcon: Container(
+                             
                                     margin: EdgeInsets.only(left: 10),
                                     width: 80,
                                     child: Row(
@@ -234,7 +237,7 @@ _showSnackBar(context,text){
                           ),
                           child: TextButton(child: CustomText(text: "forgot password",color: AppColors.orange,),
                           onPressed: (){
-                            
+                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SendOTPScreen()));
                           },
                           ),
                         ),

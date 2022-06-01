@@ -91,7 +91,9 @@ class CategoriesScreen extends StatelessWidget {
                              
 height: 40,
 width: 50,
-child: Center(child: CustomIcon(icon: Icons.edit,iconColor: AppColors.orange,iconSize: 24,backgroundColor: Colors.white10,),),
+child: Center(child: CustomIcon(icon: Icons.edit,
+iconColor: AppColors.orange,
+iconSize: 24,backgroundColor: Colors.white10,),),
 decoration: BoxDecoration(
   borderRadius: BorderRadius.circular(5),
   

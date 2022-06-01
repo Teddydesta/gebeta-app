@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/components/new_passwordscreen.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
@@ -6,13 +7,79 @@ import 'package:gebeta_food_delivery/screens/customer/address_screen/address_scr
 import 'package:gebeta_food_delivery/screens/customer/profile_screen/components/profile_setting.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/utils/dimensions.dart';
-import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/accountWidget.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
+import 'package:image_picker/image_picker.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+   ProfileScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+File? imageFile;
+  void getImage({required ImageSource source}) async {
+    
+    final file = await ImagePicker().pickImage(
+        source: source,
+      maxWidth: 640,
+      maxHeight: 480,
+      imageQuality: 70 //0 - 100
+    );
+    
+    if(file?.path != null){
+      setState(() {
+        imageFile = File(file!.path);
+      });
+    }
+  }
+
+   
+void _pickImage(context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return Row(
+
+        
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+          
+              children: [
+                
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: AppColors.orange,
+                      padding: EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+                    ),
+                      onPressed: ()=> getImage(source: ImageSource.camera),
+                      child: const CustomText(text: 'Camera', )
+                  
+                ),
+                const SizedBox(height: 10,),
+              
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: AppColors.orange,
+                      padding: EdgeInsets.symmetric(horizontal: 33,vertical: 10),
+                      
+                      
+                    ),
+                      onPressed: ()=> getImage(source: ImageSource.gallery),
+                      child: const CustomText(text: 'Gallery', )
+                  
+                )
+              ],
+            ),
+        ]
+      );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -46,16 +113,51 @@ class ProfileScreen extends StatelessWidget {
                     
                     //Profile
                     Center(
-                      child: Container(
-                        height: 140,
-                        width: 140,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(1000),
-                            image: const DecorationImage(
-                                fit: BoxFit.cover,
-                                image:
-                                    AssetImage("assets/images/real/user.jpg"))),
-                      ),
+                      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if(imageFile != null)
+              GestureDetector(
+                onTap: (() =>  _pickImage(context)),
+                child: Container(
+                  width: 140,
+                  height: 140,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    image: DecorationImage(
+                      image: FileImage(imageFile!),
+                      fit: BoxFit.cover
+                    ),
+                    border: Border.all(width: 5, color: Colors.black12),
+                    borderRadius: BorderRadius.circular(1000),
+                  ),
+                ),
+              )
+            else
+              GestureDetector(
+                onTap: (() =>  _pickImage(context)),
+                child: Container(
+                  width: 140,
+                  height: 140,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    border: Border.all(width: 5, color: Colors.black12),
+                    borderRadius: BorderRadius.circular(1000.0),
+                  ),
+                  
+                ),
+              ),
+            const SizedBox(
+              height: 20,
+            ),
+            
+          ],
+        ),
+      ),
                     ),
                     SizedBox(
                       height: Dimensions.height10,
@@ -462,3 +564,6 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
+
+
+

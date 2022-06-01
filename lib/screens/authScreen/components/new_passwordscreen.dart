@@ -72,7 +72,7 @@ _showSnackBar(context,text){
                       context,
                       MaterialPageRoute(
                           builder: ((BuildContext context) =>
-                              const ProfileScreen()))),
+                               ProfileScreen()))),
                                 child: CustomIcon(icon: Icons.close,iconColor: AppColors.orange,iconSize: 24,backgroundColor: Colors.white10,)),
                               SizedBox(width: 15,),
                               CustomText(text: "New Password",fontSize: 24,),

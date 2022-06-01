@@ -88,17 +88,28 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
         key: _keyForm,
         child: ListView(
           physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
           children: [
             const SizedBox(height: 10.0),
-            const CustomText(text: 'Product name'),
+          //  const CustomText(text: 'Product name'),
             const SizedBox(height: 5.0),
 
             TextFormField(
               decoration: const InputDecoration(
                   border: UnderlineInputBorder(),
+                   counter: Offstage(),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                      //  borderRadius: BorderRadius.circular(8.0)),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.orange),),
+
                   labelText: 'name',
-                  hintText: "product"),
+                 // hintText: "product"
+                 ),
               // The validator receives the text that the user has entered.
             ),
             //
@@ -108,9 +119,19 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
             const SizedBox(height: 5.0),
             //
             TextFormField(
-              maxLines: 6,
+              
+              maxLines: 8,
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
+                 counter: Offstage(),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                      //  borderRadius: BorderRadius.circular(8.0)),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.orange),),
                 labelText: 'Description',
               ),
               // The validator receives the text that the user has entered.
@@ -124,11 +145,19 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
 //
             TextFormField(
               keyboardType: TextInputType.number,
-              maxLines: 6,
+             // maxLines: 1,
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
                 labelText: 'Price',
                 hintText: "120.00 birr",
+                 enabledBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                      //  borderRadius: BorderRadius.circular(8.0)),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.orange)),
               ),
               // The validator receives the text that the user has entered.
               validator: (value) {

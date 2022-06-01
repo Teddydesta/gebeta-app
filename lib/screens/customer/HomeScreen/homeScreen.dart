@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, file_names
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/categoryScreen/categoryScreen.dart';
+import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/nearbyScreen/nearby.dart';
 import 'package:gebeta_food_delivery/screens/customer/searchScreen/components/searchBar.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
@@ -18,11 +21,37 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool loading =false;
+   _showSnackBar(context, text) {
+    ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
+      content: new Text(text),
+      duration: Duration(seconds: 3),
+    ));
+  }
+@override
+  void initState(){
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
+   // Timer(Duration(seconds: 5), ()=> Navigator.of(context).pushReplacement(
+   //   MaterialPageRoute(builder: (BuildContext context) => HomeMainScreen()),),
+   // );
+
+    
     //print("current height::" + MediaQuery.of(context).size.height.toString());
 
-    return Scaffold(
+    return loading
+    ? Center(
+            child: Container(
+              height: 50,
+              width: 50,
+              child: CircularProgressIndicator(
+                color: AppColors.orange,
+              ),
+            ),
+          )
+    
+    : Scaffold(
       drawer: NavDrawer(),
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),

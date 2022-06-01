@@ -60,9 +60,17 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
               },
               child: Container(
                 height: 35,
-                width: 70,
+                width: 100,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
+                  
+                  gradient: LinearGradient(
+            colors: [
+              AppColors.orange, Color(0xFFfbab66)],
+            begin: FractionalOffset(0.2, 0.2),
+            end: FractionalOffset(1.0, 1.0),
+            stops: [0.0, 1.0],
+            tileMode: TileMode.clamp),
+                  borderRadius: BorderRadius.circular(10),
                   color: AppColors.orange,
                 ),
                 child: Center(
@@ -80,18 +88,30 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20.0),
-              const CustomText(text: 'Category name'),
+              CustomText(text: 'Category Name'),
               const SizedBox(height: 5.0),
+              
               Container(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                    const EdgeInsets.symmetric(horizontal: 0, vertical: 16),
                 child: TextFormField(
-                  decoration: const InputDecoration(
-                    border: UnderlineInputBorder(),
-                    labelText: 'Enter category name',
-                  ),
-                  // The validator receives the text that the user has entered.
+                 decoration: InputDecoration(
+                            
+                            // hide max character counter
+                                    counter: Offstage(),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                      //  borderRadius: BorderRadius.circular(8.0)),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.orange),
+                                    
+                          ),
+                          labelText: 'Name',
+                          ),
+                  
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'category name is required';
@@ -104,7 +124,22 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
               const CustomText(text: 'Category Description'),
               const SizedBox(height: 5.0),
               TextFormField(
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                      //  borderRadius: BorderRadius.circular(8.0)),
+                                    ),
+                                     focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.orange),),
+                                            //labelText: 'Description',
+                                            labelStyle: TextStyle(
+                                              color: AppColors.orange
+                                            ),
+                ),
                 maxLines: 8,
+                
                 // The validator receives the text that the user has entered.
                 validator: (value) {
                   if (value == null || value.isEmpty) {

@@ -42,7 +42,7 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
           onPageChanged: (index) {
             setState(() => _currentIndex = index);
           },
-          children: const [
+          children:  [
             HomeScreen(),
             SearchScreen(),
             BasketScreen(),
