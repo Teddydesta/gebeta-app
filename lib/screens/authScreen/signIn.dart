@@ -153,7 +153,7 @@ _showSnackBar(context,text){
                                         borderRadius: BorderRadius.circular(8.0)),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide:
-                                            BorderSide(color: Colors.grey),
+                                            BorderSide(color: Colors.orange),
                                         borderRadius: BorderRadius.circular(8.0)
                           ),
                           prefixIcon: Container(
@@ -195,7 +195,7 @@ _showSnackBar(context,text){
                                         borderRadius: BorderRadius.circular(8.0)),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide:
-                                            BorderSide(color: Colors.grey),
+                                            BorderSide(color: Colors.orange),
                                         borderRadius: BorderRadius.circular(8.0),
                           ),
                           
@@ -217,6 +217,7 @@ _showSnackBar(context,text){
                                     ),
                                   ),
                           suffixIcon: IconButton(
+                            color: AppColors.orange,
                                       icon: Icon(showPassword
                                           ? Icons.visibility
                                           : Icons.visibility_off),
@@ -228,7 +229,16 @@ _showSnackBar(context,text){
                           //labelText: "Pasword",
                         ),
                           ), 
-                          SizedBox(height: 25),
+                        Container(
+                          margin: EdgeInsets.only(left: 200,right: 0,
+                          ),
+                          child: TextButton(child: CustomText(text: "forgot password",color: AppColors.orange,),
+                          onPressed: (){
+                            
+                          },
+                          ),
+                        ),
+                          SizedBox(height: 5),
                           SignInButtonWidget(),
                           FacebookGoogleLogin(),
                       ],

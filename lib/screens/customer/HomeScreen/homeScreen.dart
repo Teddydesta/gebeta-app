@@ -17,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool loading =false;
   @override
   Widget build(BuildContext context) {
     //print("current height::" + MediaQuery.of(context).size.height.toString());

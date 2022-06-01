@@ -120,7 +120,7 @@ _showSnackBar(context,text){
                                         borderRadius: BorderRadius.circular(8.0)),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide:
-                                            BorderSide(color: Colors.grey),
+                                            BorderSide(color: Colors.orange),
                                         borderRadius: BorderRadius.circular(8.0)
                           ),
                           prefixIcon: Container(
@@ -162,7 +162,7 @@ _showSnackBar(context,text){
                                         borderRadius: BorderRadius.circular(8.0)),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide:
-                                            BorderSide(color: Colors.grey),
+                                            BorderSide(color: Colors.orange),
                                         borderRadius: BorderRadius.circular(8.0)
                           ),
                           prefixIcon: Container(
@@ -204,7 +204,7 @@ _showSnackBar(context,text){
                                         borderRadius: BorderRadius.circular(8.0)),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide:
-                                            BorderSide(color: Colors.grey),
+                                            BorderSide(color: Colors.orange),
                                         borderRadius: BorderRadius.circular(8.0),
                           ),
                           
@@ -226,6 +226,7 @@ _showSnackBar(context,text){
                                     ),
                                   ),
                           suffixIcon: IconButton(
+                            color: AppColors.orange,
                                       icon: Icon(showPassword
                                           ? Icons.visibility
                                           : Icons.visibility_off),

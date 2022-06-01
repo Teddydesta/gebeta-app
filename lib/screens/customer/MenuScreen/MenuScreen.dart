@@ -7,11 +7,11 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Example App',
+     // title: 'Example App',
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Quick Feedback'),
+          //title: const Text('Quick Feedback'),
         ),
         body: SingleChildScrollView(
           child: Container(
