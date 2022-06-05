@@ -1,19 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gebeta_food_delivery/screens/animation/scaleRoute.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/components/signInBtn.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/components/signUpBtn.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/components/socialMediaButton.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/signUp.dart';
-import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/profile_screen/profile_screen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
-import 'package:gebeta_food_delivery/widgets/formFilld.dart';
 
 class NewPasswordScreen extends StatefulWidget {
   static const routeName = "/SignUpScreen";

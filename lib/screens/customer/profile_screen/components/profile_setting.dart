@@ -1,46 +1,24 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gebeta_food_delivery/screens/animation/scaleRoute.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/components/signInBtn.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/components/signUpBtn.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/components/socialMediaButton.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/signUp.dart';
-import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/profile_screen/profile_screen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
-import 'package:gebeta_food_delivery/widgets/formFilld.dart';
-
 class ProfileSettingScreen extends StatefulWidget {
   static const routeName = "/SignUpScreen";
   const ProfileSettingScreen({Key? key}) : super(key: key);
-
   @override
   State<ProfileSettingScreen> createState() => _ProfileSettingScreenState();
 }
-
 class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
   bool showPassword=true;
- 
-
   final _formKey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-     
-     
 _showSnackBar(context,text){
   ScaffoldMessenger.of(context).showSnackBar(new SnackBar(content: CustomText(text: text)));
 }
-
     String defaultFontFamily = 'Roboto-Light.ttf';
     double defaultFontSize = 14;
-
-
-
     return Material(
       child: Container(
 
@@ -48,8 +26,6 @@ _showSnackBar(context,text){
            padding: const EdgeInsets.only(left: 10, right: 10),
           child: Form(
            key: _formKey,
-            
-              
               child: Column(
                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -102,11 +78,7 @@ _showSnackBar(context,text){
                           ),
                           
                             SizedBox(height: 1.5,),
-    
-    
                           TextFormField(
-                              
-                          
                             keyboardType: TextInputType.text,
                             //maxLine: 1,
                             readOnly: false,
@@ -154,11 +126,6 @@ _showSnackBar(context,text){
                            // labelText: "Pasword",
                           ),
                             ), 
-                           
-                            
-                           
-                           
-                            
                         ],
                       ),
                     ),

@@ -75,7 +75,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                 ),
                 child: Center(
                   child: const CustomText(
-                      text: 'SAVE', color: Colors.white, fontSize: 24,
+                      text: 'SAVE', color: Colors.black, fontSize: 24,
                       fontWeight: FontWeight.bold,),
                 ),
               ),)

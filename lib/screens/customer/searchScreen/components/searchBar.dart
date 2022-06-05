@@ -25,11 +25,11 @@ class SearchBar extends StatelessWidget {
                                     enabledBorder: OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(8.0)),
+                                        borderRadius: BorderRadius.circular(35.0)),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(8.0)
+                                        borderRadius: BorderRadius.circular(35.0)
                           ),
             suffixIcon: GestureDetector(
               onTap: () {

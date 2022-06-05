@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Category/Components/addcategoryScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/HomeScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
+// ignore: unused_import
 import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
@@ -49,15 +50,21 @@ class CategoriesScreen extends StatelessWidget {
                             const AddCategoryPage())));
               },
               child: Container(
-                height: 35,
-                width: 70,
+                height: 40,
+                width: 80,
                 decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                            colors: [AppColors.orange, Color(0xFFfbab66)],
+                            begin: FractionalOffset(0.2, 0.2),
+                            end: FractionalOffset(1.0, 1.0),
+                            stops: [0.0, 1.0],
+                            tileMode: TileMode.clamp),
                   borderRadius: BorderRadius.circular(5),
-                  color: AppColors.orange,
+                //  color: AppColors.orange,
                 ),
                 child: Center(
                   child: const CustomText(
-                      text: 'Add', color: Colors.white, fontSize: 24,
+                      text: 'Add', color: Colors.black, fontSize: 24,
                       fontWeight: FontWeight.bold,),
                 ),
               ),)
@@ -91,7 +98,7 @@ class CategoriesScreen extends StatelessWidget {
                              
 height: 40,
 width: 50,
-child: Center(child: CustomIcon(icon: Icons.edit,
+child: Center(child: CustomIcon(icon: Icons.more_horiz,
 iconColor: AppColors.orange,
 iconSize: 24,backgroundColor: Colors.white10,),),
 decoration: BoxDecoration(

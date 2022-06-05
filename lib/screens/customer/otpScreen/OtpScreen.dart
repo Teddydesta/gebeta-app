@@ -1,10 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/components/new_passwordscreen.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/utils/helpers.dart';
-import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 import 'package:gebeta_food_delivery/widgets/text_form_field.dart';
 

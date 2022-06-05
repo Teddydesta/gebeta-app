@@ -4,16 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gebeta_food_delivery/screens/animation/scaleRoute.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/components/signInBtn.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/components/signUpBtn.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/components/socialMediaButton.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signUp.dart';
+import 'package:gebeta_food_delivery/screens/customer/HomeScreen/homeScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/otpScreen/OtpScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
-import 'package:gebeta_food_delivery/widgets/formFilld.dart';
 
 class SignInPage extends StatefulWidget {
   static const routeName = "/SignUpScreen";
@@ -87,10 +84,10 @@ _showSnackBar(context,text){
                           context,
                           MaterialPageRoute(
                               builder: ((BuildContext context) =>
-                                   HomeMainScreen()))),
+                                   HomeScreen()))),
             child: Container(
               height: 30,
-              width: 80,
+              width: 100,
               margin: EdgeInsets.only(right: 10,top: 2,bottom: 7),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -104,7 +101,7 @@ _showSnackBar(context,text){
                   borderRadius: BorderRadius.circular(10.0),
                  // color: Colors.white,
               ),
-              child: Center(child: CustomText(text: "GUEST",fontWeight: FontWeight.bold,fontSize: 22,)),
+              child: Center(child: CustomText(text: "GUEST",fontWeight: FontWeight.bold,fontSize: 24)),
             ),
           
         ),],

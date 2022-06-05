@@ -1,3 +1,4 @@
+import 'package:gebeta_food_delivery/screens/restaurant/Products/AddNewProducts.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -7,14 +8,14 @@ import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 
 import '../../../widgets/customText.dart';
 
-class AddNewProductPage extends StatefulWidget {
-  const AddNewProductPage({Key? key}) : super(key: key);
+class EditProductScreen extends StatefulWidget {
+  const EditProductScreen({Key? key}) : super(key: key);
 
   @override
-  _AddNewProductPageState createState() => _AddNewProductPageState();
+  _EditProductScreenState createState() => _EditProductScreenState();
 }
 
-class _AddNewProductPageState extends State<AddNewProductPage> {
+class _EditProductScreenState extends State<EditProductScreen> {
 
   final _keyForm = GlobalKey<FormState>();
   List<Asset> images = <Asset>[];
@@ -77,7 +78,7 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
                 context,
                 MaterialPageRoute(
                     builder: ((BuildContext context) =>
-                        const AddNewProductPage()))),
+                         AddNewProductPage()))),
             child: Container(
             
               child: TextButton(
@@ -86,7 +87,7 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
                     context,
                     MaterialPageRoute(
                         builder: ((BuildContext context) =>
-                            const AddNewProductPage())));
+                             AddNewProductPage())));
               },
               child: Container(
                 height: 35,
@@ -141,7 +142,43 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
               // The validator receives the text that the user has entered.
             ),
             //
-CustomText(text: 'Product description'),
+
+            const SizedBox(height: 20.0),
+            
+
+            
+            //
+
+            
+            //CustomText(text: 'Product description'),
+           
+            //
+            TextFormField(
+              
+              maxLines: 8,
+              decoration: const InputDecoration(
+                border: UnderlineInputBorder(),
+                 counter: Offstage(),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                      //  borderRadius: BorderRadius.circular(8.0)),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.orange),),
+                labelText: 'Description',
+              ),
+              // The validator receives the text that the user has entered.
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Description is required';
+                }
+                return null;
+              },
+            ),
+//
+            //CustomText(text: 'Product description'),
             const SizedBox(height: 5.0),
             //
             TextFormField(

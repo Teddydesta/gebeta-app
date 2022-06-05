@@ -1,5 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gebeta_food_delivery">
+
+
+
+    
    <application
         android:label="Gebeta"
         android:name="${applicationName}"
@@ -21,7 +25,7 @@
               android:resource="@style/NormalTheme"
               />
 
-<meta-data android:name="com.google.android.geo.AIzaSyAx7bRaxBXv40nBzC2K3LU7m_gvYRqYEGs"
+              <meta-data android:name="com.google.android.geo.AIzaSyAx7bRaxBXv40nBzC2K3LU7m_gvYRqYEGs"
                android:value="AIzaSyAx7bRaxBXv40nBzC2K3LU7m_gvYRqYEGs"/>
 
             <intent-filter>
@@ -34,10 +38,12 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-            
+           
+              
   
 
 
  
     </application>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 </manifest>

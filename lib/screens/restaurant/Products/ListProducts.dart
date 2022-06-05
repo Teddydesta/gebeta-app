@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/customer/RestaurantPage/RestaurantScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/HomeScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Products/AddNewProducts.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/Products/EditProduct.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
-import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
-import 'package:gebeta_food_delivery/widgets/columnWidget.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 class ListProductScreen extends StatefulWidget {
@@ -29,6 +27,7 @@ class _ListProductScreenState extends State<ListProductScreen> {
           fontWeight: FontWeight.bold,
         ),
         centerTitle: true,
+      
         leadingWidth: 80,
         elevation: 0,
         leading: InkWell(
@@ -36,23 +35,35 @@ class _ListProductScreenState extends State<ListProductScreen> {
               context,
               MaterialPageRoute(
                   builder: ((BuildContext context) =>
-                      const RestaurantHomeScreen()))),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Icon(Icons.arrow_back_ios_new_rounded,
-                  color: Colors.black, size: 24),
-            ],
-          ),
+                      const EditProductScreen()))),
+          child: Container(
+            margin: EdgeInsets.only(left: 10,top: 10,bottom: 10),
+                height: 25,
+                width: 60,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  gradient: LinearGradient(
+                            colors: [AppColors.orange, Color(0xFFfbab66)],
+                            begin: FractionalOffset(0.2, 0.2),
+                            end: FractionalOffset(1.0, 1.0),
+                            stops: [0.0, 1.0],
+                            tileMode: TileMode.clamp),
+                 // color: AppColors.orange,
+                ),
+                child: Center(
+                  child: const CustomText(
+                      text: 'Edit', color: Colors.black, fontSize: 24,
+                      fontWeight: FontWeight.bold,),
+                ),
+              )
         ),
         actions: [
-
           GestureDetector(
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: ((BuildContext context) =>
-                        const AddNewProductPage()))),
+                         AddNewProductPage()))),
             child: Container(
             
               child: TextButton(
@@ -78,7 +89,7 @@ class _ListProductScreenState extends State<ListProductScreen> {
                 ),
                 child: Center(
                   child: const CustomText(
-                      text: 'Add', color: Colors.white, fontSize: 24,
+                      text: 'Add', color: Colors.black, fontSize: 24,
                       fontWeight: FontWeight.bold,),
                 ),
               ),)

@@ -1,11 +1,9 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, file_names
 
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/categoryScreen/categoryScreen.dart';
-import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/nearbyScreen/nearby.dart';
 import 'package:gebeta_food_delivery/screens/customer/searchScreen/components/searchBar.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
@@ -70,13 +68,14 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             Divider(),
+            SearchBar(title: 'Search for restaurants, dishes'),
             Expanded(
                 child: SingleChildScrollView(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
                 children:  [
                   
-                  SearchBar(title: 'Search for restaurants, dishes'),
+                  
                   Container(
                     padding: EdgeInsets.only(left: 15),
                     child: CustomText(
