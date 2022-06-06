@@ -3,71 +3,172 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gebeta_food_delivery/screens/animation/scaleRoute.dart';
+import 'package:gebeta_food_delivery/screens/authScreen/components/customerHotelToggle.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/components/signUpBtn.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
+import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
+import 'package:gebeta_food_delivery/services/userServices.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
+import 'package:gebeta_food_delivery/utils/locationUtils.dart';
+import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
+import 'package:gebeta_food_delivery/widgets/customInputText.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 import 'package:gebeta_food_delivery/widgets/formFilld.dart';
 
 class SignUpPage extends StatefulWidget {
   static const routeName = "/SignUpScreen";
-  const SignUpPage({Key? key}) : super(key: key);
+  final changeToggle;
+  final phone;
+  const SignUpPage({Key? key, this.changeToggle, this.phone}) : super(key: key);
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  bool showPassword=true;
+  LocationUtils _locationUtils = LocationUtils();
+  Map _location = {};
+  bool _isCustomer = true;
+  bool showPassword = false;
+
+  String? _name;
+  TextEditingController _nameController = TextEditingController();
   String? _phone;
+  TextEditingController _phoneController = TextEditingController();
   String? _password;
-  final _formKey=GlobalKey<FormState>();
+  TextEditingController _passwordController = TextEditingController();
+  bool loading = false;
+  Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
+  final _formKey = GlobalKey<FormState>();
+  var userServices = UserServices();
+
+  _roleIsCustomer() {
+    _isCustomer = true;
+    print(_isCustomer);
+  }
+
+  _roleIsHotel() {
+    _isCustomer = false;
+    print(_isCustomer);
+  }
+
+  _validateName(String value) {
+    value.trim();
+    if (value.isEmpty) return 'Please enter your name';
+    if (double.tryParse(value) != null) return 'Only text are allowed';
+
+    return null;
+  }
+
+  _validatePassword(String value) {
+    if (value.length < 6)
+      return 'Password must be greater than 6';
+    else
+      return null;
+  }
+
+  _validatePhone(String value) {
+    if (value.length < 10 || value.length > 13)
+      return 'Phone must greater than 9 and less than 13';
+    String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+    RegExp regExp = new RegExp(pattern);
+    if (!regExp.hasMatch(value)) return 'Please enter valid mobile number';
+
+    return null;
+  }
+
+  _showSnackBar(context, text) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(new SnackBar(content: new Text(text)));
+  }
+
+  onSubmitForm(context) async {
+    if (_location.isEmpty) {
+      await getLocation();
+      _showSnackBar(context, 'Location coordinates are required');
+    }
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        loading = true;
+      });
+
+      var res;
+      if (_isCustomer) {
+        res = await userServices.registerUser(
+            name: _name,
+            phone: widget.phone,
+            location: _location,
+            password: _password);
+      } else {
+        res = await userServices.registerHotel(
+            name: _name,
+            phone: widget.phone,
+            location: _location,
+            password: _password);
+      }
+      print(res);
+      if (res['error'] == null) {
+        await Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => HomeMainScreen()),
+            ModalRoute.withName('/'));
+        _showSnackBar(
+            context,
+            _isCustomer
+                ? 'Customer successfully registered'
+                : 'Resturant successfully registered');
+        setState(() {
+          loading = false;
+        });
+        return;
+      }
+      setState(() {
+        loading = false;
+      });
+      _showSnackBar(context, res['error']);
+      return;
+    }
+  }
+
+  getLocation() async {
+    print('Fetching location ... ');
+    var result = await _locationUtils.getCurrentPosition();
+    print('result : $result');
+    if (result['result'] == null) {
+      _showSnackBar(context, "Error fetching location, ${result['error']}");
+      // Create alert dialog to ask location permission from the user
+      return;
+    }
+    print('result : $result');
+
+    _location.addAll({
+      'lat': result['result']['lat'].toString(),
+      'lng': result['result']['lng'].toString()
+    });
+    print('location : $_location');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getLocation();
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-     Size size = MediaQuery.of(context).size;
-     _validatePassword(String value){
-       if(value.length <4)
-         return 'password must be greater than 4';
-         else
-          return null;
-     }
-_validatePhone(String value){
-  if(value.length<10 || value.length>13)
-     return 'phone number must greater than 10';
-     else
-        String pattern=r'(^(?:[+0]9)?[0-9]{10,12}$)';
-        //RegExp regExp =new RegExp(Pattern);
-       // if(!regExp.hasMatch(value)) return 'please enter valis phone number';
-        return null;
-
-}
-_showSnackBar(context,text){
-  ScaffoldMessenger.of(context).showSnackBar(new SnackBar(content: CustomText(text: text)));
-}
+    Size size = MediaQuery.of(context).size;
 
     String defaultFontFamily = 'Roboto-Light.ttf';
     double defaultFontSize = 14;
-
-
-//Form(
-        //key: _formKey,
-      //  child: SingleChildScrollView(
-        //  padding: EdgeInsets.all(10.0),
-        //  child: Column(
-          //  crossAxisAlignment: CrossAxisAlignment.center,
-           // children: [
-           //   Container(
-             //   width: 100,
-               // height: 100,
-               // decoration: BoxDecoration(
-                //  shape: BoxShape.circle,
-               // ),
-                //child: Image(image: AssetImage("assetName")),
-             // ),
-          //  ],
-         // ),
-       // ),),
 
     return Scaffold(
       appBar: AppBar(
@@ -75,220 +176,139 @@ _showSnackBar(context,text){
         elevation: 0,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20),
-        child: Form(
-         key: _formKey,
-          
-            
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Flexible(
-                  flex: 15,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          width: 300,
-                          height: 200,
-                          alignment: Alignment.center,
-                          child: Image.asset(
-                            "assets/images/gebeta_logo.png",
-                          ),
+      body: loading
+          ? Center(
+              child: Container(
+                height: 50,
+                width: 50,
+                child: CircularProgressIndicator(color: AppColors.orange),
+              ),
+            )
+          : Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Flexible(
+                      flex: 15,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              width: 300,
+                              height: 200,
+                              alignment: Alignment.center,
+                              child: Image.asset(
+                                "assets/images/gebeta_logo.png",
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            CustomerHotelToggle(
+                                isCustomer: _roleIsCustomer,
+                                isHotel: _roleIsHotel),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 20.0, bottom: 25.0),
+                              child: CustomTextField(
+                                name: 'Name',
+                                controller: _nameController,
+                                keyboardType: TextInputType.text,
+                                obscureText: false,
+                                loading: loading,
+                                validator: _validateName,
+                                onChange: (val) {
+                                  setState(() {
+                                    _name = val;
+                                  });
+                                },
+                                hintText: "Full Name",
+                              ),
+                            ),
+                            CustomTextField(
+                              hintText: "090000000",
+                              controller: _phoneController,
+                              keyboardType: TextInputType.number,
+                              maxLength: 13,
+                              name: 'Phone',
+                              validator: _validatePhone,
+                              loading: loading,
+                              onChange: (val) {
+                                setState(() {
+                                  _phone = val;
+                                });
+                              },
+                            ),
+                            CustomTextField(
+                                name: 'Password',
+                                showPassword: showPassword,
+                                onChange: (val) {
+                                  setState(() {
+                                    _password = val;
+                                  });
+                                },
+                                obsecureSuffixIcon: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        showPassword = !showPassword;
+                                      });
+                                    },
+                                    icon: showPassword
+                                        ? Icon(Icons.visibility_outlined,
+                                            color: Colors.black54, size: 20)
+                                        : Icon(Icons.visibility_off,
+                                            color: Colors.black54, size: 20)),
+                                hintText: 'Pick a strong password',
+                                keyboardType: TextInputType.text,
+                                obscureText: true,
+                                validator: _validatePassword,
+                                loading: loading,
+                                controller: _passwordController),
+                            SizedBox(height: 15),
+                            SignUpButtonWidget(),
+                            FacebookGoogleLogin(),
+                          ],
                         ),
-                        
-                        
-                          SizedBox(height: 15,),
-                        TextFormField(
-                            
-                         // hintText: "Name",
-                         //isPassword: false,
-                          keyboardType: TextInputType.text,
-                          //maxLine: 1,
-                          readOnly: false,
-                          decoration: InputDecoration(
-                           
-                            // hide max character counter
-                                    counter: Offstage(),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(8.0)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.orange),
-                                        borderRadius: BorderRadius.circular(8.0)
-                          ),
-                          prefixIcon: Container(
-                                    margin: EdgeInsets.only(left: 10),
-                                    width: 80,
-                                    child: Row(
-                                      children: [
-                                        CustomIcon(
-                                          icon: Icons.person,
-                                          iconColor: AppColors.orange,
-                                          backgroundColor: Colors.white,
-                                         iconSize: 22,
-                                        ),
-                                        SizedBox(width: 5),
-                                        
-                                      ],
-                                    ),
-                                  ),
-                                  
-                                   hintText: "Name",
-                        ),
-                        
-                          ),
-                          SizedBox(height: 15,),
-                           TextFormField(
-                            
-                         // hintText: "Name",
-                         //isPassword: false,
-                          keyboardType: TextInputType.text,
-                          //maxLine: 1,
-                          readOnly: false,
-                          decoration: InputDecoration(
-                            hintText: "940502345",
-                            // hide max character counter
-                                    counter: Offstage(),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(8.0)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.orange),
-                                        borderRadius: BorderRadius.circular(8.0)
-                          ),
-                          prefixIcon: Container(
-                                    margin: EdgeInsets.only(left: 10),
-                                    width: 80,
-                                    child: Row(
-                                      children: [
-                                        CustomIcon(
-                                          icon: Icons.phone,
-                                          iconColor: AppColors.orange,
-                                          backgroundColor: Colors.white,
-                                         iconSize: 22,
-                                        ),
-                                        SizedBox(width: 5),
-                                        Text(
-                                          '+251',
-                                          style: TextStyle(fontSize: 17),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                        ),
-                        
-                          ),
-                          SizedBox(height: 15,),
-                           TextFormField(
-                            obscureText: showPassword,
-                     
-                          keyboardType: TextInputType.text,
-                          //maxLine: 1,
-                          readOnly: false,
-                          decoration: InputDecoration(
-                            hintText: "password",
-                            // hide max character counter
-                                    counter: Offstage(),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(8.0)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.orange),
-                                        borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          
-                           prefixIcon: Container(
-                                    margin: EdgeInsets.only(left: 10),
-                                    width: 80,
-                                    child: Row(
-                                      children: [
-                                        CustomIcon(
-                                          icon: Icons.key,
-                                          iconColor: AppColors.orange,
-                                          backgroundColor: Colors.white10,
-                                          
-                                         iconSize: 22,
-                                        ),
-                                      
-                                        
-                                      ],
-                                    ),
-                                  ),
-                          suffixIcon: IconButton(
-                            color: AppColors.orange,
-                                      icon: Icon(showPassword
-                                          ? Icons.visibility
-                                          : Icons.visibility_off),
-                                      onPressed: () {
-                                        setState(() {
-                                          showPassword = !showPassword;
-                                        });
-                                      }),
-                          //labelText: "Pasword",
-                        ),
-                          ), 
-                          SizedBox(height: 15),
-                          SignUpButtonWidget(),
-                          FacebookGoogleLogin(),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                Flexible(
-                  flex: 1,
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "Already have an account? ",
-                          style: TextStyle(
-                            color: const Color(0xFF666666),
-                            fontFamily: defaultFontFamily,
-                            fontSize: defaultFontSize,
-                            fontStyle: FontStyle.normal,
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context, ScaleRoute(page: const SignInPage()));
-                          },
-                          // ignore: avoid_unnecessary_containers
-                          child: Container(
-                            child: Text(
-                              "Sign In",
+                    Flexible(
+                      flex: 1,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "Already have an account? ",
                               style: TextStyle(
-                                color: AppColors.orange,
+                                color: const Color(0xFF666666),
                                 fontFamily: defaultFontFamily,
                                 fontSize: defaultFontSize,
                                 fontStyle: FontStyle.normal,
                               ),
                             ),
-                          ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 20.0),
+                              child: CustomBtn(
+                                text: 'Sign Up',
+                                loading: loading,
+                                onPressed: () => onSubmitForm(context),
+                              ),
+                            )
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                )
-              ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ),
-          ),
-      ),
-      
     );
   }
 }

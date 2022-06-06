@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:gebeta_food_delivery/screens/utils/locationUtils.dart';
+import 'package:gebeta_food_delivery/utils/locationUtils.dart';
 import 'package:http/http.dart' as http;
 import 'package:gebeta_food_delivery/services/common.dart';
 import 'package:gebeta_food_delivery/models/Category.dart';

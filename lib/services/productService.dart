@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:gebeta_food_delivery/models/DeliveredProducts.dart';
 import 'package:gebeta_food_delivery/models/Product.dart';
 import 'package:gebeta_food_delivery/services/common.dart';
-import 'package:gebeta_food_delivery/screens/utils/locationUtils.dart';
+import 'package:gebeta_food_delivery/utils/locationUtils.dart';
 
 import 'constants.dart';
 

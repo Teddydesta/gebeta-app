@@ -12,7 +12,8 @@ class CustomBtn extends StatelessWidget {
   final Color textColor;
   final FontWeight fontWeight;
   final double fontSize;
-  final VoidCallback? onPressed;
+  final onPressed;
+  final loading;
 
   const CustomBtn({
     required this.text,
@@ -22,8 +23,9 @@ class CustomBtn extends StatelessWidget {
     this.borderRadius = 8.0,
     this.textColor = Colors.white,
     this.fontWeight = FontWeight.normal,
-    this.fontSize = 18,
+    this.fontSize = 22,
     this.onPressed,
+    this.loading,
   });
 
   @override

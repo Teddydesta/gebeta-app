@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gebeta_food_delivery/models/UserModel.dart';
-import 'package:gebeta_food_delivery/screens/utils/locationUtils.dart';
+import 'package:gebeta_food_delivery/utils/locationUtils.dart';
 import 'package:gebeta_food_delivery/services/common.dart';
 
 import 'constants.dart';
@@ -43,6 +43,39 @@ class UserServices {
       'lng': location['lng']
     };
     var url = Uri.parse('$baseUrl/users');
+
+    var response = await http.post(url, body: body);
+
+    if (response.statusCode == 200 ||
+        response.statusCode == 201 ||
+        response.statusCode == 202) {
+      var user = UserModel.fromJson(json.decode(response.body));
+      await saveToken(user.token, user.name, user.role, user.id);
+
+      return {'error': null, 'user': user};
+    }
+
+    return {'error': json.decode(response.body)['message'], 'user': null};
+  }
+
+  Future registerHotel({name, email, phone, location, password}) async {
+    String locationName = 'Unknown';
+    var locationNameResult = await locationUtils.getReverseGeolocation(
+        location['lat'], location['lng']);
+
+    if (locationNameResult['error'] == null)
+      locationName = locationNameResult['locationName'];
+
+    var body = {
+      'name': name,
+      'email': email,
+      'phone': phone,
+      'password': password,
+      'locationName': locationName,
+      'lat': location['lat'],
+      'lng': location['lng']
+    };
+    var url = Uri.parse('$baseUrl/users/hotel');
 
     var response = await http.post(url, body: body);
 

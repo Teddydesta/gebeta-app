@@ -11,6 +11,7 @@ class CustomText extends StatelessWidget {
   final TextOverflow textOverflow;
   final int maxLine;
   final TextAlign textAlign;
+  final controller;
 
   const CustomText(
       {required this.text,
@@ -19,7 +20,8 @@ class CustomText extends StatelessWidget {
       this.fontWeight = FontWeight.normal,
       this.textOverflow = TextOverflow.visible,
       this.maxLine = 8,
-      this.textAlign = TextAlign.left});
+      this.textAlign = TextAlign.left,
+      this.controller});
 
   @override
   Widget build(BuildContext context) {
