@@ -14,22 +14,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "611270842590-132qirl57aa5p9g2bf14cb2bve6refk3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.gebeta_food_delivery",
-            "certificate_hash": "ba39eed462939e8365e8b6a815d25d92698c6f46"
-          }
-        },
-        {
-          "client_id": "611270842590-damnf1cviej4i70s7jo7dks73kcgs30m.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.gebeta_food_delivery",
-            "certificate_hash": "a2a52239145d62915bc467786def2fa4d3c0d1c9"
-          }
-        },
-        {
           "client_id": "611270842590-42ddegei3aooipnc5udhru60gt6pk8v1.apps.googleusercontent.com",
           "client_type": 3
         }
