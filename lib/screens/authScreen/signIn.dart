@@ -168,6 +168,7 @@ class _SignInPageState extends State<SignInPage> {
                               maxLength: 10,
                               readOnly: false,
                               decoration: InputDecoration(
+                               
                                 hintText: "940502345",
                                 // hide max character counter
                                 counter: Offstage(),
