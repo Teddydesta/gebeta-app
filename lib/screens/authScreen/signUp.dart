@@ -35,6 +35,9 @@ class _SignUpPageState extends State<SignUpPage> {
   String verificationId = '';
   String? _name;
   TextEditingController _nameController = TextEditingController();
+  String? _email;
+  TextEditingController _emailController = TextEditingController();
+
   String? _phone;
   TextEditingController _phoneController = TextEditingController();
   String? _password;
@@ -70,6 +73,18 @@ class _SignUpPageState extends State<SignUpPage> {
       return null;
   }
 
+   _validateEmail(String value) {
+    value.trim();
+    String pattern =
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+    RegExp regex = new RegExp(pattern);
+    if (!regex.hasMatch(value)) {
+      return 'Enter Valid Email';
+    } else
+      return null;
+  }
+
+
   _validatePhone(String value) {
     if (value.length < 10 || value.length > 13)
       return 'Phone must greater than 9 and less than 13';
@@ -99,12 +114,14 @@ class _SignUpPageState extends State<SignUpPage> {
       if (_isCustomer) {
         res = await userServices.registerUser(
             name: _name,
+            email: _email,
             phone: widget.phone,
             location: _location,
             password: _password);
       } else {
         res = await userServices.registerHotel(
             name: _name,
+            email: _email,
             phone: widget.phone,
             location: _location,
             password: _password);
@@ -169,34 +186,34 @@ class _SignUpPageState extends State<SignUpPage> {
       if (_isCustomer) {
         var regres = await userServices.registerUser(
             name: _name,
+            email: _email,
             phone: widget.phone,
             location: _location,
             password: _password); // save token and redirect
       } else {
         var regres = await userServices.registerHotel(
             name: _name,
+            email: _email,
             phone: widget.phone,
             location: _location,
-            password: _password); 
-            
-            // save token and redirect
+            password: _password);
+
+        // save token and redirect
       }
     } else {
       print('error');
     }
   }
 
-
-
   handleSignUp() async {
     if (_formKey.currentState!.validate()) {
-     
+      print(_emailController.text.trim());
       print(_nameController.text.trim());
       print(_phoneController.text.trim());
       print(_passwordController.text.trim());
 
       var res = await userServices.checkIfPhoneIsInUse(
-          phone: '+251${_phoneController.text.trim()}');
+          phone: '${_phoneController.text.trim()}');
       if (res != null) {
         print('user exist with this phone number');
         return;
@@ -204,8 +221,16 @@ class _SignUpPageState extends State<SignUpPage> {
         await auth.verifyPhoneNumber(
           phoneNumber: '+251${_phoneController.text.trim()}',
           codeSent: (String verificationId, int? resendToken) async {
-            loading = true; // sending
+            setState(() {
+              loading = true; // setstate
+            });
             verificationId = verificationId;
+            setState(() {
+              isOtp = true;
+            });
+            setState(() {
+              loading = false; // setstate
+            });
             // // Update the UI - wait for the user to enter the SMS code
             // String smsCode = _otpController.text;
 
@@ -218,7 +243,9 @@ class _SignUpPageState extends State<SignUpPage> {
           },
           timeout: const Duration(seconds: 60),
           codeAutoRetrievalTimeout: (String verificationId) {
-            // Auto-resolution timed out...
+            setState(() {
+              loading = false; // setstate
+            }); // Auto-resolution timed out...
           },
           verificationCompleted:
               (PhoneAuthCredential phoneAuthCredential) async {
@@ -226,32 +253,50 @@ class _SignUpPageState extends State<SignUpPage> {
             setState(() {
               loading = true; // setstate
             });
-            _otpController.text = phoneAuthCredential.smsCode!;
+            print(phoneAuthCredential.smsCode);
+            setState(() {
+              _otpController.text = phoneAuthCredential.smsCode!;
+            });
             UserCredential result =
                 await auth.signInWithCredential(phoneAuthCredential);
             User? user = result.user;
+            print(user);
             if (user != null) {
               if (_isCustomer) {
                 var registerRes = await userServices.registerUser(
                     name: _name,
+                    email: _email,
                     phone: widget.phone,
                     location: _location,
                     password: _password);
                 // save token and redirect
+                print(registerRes);
               } else {
                 var registerRes = await userServices.registerHotel(
                     name: _name,
+                    email: _email,
                     phone: widget.phone,
                     location: _location,
                     password: _password);
                 // save token and redirect
-
+                print(registerRes);
+                setState(() {
+                  loading = false; // setstate
+                });
               }
             } else {
+              setState(() {
+                loading = false; // setstate
+              });
               print('error');
             }
+            setState(() {
+              loading = false; // setstate
+            });
           },
-          verificationFailed: (FirebaseAuthException error) {},
+          verificationFailed: (FirebaseAuthException error) {
+            // show error message
+          },
         );
       }
     }
@@ -267,6 +312,7 @@ class _SignUpPageState extends State<SignUpPage> {
   void dispose() {
     _nameController.dispose();
     _passwordController.dispose();
+    _emailController.dispose();
     super.dispose();
   }
 
@@ -361,27 +407,29 @@ class _SignUpPageState extends State<SignUpPage> {
                           tileMode: TileMode.clamp),
                     ),
                     child: MaterialButton(
-                        highlightColor: Colors.transparent,
-                        splashColor: AppColors.orange,
-                        //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 42.0),
-                          child: Text(
-                            "NEXT",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25.0,
-                                fontFamily: "WorkSansBold"),
-                          ),
+                      highlightColor: Colors.transparent,
+                      splashColor: AppColors.orange,
+                      //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 42.0),
+                        child: Text(
+                          "NEXT",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25.0,
+                              fontFamily: "WorkSansBold"),
                         ),
-                        onPressed: () => {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((BuildContext context) =>
-                                          const SignInPage()))),
-                            }),
+                      ),
+                      // onPressed: () => {
+                      //       Navigator.push(
+                      //           context,
+                      //           MaterialPageRoute(
+                      //               builder: ((BuildContext context) =>
+                      //                   const SignInPage()))),
+                      //      }
+                      onPressed: () => handleVerifyOtp(),
+                    ),
                   ),
                   const SizedBox(height: 20),
                   Row(
@@ -458,6 +506,21 @@ class _SignUpPageState extends State<SignUpPage> {
                                       hintText: "Full Name",
                                     ),
                                   ),
+                                   CustomTextField(
+                                    hintText: "johndoe@gmail.com",
+                                    controller: _emailController,
+                                    keyboardType: TextInputType.emailAddress,
+                                    
+                                    name: 'Email',
+                                    validator: _validateEmail,
+                                    loading: loading,
+                                    obscureText: false,
+                                    onChange: (val) {
+                                      setState(() {
+                                        _email = val;
+                                      });
+                                    },
+                                  ),
                                   CustomTextField(
                                     hintText: "090000000",
                                     controller: _phoneController,
@@ -467,7 +530,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                     validator: _validatePhone,
                                     loading: loading,
                                     obscureText: false,
-                                    
                                     onChange: (val) {
                                       setState(() {
                                         _phone = val;
@@ -502,12 +564,13 @@ class _SignUpPageState extends State<SignUpPage> {
                                       loading: loading,
                                       controller: _passwordController),
                                   SizedBox(height: 15),
-                               
                                 ],
                               ),
                             ),
                           ),
-                          SizedBox(height: 25,),
+                          SizedBox(
+                            height: 25,
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 20.0),
                             child: CustomBtn(
@@ -517,42 +580,42 @@ class _SignUpPageState extends State<SignUpPage> {
                               onPressed: () => handleSignUp(),
                             ),
                           ),
-                          SizedBox(height: 5,),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              "I Don't  have account? ",
-                              style: TextStyle(
-                                color: const Color(0xFF666666),
-                                fontFamily: defaultFontFamily,
-                                fontSize: defaultFontSize,
-                                fontStyle: FontStyle.normal,
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                "I Don't  have account? ",
+                                style: TextStyle(
+                                  color: const Color(0xFF666666),
+                                  fontFamily: defaultFontFamily,
+                                  fontSize: defaultFontSize,
+                                  fontStyle: FontStyle.normal,
+                                ),
                               ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(context,
-                                    ScaleRoute(page: const SignInPage()));
-                              },
-                              // ignore: avoid_unnecessary_containers
-                              child: Container(
-                                child: Text(
-                                  "Sign In",
-                                  style: TextStyle(
-                                    color: AppColors.orange,
-                                    fontFamily: defaultFontFamily,
-                                    fontSize: defaultFontSize,
-                                    fontStyle: FontStyle.normal,
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(context,
+                                      ScaleRoute(page: const SignInPage()));
+                                },
+                                // ignore: avoid_unnecessary_containers
+                                child: Container(
+                                  child: Text(
+                                    "Sign In",
+                                    style: TextStyle(
+                                      color: AppColors.orange,
+                                      fontFamily: defaultFontFamily,
+                                      fontSize: defaultFontSize,
+                                      fontStyle: FontStyle.normal,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        
-                          
+                            ],
+                          ),
                         ],
                       ),
                     ),

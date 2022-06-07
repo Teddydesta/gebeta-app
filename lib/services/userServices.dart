@@ -224,7 +224,7 @@ class UserServices {
     var url = Uri.parse('$baseUrl/users/checkPhone');
 
     var response = await http.post(url, body: body);
-
+print(response.body);
     if (response.statusCode == 200 ||
         response.statusCode == 201 ||
         response.statusCode == 202) {
