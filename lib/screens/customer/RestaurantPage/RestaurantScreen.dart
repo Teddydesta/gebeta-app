@@ -139,18 +139,18 @@ class _RestaurantMainScreenState extends State<RestaurantMainScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    height: Dimensions.height180,
+                    height: 180,
                     width: double.maxFinite,
                     decoration: BoxDecoration(
                         borderRadius:
-                            BorderRadius.circular(Dimensions.radius10),
+                            BorderRadius.circular(10),
                         image: DecorationImage(
                             fit: BoxFit.cover,
                             image: AssetImage(
                                 "assets/images/restaurant_cover.png"))),
                   ),
                   SearchBar(title: 'Search for restaurants, dishes'),
-                  SizedBox(height: Dimensions.height15),
+                  SizedBox(height: 15),
                   RestaurantScreenDetails(),
                 ],
               ),

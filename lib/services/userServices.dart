@@ -217,4 +217,23 @@ class UserServices {
     print('error : ${json.decode(response.body)}');
     return null;
   }
+
+  // Phone check
+  Future checkIfPhoneIsInUse({phone}) async {
+    var body = {'phone': phone, };
+    var url = Uri.parse('$baseUrl/users/checkPhone');
+
+    var response = await http.post(url, body: body);
+
+    if (response.statusCode == 200 ||
+        response.statusCode == 201 ||
+        response.statusCode == 202) {
+
+      return null;
+    } else {
+      return response.body;
+    }
+
+    return {'error': json.decode(response.body)['message'], 'user': null};
+  }
 }

@@ -59,7 +59,7 @@ class _NearByScreenState extends State<NearByScreen> {
             ],
           ),
           SizedBox(
-            height: Dimensions.height15,
+            height: 15,
           ),
           ListView.builder(
               shrinkWrap: true,
@@ -76,9 +76,9 @@ class _NearByScreenState extends State<NearByScreen> {
                           builder: ((BuildContext context) =>
                               const RestaurantMainScreen()))),
                   child: Container(
-                    padding: EdgeInsets.only(bottom: Dimensions.height10),
+                    padding: EdgeInsets.only(bottom: 10),
                     margin: EdgeInsets.only(
-                        left: 0, right: 10, bottom: Dimensions.height10),
+                        left: 0, right: 10, bottom: 10),
                     child: Row(
                       children: [
                         Container(

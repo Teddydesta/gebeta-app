@@ -254,13 +254,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1"
-  get:
-    dependency: "direct dev"
-    description:
-      name: get
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.6.3"
   google_fonts:
     dependency: "direct dev"
     description:
@@ -387,13 +380,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
-  multi_image_picker:
-    dependency: "direct dev"
-    description:
-      name: multi_image_picker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.8.01"
   path:
     dependency: transitive
     description:
@@ -457,6 +443,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.0"
+  pin_code_fields:
+    dependency: "direct dev"
+    description:
+      name: pin_code_fields
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.4.0"
   platform:
     dependency: transitive
     description:

@@ -18,14 +18,10 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (toggle) {
+   
       return SignInPage(
         changeToggle: changeToggle,
       );
-    } else {
-      return Register(
-        changeToggle: changeToggle,
-      );
-    }
+   
   }
 }

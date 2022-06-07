@@ -13,7 +13,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Dimensions.pageViewContainer,
+      height: 140,
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -31,7 +31,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             itemCount: 5,
             itemBuilder: (_, i) {
               return Container(
-                height: Dimensions.pageView,
+                height: 100,
                 width: 120,
                 margin: const EdgeInsets.only(right: 10.0),
                 decoration: BoxDecoration(

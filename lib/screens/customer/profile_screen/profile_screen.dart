@@ -100,7 +100,7 @@ void _pickImage(context) {
       backgroundColor: Colors.white,
       body: Container(
         width: double.maxFinite,
-        margin: EdgeInsets.only(top: Dimensions.height10),
+        margin: EdgeInsets.only(top: 10),
         child: Column(
           
           children: [
@@ -160,19 +160,19 @@ void _pickImage(context) {
       ),
                     ),
                     SizedBox(
-                      height: Dimensions.height10,
+                      height: 10,
                     ),
                     Divider(
                       color: Colors.grey[100],
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: Dimensions.width15),
+                      margin: EdgeInsets.only(left: 15),
                       child: const CustomText(
                         text: "Account",
                         fontSize: 22,
                       ),
                     ),
-                    SizedBox(height: Dimensions.height10),
+                    SizedBox(height: 10),
 
                     //Phone Number
                     GestureDetector(
@@ -488,7 +488,7 @@ void _pickImage(context) {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                           borderRadius:
-                              BorderRadius.circular(Dimensions.radius10),
+                              BorderRadius.circular(10),
                           color: Colors.grey[50]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -507,7 +507,7 @@ void _pickImage(context) {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(right: Dimensions.width10),
+                            margin: EdgeInsets.only(right: 10),
                             child: const CustomIcon(
                               backgroundColor: Colors.white12,
                               iconSize: 22,
@@ -533,9 +533,9 @@ void _pickImage(context) {
                         child: Container(
                           
                           margin: EdgeInsets.only(
-                              left: Dimensions.width10,
-                              right: Dimensions.width10,
-                              bottom: Dimensions.height40),
+                              left: 10,
+                              right: 10,
+                              bottom: 40),
                           child: Container(
                           
                           child: Container(

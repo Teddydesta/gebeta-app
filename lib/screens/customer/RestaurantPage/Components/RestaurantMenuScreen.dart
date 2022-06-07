@@ -19,18 +19,18 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
       width: double.maxFinite,
       color: Colors.white,
       margin: EdgeInsets.only(
-          left: Dimensions.width10, bottom: Dimensions.height30),
+          left: 10, bottom: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: Dimensions.height15,
+            height: 15,
           ),
           const Divider(
             color: AppColors.orange,
           ),
           SizedBox(
-            height: Dimensions.height20,
+            height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,8 +42,8 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
               GestureDetector(
                 onTap: () => _menu(context),
                 child: Container(
-                  margin: EdgeInsets.only(right: Dimensions.width10),
-                  height: Dimensions.height40,
+                  margin: EdgeInsets.only(right: 10),
+                  height: 40,
                   width: 100,
                   decoration: BoxDecoration(
                       color: AppColors.orange,
@@ -54,12 +54,12 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
             ],
           ),
           SizedBox(
-            height: Dimensions.height15,
+            height: 15,
           ),
           const Divider(
             color: AppColors.placeholder,
           ),
-          SizedBox(height: Dimensions.height15),
+          SizedBox(height: 15),
           const CustomText(
             text: "Special Donuts",
             fontWeight: FontWeight.bold,
@@ -74,7 +74,7 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                   color: Colors.white,
                   child: Container(
                     margin: EdgeInsets.only(
-                        left: Dimensions.width10, right: Dimensions.width10),
+                        left: 10, right: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -85,8 +85,8 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              height: Dimensions.height40,
-                              width: Dimensions.width80,
+                              height: 40,
+                              width: 80,
                               decoration: const BoxDecoration(
                                   image: DecorationImage(
                                       image: AssetImage(
@@ -184,8 +184,8 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                   color: Colors.white,
                   child: Container(
                     margin: EdgeInsets.only(
-                      left: Dimensions.width10,
-                      right: Dimensions.width10,
+                      left: 10,
+                      right: 10,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -197,8 +197,8 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              height: Dimensions.height40,
-                              width: Dimensions.width80,
+                              height: 40,
+                              width: 80,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: AssetImage(
@@ -296,7 +296,7 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                   color: Colors.white,
                   child: Container(
                     margin: EdgeInsets.only(
-                        left: Dimensions.width10, right: Dimensions.width10),
+                        left: 10, right: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -307,8 +307,8 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              height: Dimensions.height40,
-                              width: Dimensions.width80,
+                              height: 40,
+                              width: 80,
                               decoration: const BoxDecoration(
                                   image: DecorationImage(
                                       image: AssetImage(
@@ -340,7 +340,7 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                               ],
                             ),
                             SizedBox(
-                              width: Dimensions.width80,
+                              width: 80,
                             ),
                             GestureDetector(
                               onTap: (){
@@ -367,13 +367,13 @@ class _RestaurantScreenDetailsState extends State<RestaurantScreenDetails> {
                               },
                               child: Container(
                                 margin:
-                                    EdgeInsets.only(right: Dimensions.width10),
-                                height: Dimensions.height30,
-                                width: Dimensions.width80,
+                                    EdgeInsets.only(right: 10),
+                                height: 30,
+                                width: 80,
                                 decoration: BoxDecoration(
                                   color: AppColors.orange,
                                   borderRadius: BorderRadius.circular(
-                                      Dimensions.radius20),
+                                      20),
                                 ),
                                 child: const Center(
                                     child: CustomText(text: "Add",color: Colors.white)),
@@ -399,15 +399,15 @@ void _menu(context) {
     builder: (context) {
       return Container(
         margin: EdgeInsets.only(
-            top: Dimensions.height200,
+            top: 200,
             left: 0,
-            right: Dimensions.width200,
-            bottom: Dimensions.height280),
+            right: 200,
+            bottom: 280),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(Dimensions.radius10),
-            topRight: Radius.circular(Dimensions.radius10),
+            bottomRight: Radius.circular(10),
+            topRight: Radius.circular(10),
           ),
         ),
         child: Column(

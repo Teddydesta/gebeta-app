@@ -16,7 +16,7 @@ class ColumnWidget extends StatelessWidget {
       children: [
         CustomText(text: text),
         SizedBox(
-          height: Dimensions.height10,
+          height: 10,
         ),
         Row(
           children: [
@@ -53,7 +53,7 @@ class ColumnWidget extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: Dimensions.height20,
+          height: 20,
         ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,

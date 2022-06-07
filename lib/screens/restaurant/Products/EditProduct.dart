@@ -1,5 +1,4 @@
 import 'package:gebeta_food_delivery/screens/restaurant/Products/AddNewProducts.dart';
-import 'package:multi_image_picker/multi_image_picker.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
@@ -18,34 +17,9 @@ class EditProductScreen extends StatefulWidget {
 class _EditProductScreenState extends State<EditProductScreen> {
 
   final _keyForm = GlobalKey<FormState>();
-  List<Asset> images = <Asset>[];
+  
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  Future<void> pickImages() async {
-    List<Asset> resultList = <Asset>[];
-
-    try {
-      resultList = await MultiImagePicker.pickImages(
-        maxImages: 300,
-        enableCamera: true,
-        selectedAssets: images,
-        materialOptions: MaterialOptions(
-          actionBarTitle: "FlutterCorner.com",
-        ),
-      );
-    } on Exception catch (e) {
-      print(e);
-    }
-
-    setState(() {
-      images = resultList;
-    });
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -236,34 +210,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
             const SizedBox(height: 5.0),
 
             const SizedBox(height: 20.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const CustomText(text: 'Pictures',fontSize: 22,fontWeight: FontWeight.bold,),
-               // SizedBox(),
-                GestureDetector(
-                  onTap: () =>  pickImages(),
-                  child: Container(
-                height: 35,
-                width: 100,
-                decoration: BoxDecoration(
-                  //color: AppColors.orange,
-                  borderRadius: BorderRadius.circular(6.0),
-                  gradient: LinearGradient(
-                            colors: [AppColors.orange, Color(0xFFfbab66)],
-                            begin: FractionalOffset(0.2, 0.2),
-                            end: FractionalOffset(1.0, 1.0),
-                            stops: [0.0, 1.0],
-                            tileMode: TileMode.clamp),
-                ),
-                    child: Center(
-                      child: CustomText(text: "Pick images",fontWeight: FontWeight.bold,),
-                    ),
-                  ),
-                ),
-                
-              ],
-            ),
+           
             const SizedBox(height: 10.0),
             InkWell(
               onTap: () async {},
@@ -273,24 +220,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 decoration: BoxDecoration(
                     color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(8.0)),
-                child: Column(
-                  children: [
-              Expanded(
-              child: GridView.count(
                 
-                crossAxisCount: 3,
-                children: List.generate(images.length, (index) {
-                  Asset asset = images[index];
-                  return AssetThumb(
-                    asset: asset,
-                    width: 300,
-                    height: 300,
-                  );
-                }),
-              ),
-            )
-                  ]
-                ),
                 // const Icon(Icons.wallpaper_rounded, size: 80, color: Colors.grey)
               ),
             ),

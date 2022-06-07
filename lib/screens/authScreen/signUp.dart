@@ -1,20 +1,20 @@
 // ignore_for_file: file_names, import_of_legacy_library_into_null_safe
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gebeta_food_delivery/screens/animation/scaleRoute.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/components/customerHotelToggle.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/components/signUpBtn.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/services/userServices.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
+import 'package:gebeta_food_delivery/utils/helpers.dart';
 import 'package:gebeta_food_delivery/utils/locationUtils.dart';
 import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
-import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customInputText.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
-import 'package:gebeta_food_delivery/widgets/formFilld.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 class SignUpPage extends StatefulWidget {
   static const routeName = "/SignUpScreen";
@@ -31,13 +31,15 @@ class _SignUpPageState extends State<SignUpPage> {
   Map _location = {};
   bool _isCustomer = true;
   bool showPassword = false;
-
+  bool isOtp = false;
+  String verificationId = '';
   String? _name;
   TextEditingController _nameController = TextEditingController();
   String? _phone;
   TextEditingController _phoneController = TextEditingController();
   String? _password;
   TextEditingController _passwordController = TextEditingController();
+  TextEditingController _otpController = TextEditingController();
   bool loading = false;
   Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
   final _formKey = GlobalKey<FormState>();
@@ -71,9 +73,9 @@ class _SignUpPageState extends State<SignUpPage> {
   _validatePhone(String value) {
     if (value.length < 10 || value.length > 13)
       return 'Phone must greater than 9 and less than 13';
-    String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-    RegExp regExp = new RegExp(pattern);
-    if (!regExp.hasMatch(value)) return 'Please enter valid mobile number';
+    // String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+    // RegExp regExp = new RegExp(pattern);
+    // if (!regExp.hasMatch(value)) return 'Please enter valid mobile number';
 
     return null;
   }
@@ -150,10 +152,115 @@ class _SignUpPageState extends State<SignUpPage> {
     print('location : $_location');
   }
 
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  handleVerifyOtp() async {
+    String phone = '+251${_phoneController.text.trim()}';
+    setState(() {
+      loading = true; // setstate
+    });
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationId, smsCode: _otpController.text);
+
+    _otpController.text = credential.smsCode!;
+    UserCredential result = await auth.signInWithCredential(credential);
+    User? user = result.user;
+    if (user != null) {
+      if (_isCustomer) {
+        var regres = await userServices.registerUser(
+            name: _name,
+            phone: widget.phone,
+            location: _location,
+            password: _password); // save token and redirect
+      } else {
+        var regres = await userServices.registerHotel(
+            name: _name,
+            phone: widget.phone,
+            location: _location,
+            password: _password); 
+            
+            // save token and redirect
+      }
+    } else {
+      print('error');
+    }
+  }
+
+
+
+  handleSignUp() async {
+    if (_formKey.currentState!.validate()) {
+     
+      print(_nameController.text.trim());
+      print(_phoneController.text.trim());
+      print(_passwordController.text.trim());
+
+      var res = await userServices.checkIfPhoneIsInUse(
+          phone: '+251${_phoneController.text.trim()}');
+      if (res != null) {
+        print('user exist with this phone number');
+        return;
+      } else {
+        await auth.verifyPhoneNumber(
+          phoneNumber: '+251${_phoneController.text.trim()}',
+          codeSent: (String verificationId, int? resendToken) async {
+            loading = true; // sending
+            verificationId = verificationId;
+            // // Update the UI - wait for the user to enter the SMS code
+            // String smsCode = _otpController.text;
+
+            // // Create a PhoneAuthCredential with the code
+            // PhoneAuthCredential credential = PhoneAuthProvider.credential(
+            //     verificationId: verificationId, smsCode: smsCode);
+
+            // // Sign the user in (or link) with the credential
+            // await auth.signInWithCredential(credential);
+          },
+          timeout: const Duration(seconds: 60),
+          codeAutoRetrievalTimeout: (String verificationId) {
+            // Auto-resolution timed out...
+          },
+          verificationCompleted:
+              (PhoneAuthCredential phoneAuthCredential) async {
+            String phone = '+251${_phoneController.text.trim()}';
+            setState(() {
+              loading = true; // setstate
+            });
+            _otpController.text = phoneAuthCredential.smsCode!;
+            UserCredential result =
+                await auth.signInWithCredential(phoneAuthCredential);
+            User? user = result.user;
+            if (user != null) {
+              if (_isCustomer) {
+                var registerRes = await userServices.registerUser(
+                    name: _name,
+                    phone: widget.phone,
+                    location: _location,
+                    password: _password);
+                // save token and redirect
+              } else {
+                var registerRes = await userServices.registerHotel(
+                    name: _name,
+                    phone: widget.phone,
+                    location: _location,
+                    password: _password);
+                // save token and redirect
+
+              }
+            } else {
+              print('error');
+            }
+          },
+          verificationFailed: (FirebaseAuthException error) {},
+        );
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    getLocation();
+    // getLocation();
   }
 
   @override
@@ -170,122 +277,253 @@ class _SignUpPageState extends State<SignUpPage> {
     String defaultFontFamily = 'Roboto-Light.ttf';
     double defaultFontSize = 14;
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.orange,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-      ),
-      body: loading
-          ? Center(
-              child: Container(
-                height: 50,
-                width: 50,
-                child: CircularProgressIndicator(color: AppColors.orange),
+    return isOtp
+        ? Scaffold(
+            //  appBar: AppBar(),
+            body: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 200,
+                  ),
+                  Text(
+                    'We have sent you an OTP to your Mobile',
+                    style: Helper.getTheme(context).headline6,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    "Please check your mobile number 091*****12 continue to reset your password",
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: PinCodeTextField(
+                          length: 6,
+                          obscureText: false,
+                          animationType: AnimationType.fade,
+                          pinTheme: PinTheme(
+                            shape: PinCodeFieldShape.box,
+                            borderRadius: BorderRadius.circular(5),
+                            fieldHeight: 50,
+                            fieldWidth: 40,
+                            activeFillColor: Colors.white,
+                          ),
+                          animationDuration: Duration(milliseconds: 300),
+                          backgroundColor: Colors.blue.shade50,
+                          enableActiveFill: true,
+                          controller: _otpController,
+                          onCompleted: (v) {
+                            print("Completed");
+                          },
+                          onChanged: (value) {
+                            print(value);
+                          },
+                          beforeTextPaste: (text) {
+                            print("Allowing to paste $text");
+                            //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
+                            //but you can show anything you want here, like your pop up saying wrong paste format or etc
+                            return true;
+                          },
+                          appContext: context,
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(35.0)),
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                          color: Color(0xFFfbab66),
+                        ),
+                        BoxShadow(
+                          color: AppColors.orange,
+                        ),
+                      ],
+                      gradient: LinearGradient(
+                          colors: [AppColors.orange, Color(0xFFfbab66)],
+                          begin: FractionalOffset(0.2, 0.2),
+                          end: FractionalOffset(1.0, 1.0),
+                          stops: [0.0, 1.0],
+                          tileMode: TileMode.clamp),
+                    ),
+                    child: MaterialButton(
+                        highlightColor: Colors.transparent,
+                        splashColor: AppColors.orange,
+                        //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 42.0),
+                          child: Text(
+                            "NEXT",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25.0,
+                                fontFamily: "WorkSansBold"),
+                          ),
+                        ),
+                        onPressed: () => {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((BuildContext context) =>
+                                          const SignInPage()))),
+                            }),
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      CustomText(text: "Didn't Recieve? "),
+                      CustomText(
+                        text: "Click Here",
+                        color: AppColors.orange,
+                      )
+                    ],
+                  )
+                ],
               ),
-            )
-          : Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Flexible(
-                      flex: 15,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                              width: 300,
-                              height: 200,
-                              alignment: Alignment.center,
-                              child: Image.asset(
-                                "assets/images/gebeta_logo.png",
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            CustomerHotelToggle(
-                                isCustomer: _roleIsCustomer,
-                                isHotel: _roleIsHotel),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 20.0, bottom: 25.0),
-                              child: CustomTextField(
-                                name: 'Name',
-                                controller: _nameController,
-                                keyboardType: TextInputType.text,
-                                obscureText: false,
-                                loading: loading,
-                                validator: _validateName,
-                                onChange: (val) {
-                                  setState(() {
-                                    _name = val;
-                                  });
-                                },
-                                hintText: "Full Name",
-                              ),
-                            ),
-                            CustomTextField(
-                              hintText: "090000000",
-                              controller: _phoneController,
-                              keyboardType: TextInputType.number,
-                              maxLength: 13,
-                              name: 'Phone',
-                              validator: _validatePhone,
-                              loading: loading,
-                              onChange: (val) {
-                                setState(() {
-                                  _phone = val;
-                                });
-                              },
-                            ),
-                            CustomTextField(
-                                name: 'Password',
-                                showPassword: showPassword,
-                                onChange: (val) {
-                                  setState(() {
-                                    _password = val;
-                                  });
-                                },
-                                obsecureSuffixIcon: IconButton(
-                                    onPressed: () {
+            ),
+          )
+        : Scaffold(
+            appBar: AppBar(
+              backgroundColor: AppColors.orange,
+              elevation: 0,
+              automaticallyImplyLeading: false,
+              centerTitle: true,
+            ),
+            body: loading
+                ? Center(
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      child: CircularProgressIndicator(color: AppColors.orange),
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Flexible(
+                            flex: 15,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Container(
+                                    width: 300,
+                                    height: 200,
+                                    alignment: Alignment.center,
+                                    child: Image.asset(
+                                      "assets/images/gebeta_logo.png",
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  // CustomerHotelToggle(
+                                  //     isCustomer: _roleIsCustomer,
+                                  //     isHotel: _roleIsHotel),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 20.0, bottom: 25.0),
+                                    child: CustomTextField(
+                                      name: 'Name',
+                                      controller: _nameController,
+                                      keyboardType: TextInputType.text,
+                                      obscureText: false,
+                                      loading: loading,
+                                      validator: _validateName,
+                                      onChange: (val) {
+                                        setState(() {
+                                          _name = val;
+                                        });
+                                      },
+                                      hintText: "Full Name",
+                                    ),
+                                  ),
+                                  CustomTextField(
+                                    hintText: "090000000",
+                                    controller: _phoneController,
+                                    keyboardType: TextInputType.number,
+                                    maxLength: 13,
+                                    name: 'Phone',
+                                    validator: _validatePhone,
+                                    loading: loading,
+                                    obscureText: false,
+                                    
+                                    onChange: (val) {
                                       setState(() {
-                                        showPassword = !showPassword;
+                                        _phone = val;
                                       });
                                     },
-                                    icon: showPassword
-                                        ? Icon(Icons.visibility_outlined,
-                                            color: Colors.black54, size: 20)
-                                        : Icon(Icons.visibility_off,
-                                            color: Colors.black54, size: 20)),
-                                hintText: 'Pick a strong password',
-                                keyboardType: TextInputType.text,
-                                obscureText: true,
-                                validator: _validatePassword,
-                                loading: loading,
-                                controller: _passwordController),
-                            SizedBox(height: 15),
-                            SignUpButtonWidget(),
-                            FacebookGoogleLogin(),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Row(
+                                  ),
+                                  CustomTextField(
+                                      name: 'Password',
+                                      showPassword: showPassword,
+                                      onChange: (val) {
+                                        setState(() {
+                                          _password = val;
+                                        });
+                                      },
+                                      obsecureSuffixIcon: IconButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              showPassword = !showPassword;
+                                            });
+                                          },
+                                          icon: showPassword
+                                              ? Icon(Icons.visibility_outlined,
+                                                  color: Colors.black54,
+                                                  size: 20)
+                                              : Icon(Icons.visibility_off,
+                                                  color: Colors.black54,
+                                                  size: 20)),
+                                      hintText: 'Pick a strong password',
+                                      keyboardType: TextInputType.text,
+                                      obscureText: true,
+                                      validator: _validatePassword,
+                                      loading: loading,
+                                      controller: _passwordController),
+                                  SizedBox(height: 15),
+                               
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 25,),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20.0),
+                            child: CustomBtn(
+                              color: AppColors.orange,
+                              text: 'Sign Up',
+                              loading: loading,
+                              onPressed: () => handleSignUp(),
+                            ),
+                          ),
+                          SizedBox(height: 5,),
+                        Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              "Already have an account? ",
+                              "I Don't  have account? ",
                               style: TextStyle(
                                 color: const Color(0xFF666666),
                                 fontFamily: defaultFontFamily,
@@ -293,123 +531,32 @@ class _SignUpPageState extends State<SignUpPage> {
                                 fontStyle: FontStyle.normal,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 20.0),
-                              child: CustomBtn(
-                                text: 'Sign Up',
-                                loading: loading,
-                                onPressed: () => onSubmitForm(context),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(context,
+                                    ScaleRoute(page: const SignInPage()));
+                              },
+                              // ignore: avoid_unnecessary_containers
+                              child: Container(
+                                child: Text(
+                                  "Sign In",
+                                  style: TextStyle(
+                                    color: AppColors.orange,
+                                    fontFamily: defaultFontFamily,
+                                    fontSize: defaultFontSize,
+                                    fontStyle: FontStyle.normal,
+                                  ),
+                                ),
                               ),
-                            )
+                            ),
                           ],
                         ),
+                        
+                          
+                        ],
                       ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-    );
-  }
-}
-
-class FacebookGoogleLogin extends StatelessWidget {
-  const FacebookGoogleLogin({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // ignore: avoid_unnecessary_containers
-    return Container(
-        child: Column(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(top: 10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        Colors.black12,
-                        Colors.black54,
-                      ],
-                      begin: FractionalOffset(0.0, 0.0),
-                      end: FractionalOffset(1.0, 1.0),
-                      stops: [0.0, 1.0],
-                      tileMode: TileMode.clamp),
-                ),
-                width: 100.0,
-                height: 1.0,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 15.0, right: 15.0),
-                child: Text(
-                  "Or",
-                  style: TextStyle(
-                      color: Color(0xFF2c2b2b),
-                      fontSize: 16.0,
-                      fontFamily: "WorkSansMedium"),
-                ),
-              ),
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        Colors.black54,
-                        Colors.black12,
-                      ],
-                      begin: FractionalOffset(0.0, 0.0),
-                      end: FractionalOffset(1.0, 1.0),
-                      stops: [0.0, 1.0],
-                      tileMode: TileMode.clamp),
-                ),
-                width: 100.0,
-                height: 1.0,
-              ),
-            ],
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0, right: 40.0),
-              child: GestureDetector(
-                onTap: () {},
-                child: Container(
-                  padding: const EdgeInsets.all(15.0),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.orange,
+                    ),
                   ),
-                  child: const Icon(
-                    FontAwesomeIcons.facebookF,
-                    color: Color(0xFFFFFFFF),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: GestureDetector(
-                onTap: () => {},
-                child: Container(
-                  padding: const EdgeInsets.all(15.0),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.orange,
-                  ),
-                  child: const Icon(
-                    FontAwesomeIcons.google,
-                    color: Color(0xFFFFFFFF),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
-    ));
+          );
   }
 }
