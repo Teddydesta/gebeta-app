@@ -88,9 +88,7 @@ class _SignUpPageState extends State<SignUpPage> {
   _validatePhone(String value) {
     if (value.length < 10 || value.length > 13)
       return 'Phone must greater than 9 and less than 13';
-    // String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-    // RegExp regExp = new RegExp(pattern);
-    // if (!regExp.hasMatch(value)) return 'Please enter valid mobile number';
+   
 
     return null;
   }
@@ -115,15 +113,15 @@ class _SignUpPageState extends State<SignUpPage> {
         res = await userServices.registerUser(
             name: _name,
             email: _email,
-            phone: widget.phone,
-            location: _location,
+            phone: '+251${_phoneController.text.trim()}',
+            // location: _location,
             password: _password);
       } else {
         res = await userServices.registerHotel(
             name: _name,
             email: _email,
-            phone: widget.phone,
-            location: _location,
+            phone: '+251${_phoneController.text.trim()}',
+            // location: _location,
             password: _password);
       }
       print(res);
@@ -187,15 +185,15 @@ class _SignUpPageState extends State<SignUpPage> {
         var regres = await userServices.registerUser(
             name: _name,
             email: _email,
-            phone: widget.phone,
-            location: _location,
+            phone: '+251${_phoneController.text.trim()}',
+            // location: _location,
             password: _password); // save token and redirect
       } else {
         var regres = await userServices.registerHotel(
             name: _name,
             email: _email,
-            phone: widget.phone,
-            location: _location,
+            phone: '+251${_phoneController.text.trim()}',
+            // location: _location,
             password: _password);
 
         // save token and redirect
@@ -262,28 +260,39 @@ class _SignUpPageState extends State<SignUpPage> {
             User? user = result.user;
             print(user);
             if (user != null) {
-              if (_isCustomer) {
+              ///if (_isCustomer) {
                 var registerRes = await userServices.registerUser(
                     name: _name,
                     email: _email,
-                    phone: widget.phone,
-                    location: _location,
+                    phone: '+251${_phoneController.text.trim()}',
+                    // location: _location,
                     password: _password);
+                    
+                     if (registerRes['error'] == null) {
+        _showSnackBar(context, 'Successfully registtered');
+        
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => HomeMainScreen()),
+            ModalRoute.withName('/'));
+        return;
+      }
                 // save token and redirect
                 print(registerRes);
-              } else {
-                var registerRes = await userServices.registerHotel(
-                    name: _name,
-                    email: _email,
-                    phone: widget.phone,
-                    location: _location,
-                    password: _password);
-                // save token and redirect
-                print(registerRes);
-                setState(() {
-                  loading = false; // setstate
-                });
-              }
+              // } else {
+              //   var registerRes = await userServices.registerHotel(
+              //       name: _name,
+              //       email: _email,
+              //       phone: '+251${_phoneController.text.trim()}',
+              //       // location: _location,
+              //       password: _password);
+              //   // save token and redirect
+              //   print(registerRes);
+              //   setState(() {
+              //     loading = false; // setstate
+              //   });
+              // }
             } else {
               setState(() {
                 loading = false; // setstate
@@ -507,6 +516,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     ),
                                   ),
                                    CustomTextField(
+                                     
                                     hintText: "johndoe@gmail.com",
                                     controller: _emailController,
                                     keyboardType: TextInputType.emailAddress,

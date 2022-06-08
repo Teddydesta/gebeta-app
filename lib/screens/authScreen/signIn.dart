@@ -71,6 +71,7 @@ class _SignInPageState extends State<SignInPage> {
       });
       if (res['error'] == null) {
         _showSnackBar(context, 'Successfully logged in');
+
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
@@ -165,7 +166,7 @@ class _SignInPageState extends State<SignInPage> {
                             TextFormField(
                               controller: _phoneController,
                               keyboardType: TextInputType.number,
-                              maxLength: 10,
+                              maxLength: 14,
                               readOnly: false,
                               decoration: InputDecoration(
                                

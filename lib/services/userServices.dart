@@ -25,26 +25,33 @@ class UserServices {
     return;
   }
 
-  Future registerUser({name, email, phone, location, password}) async {
-    String locationName = 'Unknown';
-    var locationNameResult = await locationUtils.getReverseGeolocation(
-        location['lat'], location['lng']);
+  Future registerUser({name, email, phone,  password}) async {
+    // String locationName = 'Unknown';
+    // var locationNameResult = await locationUtils.getReverseGeolocation(
+    //     location['lat'], location['lng']);
 
-    if (locationNameResult['error'] == null)
-      locationName = locationNameResult['locationName'];
+    // if (locationNameResult['error'] == null)
+    //   locationName = locationNameResult['locationName'];
 
     var body = {
       'name': name,
       'email': email,
       'phone': phone,
       'password': password,
-      'locationName': locationName,
-      'lat': location['lat'],
-      'lng': location['lng']
+      // 'locationName': locationName,
+      'lat': "9.654",
+       'lng': "34.68574"
     };
     var url = Uri.parse('$baseUrl/users');
 
+print(body);
+
     var response = await http.post(url, body: body);
+
+if(response != null){
+print(response);
+print(response.statusCode);
+print(response.body);
 
     if (response.statusCode == 200 ||
         response.statusCode == 201 ||
@@ -54,26 +61,28 @@ class UserServices {
 
       return {'error': null, 'user': user};
     }
-
     return {'error': json.decode(response.body)['message'], 'user': null};
+
+}
+return {'error': json.decode(response.body)['message'], 'user': null};
   }
 
   Future registerHotel({name, email, phone, location, password}) async {
-    String locationName = 'Unknown';
-    var locationNameResult = await locationUtils.getReverseGeolocation(
-        location['lat'], location['lng']);
+    // String locationName = 'Unknown';
+    // var locationNameResult = await locationUtils.getReverseGeolocation(
+    //     location['lat'], location['lng']);
 
-    if (locationNameResult['error'] == null)
-      locationName = locationNameResult['locationName'];
+    // if (locationNameResult['error'] == null)
+    //   locationName = locationNameResult['locationName'];
 
     var body = {
       'name': name,
       'email': email,
       'phone': phone,
       'password': password,
-      'locationName': locationName,
-      'lat': location['lat'],
-      'lng': location['lng']
+      // 'locationName': locationName,
+      // 'lat': location['lat'],
+      // 'lng': location['lng']
     };
     var url = Uri.parse('$baseUrl/users/hotel');
 

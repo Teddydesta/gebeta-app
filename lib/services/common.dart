@@ -26,4 +26,18 @@ class CommonServices {
     var token = await prefs.getString('id').toString();
     return token;
   }
+
+  Future saveToken(token) async {
+    final SharedPreferences prefs = await _prefs;
+    var role = await prefs.setString("token", token).toString();
+    return role;
+  }
+
+    Future saveName(name) async {
+    final SharedPreferences prefs = await _prefs;
+    var role = await prefs.setString("name", name).toString();
+    return role;
+  }
+
+
 }
