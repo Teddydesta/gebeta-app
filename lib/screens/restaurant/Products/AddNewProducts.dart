@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
+import 'package:gebeta_food_delivery/widgets/customInputText.dart';
 
 import '../../../widgets/customText.dart';
+import '../../../services/productService.dart';
+import '../../../services/categoryService.dart';
+import '../../../models/Product.dart';
 
 class AddNewProductPage extends StatefulWidget {
   const AddNewProductPage({Key? key}) : super(key: key);
@@ -14,9 +18,40 @@ class AddNewProductPage extends StatefulWidget {
 }
 
 class _AddNewProductPageState extends State<AddNewProductPage> {
-
   final _keyForm = GlobalKey<FormState>();
-  
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final _productServices = ProductServices();
+  bool loading = false;
+  List _images = [];
+  String? _name;
+  TextEditingController _nameController = TextEditingController();
+  String? _description;
+  TextEditingController _descriptionController = TextEditingController();
+  String? _price;
+  TextEditingController _priceController = TextEditingController();
+  String? _category;
+  String? _location;
+
+  _validateName(String value) {
+    value.trim();
+    if (value.isEmpty) return 'Please enter product name';
+    if (double.tryParse(value) != null) return 'Only text are allowed';
+
+    return null;
+  }
+
+  _validateDescription(String value) {
+    value.trim();
+    if (value.isEmpty) return 'Please Enter product description';
+    if (double.tryParse(value) != null) return 'Only text are allowed';
+
+    return null;
+  }
+
+  _validatePrice(String value) {
+    if (value.isEmpty) return 'Please Enter product price';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +80,14 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
         ),
         elevation: 0,
         actions: [
-           GestureDetector(
+          GestureDetector(
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: ((BuildContext context) =>
                         const AddNewProductPage()))),
             child: Container(
-            
-              child: TextButton(
+                child: TextButton(
               onPressed: () {
                 Navigator.push(
                     context,
@@ -67,24 +101,26 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   gradient: LinearGradient(
-                            colors: [AppColors.orange, Color(0xFFfbab66)],
-                            begin: FractionalOffset(0.2, 0.2),
-                            end: FractionalOffset(1.0, 1.0),
-                            stops: [0.0, 1.0],
-                            tileMode: TileMode.clamp),
-                 // color: AppColors.orange,
+                      colors: [AppColors.orange, Color(0xFFfbab66)],
+                      begin: FractionalOffset(0.2, 0.2),
+                      end: FractionalOffset(1.0, 1.0),
+                      stops: [0.0, 1.0],
+                      tileMode: TileMode.clamp),
+                  // color: AppColors.orange,
                 ),
                 child: Center(
                   child: const CustomText(
-                      text: 'SAVE', color: Colors.black, fontSize: 24,
-                      fontWeight: FontWeight.bold,),
+                    text: 'SAVE',
+                    color: Colors.black,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),)
-            ),
+              ),
+            )),
           ),
         ],
       ),
-      
       body: Form(
         key: _keyForm,
         child: ListView(
@@ -92,100 +128,70 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
           padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
           children: [
             const SizedBox(height: 10.0),
-          //  const CustomText(text: 'Product name'),
+            //  const CustomText(text: 'Product name'),
             const SizedBox(height: 5.0),
 
-            TextFormField(
-              decoration: const InputDecoration(
-                  border: UnderlineInputBorder(),
-                   counter: Offstage(),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.grey),
-                                      //  borderRadius: BorderRadius.circular(8.0)),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.orange),),
-
-                  labelText: 'Product name',
-                 // hintText: "product"
-                 ),
-              // The validator receives the text that the user has entered.
-            ),
-            //
-CustomText(text: 'Product description'),
-            const SizedBox(height: 5.0),
-            //
-            TextFormField(
-              
-              maxLines: 8,
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                 counter: Offstage(),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.grey),
-                                      //  borderRadius: BorderRadius.circular(8.0)),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.orange),),
-                labelText: 'Description',
-              ),
-              // The validator receives the text that the user has entered.
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Description is required';
-                }
-                return null;
+            CustomTextField(
+              name: "Product Name",
+              maxLength: 30,
+              controller: _nameController,
+              keyboardType: TextInputType.text,
+              obscureText: false,
+              loading: loading,
+              validator: _validateName,
+              onChange: (val) {
+                setState(() {
+                  _name = val;
+                });
               },
+              hintText: "Enter Product Name",
             ),
-//
-            TextFormField(
-              keyboardType: TextInputType.number,
-             // maxLines: 1,
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Price',
-                hintText: "120.00 birr",
-                 enabledBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.grey),
-                                      //  borderRadius: BorderRadius.circular(8.0)),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.orange)),
-              ),
-              // The validator receives the text that the user has entered.
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Price is required';
-                }
-                return null;
+            CustomTextField(
+              name: "Description",
+              controller: _descriptionController ,
+              keyboardType:TextInputType.multiline,
+              obscureText: false,
+              loading: loading,
+              validator: _validateDescription,
+                onChange: (val) {
+                setState(() {
+                  _description = val;
+                });
               },
+              hintText: "Enter here description",
+            ),          CustomTextField(
+              name: "Price",
+              controller: _priceController ,
+              keyboardType:TextInputType.number,
+              obscureText: false,
+              loading: loading,
+              validator: _validateDescription,
+                onChange: (val) {
+                setState(() {
+                  _price = val;
+                });
+              },
+              hintText: "Product Price",
             ),
-
             const SizedBox(height: 20.0),
             //CustomText(text: 'Price'),
             const SizedBox(height: 5.0),
 
             const SizedBox(height: 20.0),
-          
+
             const SizedBox(height: 10.0),
-            InkWell(
-              onTap: () async {},
-              child: Container(
-                height: 150,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(8.0)),
-               
-                // const Icon(Icons.wallpaper_rounded, size: 80, color: Colors.grey)
-              ),
-            ),
+            // InkWell(
+            //   onTap: () async {},
+            //   child: Container(
+            //     height: 150,
+            //     width: MediaQuery.of(context).size.width,
+            //     decoration: BoxDecoration(
+            //         color: Colors.grey[200],
+            //         borderRadius: BorderRadius.circular(8.0)),
+
+            //     // const Icon(Icons.wallpaper_rounded, size: 80, color: Colors.grey)
+            //   ),
+            // ),
             const SizedBox(height: 20.0),
             const CustomText(text: 'Category'),
             const SizedBox(height: 5.0),

@@ -4,6 +4,7 @@ import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/Products/AddNewProducts.dart';
 
 Future<void> main() async {
    WidgetsFlutterBinding.ensureInitialized(); 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Gebeta App',
-      home: SignInPage(),
+      home: AddNewProductPage(),
     );
   }
 }
