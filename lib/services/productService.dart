@@ -77,22 +77,20 @@ class ProductServices {
     var token = await _commonServices.getToken();
 
     String locationName = 'Unknown';
-    var locationNameResult = await locationUtils.getReverseGeolocation(
-        location['lat'], location['lng']);
+    // var locationNameResult = await locationUtils.getReverseGeolocation(
+    //     location['lat'], location['lng']);
 
-    if (locationNameResult['error'] == null)
-      locationName = locationNameResult['locationName'];
-
+    // if (locationNameResult['error'] == null)
+    //   locationName = locationNameResult['locationName'];
+print(token);
     List<http.MultipartFile> imagesMultipart = [];
-    var uri = Uri.parse('$baseUrl/products/');
+    var uri = Uri.parse('$baseUrl/products/add');
     var request = http.MultipartRequest('POST', uri);
     request.fields['name'] = name;
     request.fields['description'] = description;
     request.fields['price'] = price;
     request.fields['category'] = category;
     request.fields['locationName'] = locationName;
-    request.fields['lat'] = location['lat'];
-    request.fields['lng'] = location['lng'];
     request.headers.addAll({'Authorization': 'Bearer $token'});
 
     for (String imagePath in images) {
@@ -103,8 +101,12 @@ class ProductServices {
       imagesMultipart.add(image);
     }
     request.files.addAll(imagesMultipart);
+
+    print(uri);
     var response = await request.send();
+    print(response);
     final respStr = await response.stream.bytesToString();
+    print(respStr);
     var jsonResponse = await json.decode(respStr);
     if (response.statusCode == 200 ||
         response.statusCode == 201 ||

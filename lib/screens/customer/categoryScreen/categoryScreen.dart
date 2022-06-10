@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/RestaurantPage/RestaurantScreen.dart';
-import 'package:gebeta_food_delivery/utils/dimensions.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({Key? key}) : super(key: key);

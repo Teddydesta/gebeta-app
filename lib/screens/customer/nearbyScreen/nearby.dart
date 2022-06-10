@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/RestaurantPage/RestaurantScreen.dart';
+import 'package:gebeta_food_delivery/screens/customer/productScreen/productScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
-import 'package:gebeta_food_delivery/utils/dimensions.dart';
-import 'package:gebeta_food_delivery/widgets/columnWidget.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
+import 'package:gebeta_food_delivery/widgets/hotelsColumnWidget.dart';
 
 class NearByScreen extends StatefulWidget {
+  
   const NearByScreen({Key? key}) : super(key: key);
 
   @override
@@ -74,7 +75,7 @@ class _NearByScreenState extends State<NearByScreen> {
                       context,
                       MaterialPageRoute(
                           builder: ((BuildContext context) =>
-                              const RestaurantMainScreen()))),
+                              const ProductsScreen()))),
                   child: Container(
                     padding: EdgeInsets.only(bottom: 10),
                     margin: EdgeInsets.only(
@@ -118,10 +119,10 @@ class _NearByScreenState extends State<NearByScreen> {
                                     topRight: const Radius.circular(5.0),
                                     bottomRight: const Radius.circular(5.0)),
                                 color: Colors.white),
-                            child: const Padding(
+                            child:  Padding(
                               padding: EdgeInsets.only(left: 20.0, right: 10.0),
-                              child: ColumnWidget(
-                                text: 'Babis Bistro',
+                              child: HotelsColumnWidget(
+                                text: "Remas Hotel",
                               ),
                             ),
                           ),

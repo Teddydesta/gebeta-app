@@ -254,7 +254,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: ((BuildContext context) =>
-                                  const ListProductScreen()))),
+                                   ListProductScreen()))),
                       child: Container(
                         margin: const EdgeInsets.only(left: 10, right: 10),
                         height: 60,
@@ -393,11 +393,11 @@ class RestaurantProfileScreen extends StatelessWidget {
                       height: 65,
                     ),
                     GestureDetector(
-                      onTap: () => Navigator.pop(
+                      onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: ((BuildContext context) =>
-                                   SignInPage()))),
+                                  const SignInPage()))),
                       child: Container(
                         margin: const EdgeInsets.only(
                             left: 10, right: 10, bottom: 30),

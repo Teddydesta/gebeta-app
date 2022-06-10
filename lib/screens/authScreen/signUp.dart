@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/animation/scaleRoute.dart';
+import 'package:gebeta_food_delivery/screens/authScreen/components/customerHotelOwnerToggle.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/services/userServices.dart';
@@ -280,19 +281,7 @@ class _SignUpPageState extends State<SignUpPage> {
       }
                 // save token and redirect
                 print(registerRes);
-              // } else {
-              //   var registerRes = await userServices.registerHotel(
-              //       name: _name,
-              //       email: _email,
-              //       phone: '+251${_phoneController.text.trim()}',
-              //       // location: _location,
-              //       password: _password);
-              //   // save token and redirect
-              //   print(registerRes);
-              //   setState(() {
-              //     loading = false; // setstate
-              //   });
-              // }
+      
             } else {
               setState(() {
                 loading = false; // setstate
@@ -494,9 +483,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                   SizedBox(
                                     height: 15,
                                   ),
-                                  // CustomerHotelToggle(
-                                  //     isCustomer: _roleIsCustomer,
-                                  //     isHotel: _roleIsHotel),
+                                  // CustomerHotelOwnerToggle(
+                                  //    isCustomer: _roleIsCustomer,
+                                  //     isHotelOwner: _roleIsHotel),
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         top: 20.0, bottom: 25.0),

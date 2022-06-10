@@ -35,11 +35,12 @@ class _DescriptionTextState extends State<DescriptionText> {
   Widget build(BuildContext context) {
     return Container(
       child: secondPart.isEmpty
-          ? CustomText(text: firstPart, fontSize: 12)
+          ? CustomText(text: firstPart, fontSize: 18,)
           : Column(
               children: [
                 CustomText(
-                    fontSize: 12,
+                  
+                    fontSize: 18,
                     text: hiddenText
                         ? (firstPart + '...')
                         : (firstPart + secondPart)),
@@ -53,7 +54,7 @@ class _DescriptionTextState extends State<DescriptionText> {
                     children: [
                       const CustomText(
                         text: 'more',
-                        fontSize: 12,
+                        fontSize: 18,
                         color: AppColors.orange,
                       ),
                       Icon(

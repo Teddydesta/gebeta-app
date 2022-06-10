@@ -4,10 +4,10 @@ import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/commonIconWidget.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
-class ColumnWidget extends StatelessWidget {
-    final Product product;
+class HotelsColumnWidget extends StatelessWidget {
+
   final String text;
-  const ColumnWidget({Key? key, required this.text, required this.product}) : super(key: key);
+  const HotelsColumnWidget({Key? key, required this.text, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

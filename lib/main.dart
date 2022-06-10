@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
-import 'package:gebeta_food_delivery/screens/restaurant/Products/AddNewProducts.dart';
+import 'package:gebeta_food_delivery/screens/Home/SelectRoleScreen.dart';
+import 'package:gebeta_food_delivery/screens/authScreen/components/customerHotelOwnerToggle.dart';
+import 'package:gebeta_food_delivery/screens/authScreen/components/wrapper.dart';
+import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
+import 'package:gebeta_food_delivery/screens/customer/productScreen/productScreen.dart';
 
 Future<void> main() async {
    WidgetsFlutterBinding.ensureInitialized(); 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Gebeta App',
-      home: AddNewProductPage(),
+      home: Wrapper(),
     );
   }
 }

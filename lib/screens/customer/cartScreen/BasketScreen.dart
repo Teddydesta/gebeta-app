@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/components/PaymentScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
-import 'package:gebeta_food_delivery/utils/dimensions.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
