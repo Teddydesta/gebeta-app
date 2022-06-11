@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/models/Product.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/BasketScreen.dart';
+import 'package:gebeta_food_delivery/screens/customer/searchProductScreen/ProductSearchDcreen.dart';
 import 'package:gebeta_food_delivery/services/productService.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
@@ -65,12 +66,14 @@ class _MenuDetailScreenState extends State<MenuDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          
           SizedBox(
             height: 15,
           ),
           const Divider(
             color: AppColors.orange,
           ),
+          //SearchProductScreen(),
           SizedBox(
             height: 20,
           ),

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/models/Hotel.dart';
-import 'package:gebeta_food_delivery/models/Product.dart';
-import 'package:gebeta_food_delivery/services/userServices.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/commonIconWidget.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 class HotelsColumnWidget extends StatelessWidget {
+    final HotelModel hotel;
+    
+
 //  UserServices _userServices = UserServices();
 //   List<HotelModel> hotels = [];
   final String text;
-  const HotelsColumnWidget({Key? key, required this.text, }) : super(key: key);
+   HotelsColumnWidget({Key? key, required this.text, required this.hotel, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class HotelsColumnWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CustomText(text: text),
+        CustomText(text: text,fontWeight: FontWeight.bold,),
         SizedBox(
           height: 10,
         ),
@@ -62,17 +63,21 @@ class HotelsColumnWidget extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            CommonIcon(
-              icon: Icons.circle_sharp,
-              text: "Description",
-              iconColor: AppColors.iconColor1,
+          children:  [
+            Container(
+              width: 150,
+              
+              child: CustomText(
+               
+                text: hotel.description!,
+                
+              ),
             ),
-            // CommonIcon(
-            //   icon: Icons.location_on,
-            //   iconColor: AppColors.orange,
-            //   text: '12.4km',
-            // ),
+            CommonIcon(
+              icon: Icons.location_on,
+              iconColor: AppColors.orange,
+              text: '12.4km',
+            ),
             // CommonIcon(
             //   icon: Icons.access_time_filled_rounded,
             //   text: "2:30 am",

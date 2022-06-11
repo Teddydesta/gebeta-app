@@ -8,7 +8,7 @@ import 'package:gebeta_food_delivery/screens/customer/hotelMenuScreen/hotelMenuS
 import 'package:gebeta_food_delivery/screens/customer/productScreen/productScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gebeta_food_delivery/widgets/hotelsColumnWidget.dart';
 import "package:gebeta_food_delivery/services/userServices.dart";
 import 'package:geolocator/geolocator.dart';
@@ -24,7 +24,7 @@ class NearByScreen extends StatefulWidget {
 }
 
 class _NearByScreenState extends State<NearByScreen> {
-  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  //Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   var locationMessage = "";
   bool loading = true;
   UserServices _userServices = UserServices();
@@ -110,34 +110,16 @@ print(res);
                       child: Container(
                         padding: EdgeInsets.only(left: 5),
                         child: CustomText(
-                          text: "babis",
+                          text: "Nearby Restaurant",
                           fontSize: 24,
                           color: AppColors.mainBlackColor,
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 1,
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 3),
-                      child: const CustomText(
-                        text: '.',
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 25,
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 2),
-                      child: const CustomText(
-                        text: 'Restaurant pending',
-                        fontSize: 12,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
+                    
+                    
+                    
+                   
                   ],
                 ),
                 SizedBox(
@@ -165,7 +147,7 @@ print(res);
                             children: [
                               Container(
                                 width: 120,
-                                height: 120,
+                                height: 150,
                                 decoration: BoxDecoration(
                                     boxShadow: [
                                       BoxShadow(
@@ -178,14 +160,17 @@ print(res);
                                     ],
                                     borderRadius: BorderRadius.circular(2),
                                     color: Colors.white38,
-                                    image: const DecorationImage(
+                                    image:  DecorationImage(
+                                     
                                         fit: BoxFit.cover,
-                                        image: AssetImage(
-                                            "assets/images/food0.png"))),
+                                        image: NetworkImage(hotels[index].images![0]),
+                                            ),
+                                            ),
                               ),
+                              SizedBox(width: 5,),
                               Expanded(
                                 child: Container(
-                                  height: 120,
+                                  height: 150,
                                   decoration: BoxDecoration(
                                       boxShadow: [
                                         BoxShadow(
@@ -196,14 +181,15 @@ print(res);
                                               3), // changes position of shadow
                                         ),
                                       ],
-                                      borderRadius: const BorderRadius.only(
-                                          topRight: const Radius.circular(5.0),
+                                      borderRadius:  BorderRadius.only(
+                                          topRight:  Radius.circular(5.0),
                                           bottomRight:
-                                              const Radius.circular(5.0)),
+                                               Radius.circular(5.0)),
                                       color: Colors.white),
                                   child:  Padding(
                                     padding: EdgeInsets.only(left: 20.0, right: 10.0),
                                     child: HotelsColumnWidget(
+                                     hotel: hotels[index],
                                       text: hotels[index].name!,
                                     ),
                                                                 )                                ),

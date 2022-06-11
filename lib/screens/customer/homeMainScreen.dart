@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/HomeScreen/homeScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/BasketScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/profile_screen/profile_screen.dart';
-import 'package:gebeta_food_delivery/screens/customer/searchScreen/searchScreen.dart';
+import 'package:gebeta_food_delivery/screens/customer/searchScreen/components/searchPage.dart';
+
 
 import '../../utils/colors.dart';
 

@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:gebeta_food_delivery/models/DeliveredProducts.dart';
+import 'package:gebeta_food_delivery/models/Hotel.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gebeta_food_delivery/models/UserModel.dart';
@@ -199,6 +201,28 @@ return {'error': json.decode(response.body)['message'], 'user': null};
     return {'error': json.decode(response.body)['message'], 'user': null};
   }
 
+
+
+  //search hotel
+
+   Future searchHotels(name) async {
+    var uri = Uri.parse('$baseUrl/users/hotels/name?name=$name');
+
+    var response = await http.get(uri);
+
+    if (response.statusCode == 200 ||
+        response.statusCode == 201 ||
+        response.statusCode == 202) {
+      List jsonResponse = json.decode(response.body);
+      var hotels =
+          jsonResponse.map((product) => new HotelModel.fromJson(product)).toList();
+
+      return hotels;
+    }
+    print(json.decode(response.body)['message']);
+    return null;
+  }
+
 // Update User Profile method
   Future updateProfile({
     name,
@@ -247,6 +271,7 @@ print(response.body);
     return {'error': json.decode(response.body)['message'], 'user': null};
   }
 
+//search Hotel
 
 
 

@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/models/Product.dart';
+import 'package:gebeta_food_delivery/models/Hotel.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/hotelMenuScreen/Components/menuDetailScreen.dart';
-import 'package:gebeta_food_delivery/screens/customer/searchScreen/components/searchBar.dart';
+import 'package:gebeta_food_delivery/screens/customer/searchScreen/searchScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
@@ -17,6 +17,8 @@ class HotelMenuScreen extends StatefulWidget {
 }
 
 class _HotelMenuScreenState extends State<HotelMenuScreen> {
+  
+  List<HotelModel> hotels = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,14 +30,14 @@ class _HotelMenuScreenState extends State<HotelMenuScreen> {
               context,
               MaterialPageRoute(
                   builder: ((BuildContext context) => const HomeMainScreen()))),
-          child: const CustomIcon(
+          child:  CustomIcon(
             icon: Icons.arrow_back_ios,
             iconColor: AppColors.orange,
             iconSize: 24,
             backgroundColor: Colors.white,
           ),
         ),
-        title: CustomText(text: "REMAS RESTAURANT",color: Colors.black,fontWeight: FontWeight.bold,fontSize: 28,),
+        title: CustomText(text: "Remas Hotel",color: Colors.black,fontWeight: FontWeight.bold,fontSize: 28,),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
@@ -148,7 +150,9 @@ class _HotelMenuScreenState extends State<HotelMenuScreen> {
                             image: AssetImage(
                                 "assets/images/restaurant_cover.png"))),
                   ),
-                  SearchBar(title: 'Search for restaurants, dishes'),
+                  
+                 // SearchProductScreen(),
+                // SearchScreen(),
                   SizedBox(height: 15),
                   MenuDetailScreen(),
                 ],

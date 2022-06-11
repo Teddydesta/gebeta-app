@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/searchScreen/components/searchBar.dart';
+import 'package:gebeta_food_delivery/screens/customer/searchScreen/components/searchResultCard.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -13,8 +14,8 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
+    return Scaffold(
+      body: Container(
         child: Column(
           children: [
             Container(
@@ -31,7 +32,7 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               //color: AppColors.orange,
             ),
-            const SearchBar(title: "Search for restaurants, dishes")
+             SearchScreen()
           ],
         ),
       ),
