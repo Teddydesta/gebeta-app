@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/customer/RestaurantPage/RestaurantScreen.dart';
+import 'package:gebeta_food_delivery/screens/customer/hotelMenuScreen/hotelMenuScreen.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({Key? key}) : super(key: key);
@@ -18,11 +18,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
         color: Colors.white,
       ),
       child: GestureDetector(
-        onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: ((BuildContext context) =>
-                    const RestaurantMainScreen()))),
+        // onTap: () => Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //         builder: ((BuildContext context) =>
+        //              HotelMenuScreen(product: widget.product,)))),
         child: ListView.builder(
             padding:
                 const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),

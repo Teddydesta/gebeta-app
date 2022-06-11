@@ -4,7 +4,7 @@ import 'package:gebeta_food_delivery/screens/customer/productScreen/productScree
 import 'package:gebeta_food_delivery/screens/restaurant/Orders/Ordersscreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/profileScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Category/CategoryPage.dart';
-import 'package:gebeta_food_delivery/screens/restaurant/Products/ListProducts.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/addProductScreen/components/ListProducts.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 
 class RestaurantHomeScreen extends StatefulWidget {

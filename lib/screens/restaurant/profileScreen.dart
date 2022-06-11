@@ -5,7 +5,7 @@ import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.
 
 import 'package:gebeta_food_delivery/screens/restaurant/Category/CategoryPage.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Orders/Ordersscreen.dart';
-import 'package:gebeta_food_delivery/screens/restaurant/Products/ListProducts.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/addProductScreen/components/ListProducts.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/accountWidget.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';

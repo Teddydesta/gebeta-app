@@ -15,6 +15,8 @@ class CommonServices {
     return name;
   }
 
+  
+
   Future getToken() async {
     final SharedPreferences prefs = await _prefs;
     var token = await prefs.getString('token').toString();

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:gebeta_food_delivery/screens/Home/SelectRoleScreen.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/components/customerHotelOwnerToggle.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/components/wrapper.dart';
+import 'package:gebeta_food_delivery/wrapper.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:gebeta_food_delivery/screens/customer/productScreen/productScreen.dart';
 

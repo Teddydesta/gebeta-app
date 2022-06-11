@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/restaurant/Products/components/addImages.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/addProductScreen/components/addImages.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
