@@ -6,7 +6,6 @@ import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.
 import 'package:gebeta_food_delivery/screens/customer/address_screen/address_screen.dart';
 import 'package:gebeta_food_delivery/screens/customer/profile_screen/components/profile_setting.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
-import 'package:gebeta_food_delivery/utils/dimensions.dart';
 import 'package:gebeta_food_delivery/widgets/accountWidget.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';

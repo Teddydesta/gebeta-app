@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/models/Product.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/productScreen/components/productCard.dart';
-import 'package:gebeta_food_delivery/screens/restaurant/addProductScreen/AddNewProducts.dart';
 import 'package:gebeta_food_delivery/services/productService.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 
-class ProductsScreen extends StatefulWidget {
+class ListProductScreen extends StatefulWidget {
   final category;
-  const ProductsScreen({Key? key, this.category}) : super(key: key);
+  const ListProductScreen({Key? key, this.category}) : super(key: key);
 
   @override
-  State<ProductsScreen> createState() => _ProductsScreenState();
+  State<ListProductScreen> createState() => _ProductsScreenState();
 }
 
-class _ProductsScreenState extends State<ProductsScreen> {
+class _ProductsScreenState extends State<ListProductScreen> {
   bool loading = false;
   ProductServices _productServices = ProductServices();
   List<Product> products = [];
@@ -93,17 +92,14 @@ getProducts()async {
         backgroundColor: Colors.white,
         elevation: 0.0,
         centerTitle: true,
-       title: CustomText(text: "REMAS ",fontSize: 24,fontWeight: FontWeight.bold,),
-        leading: GestureDetector(
-          onTap: (() => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => HomeMainScreen()) )),
-          child: IconButton(
-              onPressed: ()=>  HomeMainScreen(),
-              icon: Icon(
-                Icons.arrow_back_ios,
-                color: Colors.black87,
-                size: 25,
-              )),
-        ),
+       title: CustomText(text: "PRODUCTS",fontSize: 24,fontWeight: FontWeight.bold,),
+        leading: IconButton(
+            onPressed: () =>  HomeMainScreen(),
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black87,
+              size: 25,
+            )),
       ),
       body: loading
           ? Center(
@@ -111,7 +107,7 @@ getProducts()async {
                 height: 50,
                 width: 50,
                 child: CircularProgressIndicator(
-                  color: Color.fromARGB(255, 56, 50, 45),
+                  color: AppColors.orange,
                 ),
               ),
             )

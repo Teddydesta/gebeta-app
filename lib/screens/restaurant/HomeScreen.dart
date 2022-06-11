@@ -1,9 +1,10 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:gebeta_food_delivery/screens/customer/productScreen/productScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Orders/Ordersscreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/profileScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Category/CategoryPage.dart';
-import 'package:gebeta_food_delivery/screens/restaurant/Products/ListProducts.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/addProductScreen/components/ListProducts.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 
 class RestaurantHomeScreen extends StatefulWidget {
@@ -50,8 +51,8 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
           onPageChanged: (index) {
             setState(() => _currentIndex = index);
           },
-          children: const <Widget>[
-            ListProductScreen(),
+          children:  <Widget>[
+            ProductsScreen(),
             CategoriesScreen(),
             OrdersScreen(),
             RestaurantProfileScreen(),
@@ -76,8 +77,8 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
           BottomNavyBarItem(
               activeColor: AppColors.orange,
               inactiveColor: Colors.black87,
-              title: const Text('Category'),
-              icon: const Icon(Icons.category)),
+              title: const Text('Menu'),
+              icon: const Icon(Icons.menu_outlined)),
           BottomNavyBarItem(
             activeColor: AppColors.orange,
             inactiveColor: Colors.black87,

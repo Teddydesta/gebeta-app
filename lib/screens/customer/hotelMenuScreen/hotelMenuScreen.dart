@@ -1,23 +1,22 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, file_names
 
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/customer/RestaurantPage/Components/RestaurantMenuScreen.dart';
+import 'package:gebeta_food_delivery/models/Product.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
+import 'package:gebeta_food_delivery/screens/customer/hotelMenuScreen/Components/menuDetailScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/searchScreen/components/searchBar.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
-import 'package:gebeta_food_delivery/utils/dimensions.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
-class RestaurantMainScreen extends StatefulWidget {
+class HotelMenuScreen extends StatefulWidget {
   static const routeName = "/HomeScreen";
-  const RestaurantMainScreen({Key? key}) : super(key: key);
+  const HotelMenuScreen({Key? key, }) : super(key: key);
 
   @override
-  _RestaurantMainScreenState createState() => _RestaurantMainScreenState();
+  _HotelMenuScreenState createState() => _HotelMenuScreenState();
 }
 
-class _RestaurantMainScreenState extends State<RestaurantMainScreen> {
+class _HotelMenuScreenState extends State<HotelMenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,7 +150,7 @@ class _RestaurantMainScreenState extends State<RestaurantMainScreen> {
                   ),
                   SearchBar(title: 'Search for restaurants, dishes'),
                   SizedBox(height: 15),
-                  RestaurantScreenDetails(),
+                  MenuDetailScreen(),
                 ],
               ),
             )),

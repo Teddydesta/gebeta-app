@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:gebeta_food_delivery/models/Hotel.dart';
 import 'package:gebeta_food_delivery/models/Product.dart';
+import 'package:gebeta_food_delivery/services/userServices.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/commonIconWidget.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
-class ColumnWidget extends StatelessWidget {
-    final Product product;
+class HotelsColumnWidget extends StatelessWidget {
+//  UserServices _userServices = UserServices();
+//   List<HotelModel> hotels = [];
   final String text;
-  const ColumnWidget({Key? key, required this.text, required this.product}) : super(key: key);
+  const HotelsColumnWidget({Key? key, required this.text, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,19 +65,19 @@ class ColumnWidget extends StatelessWidget {
           children: const [
             CommonIcon(
               icon: Icons.circle_sharp,
-              text: "Normal",
+              text: "Description",
               iconColor: AppColors.iconColor1,
             ),
-            CommonIcon(
-              icon: Icons.location_on,
-              iconColor: AppColors.orange,
-              text: '12.4km',
-            ),
-            CommonIcon(
-              icon: Icons.access_time_filled_rounded,
-              text: "2:30 am",
-              iconColor: AppColors.iconColor2,
-            ),
+            // CommonIcon(
+            //   icon: Icons.location_on,
+            //   iconColor: AppColors.orange,
+            //   text: '12.4km',
+            // ),
+            // CommonIcon(
+            //   icon: Icons.access_time_filled_rounded,
+            //   text: "2:30 am",
+            //   iconColor: AppColors.iconColor2,
+            // ),
           ],
         ),
       ],

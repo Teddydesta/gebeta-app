@@ -1,4 +1,4 @@
-import 'package:gebeta_food_delivery/screens/restaurant/Products/AddNewProducts.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/addProductScreen/AddNewProducts.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';

@@ -5,7 +5,7 @@ import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.
 
 import 'package:gebeta_food_delivery/screens/restaurant/Category/CategoryPage.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Orders/Ordersscreen.dart';
-import 'package:gebeta_food_delivery/screens/restaurant/Products/ListProducts.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/addProductScreen/components/ListProducts.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/accountWidget.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
@@ -254,7 +254,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: ((BuildContext context) =>
-                                  const ListProductScreen()))),
+                                   ListProductScreen()))),
                       child: Container(
                         margin: const EdgeInsets.only(left: 10, right: 10),
                         height: 60,
@@ -393,11 +393,11 @@ class RestaurantProfileScreen extends StatelessWidget {
                       height: 65,
                     ),
                     GestureDetector(
-                      onTap: () => Navigator.pop(
+                      onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: ((BuildContext context) =>
-                                   SignInPage()))),
+                                  const SignInPage()))),
                       child: Container(
                         margin: const EdgeInsets.only(
                             left: 10, right: 10, bottom: 30),

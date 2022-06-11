@@ -107,6 +107,7 @@ return {'error': json.decode(response.body)['message'], 'user': null};
       'phone': phone,
       'password': password
     };
+    
     var url = Uri.parse('$baseUrl/users/admin');
 
     var response = await http.post(url, body: body);
@@ -241,6 +242,27 @@ print(response.body);
       return null;
     } else {
       return response.body;
+    }
+
+    return {'error': json.decode(response.body)['message'], 'user': null};
+  }
+
+
+
+
+  Future getNearbyHotel({lat,lng}) async {
+    var body = {'lat':lat,'lng':lng};
+    var url = Uri.parse('$baseUrl/users/hotels/nearby?lat=$lat&lng=$lng');
+
+
+  var response = await http.get(url, );
+     if (response.statusCode == 200 ||
+        response.statusCode == 201 ||
+        response.statusCode == 202) {
+
+      return json.decode(response.body);
+    } else {
+      return null;
     }
 
     return {'error': json.decode(response.body)['message'], 'user': null};

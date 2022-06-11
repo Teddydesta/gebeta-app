@@ -160,7 +160,28 @@ class _SignInPageState extends State<SignInPage> {
                                 "assets/images/gebeta_logo.png",
                               ),
                             ),
-                            SizedBox(
+                           
+                            
+
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Welcome to Gebeta ',
+                                  style: TextStyle(
+                                      //wordSpacing: 8.0,
+                                      fontFamily: 'Lobster',
+                                      color: Colors.black87,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                               
+                              ],
+                            ),
+                          ),
+                              SizedBox(
                               height: 15,
                             ),
                             TextFormField(

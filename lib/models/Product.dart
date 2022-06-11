@@ -29,7 +29,7 @@ class Product {
         name: parsedJson['name'],
         description: parsedJson['description'],
         category: parsedJson['category'],
-        price: parsedJson['price'],
+        price: parsedJson['price'].toString(),
         images: parsedJson['images'],
         created: parsedJson['created'],
         availability: parsedJson['availability'],

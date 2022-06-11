@@ -2,6 +2,9 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:gebeta_food_delivery/models/DeliveredProducts.dart';
+import 'package:gebeta_food_delivery/models/Hotel.dart';
+import 'package:gebeta_food_delivery/models/Product.dart';
 import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/categoryScreen/categoryScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/nearbyScreen/nearby.dart';
@@ -9,15 +12,18 @@ import 'package:gebeta_food_delivery/screens/customer/searchScreen/components/se
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
+import '../../../models/UserModel.dart';
+
 class HomeScreen extends StatefulWidget {
   static const routeName = "/HomeScreen";
-  const HomeScreen({Key? key}) : super(key: key);
+   HomeScreen({Key? key,}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<HotelModel> hotels = [];
   bool loading =false;
    _showSnackBar(context, text) {
     ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
@@ -74,8 +80,6 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
                 children:  [
-                  
-                  
                   Container(
                     padding: EdgeInsets.only(left: 15),
                     child: CustomText(
