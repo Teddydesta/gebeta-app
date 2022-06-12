@@ -177,7 +177,7 @@ return {'error': json.decode(response.body)['message'], 'user': null};
   }
 
   // Get User Profile
-  Future getUserProfile() async {
+   getUserProfile() async {
     var token = await _commonServices.getToken();
     var uri = Uri.parse('$baseUrl/users/profile/');
     var response =
@@ -186,19 +186,12 @@ return {'error': json.decode(response.body)['message'], 'user': null};
     if (response.statusCode == 200 ||
         response.statusCode == 201 ||
         response.statusCode == 202) {
-      var user = UserModel.fromJson(json.decode(response.body));
+       var user = UserModel.fromJson(json.decode(response.body));
 
-      return {
-        'error': null,
-        'username': user.name,
-        'phone': user.phone,
-        'role': user.role,
-        'email': user.email
-      };
+      return user;
     }
 
-    print(json.decode(response.body));
-    return {'error': json.decode(response.body)['message'], 'user': null};
+    return null;
   }
 
 

@@ -5,7 +5,11 @@ class FlashMessageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body:Center(child:ElevatedButton(onPressed: (){ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Default Snackbar"),
-    behavior: SnackBarBehavior.floating,))}),));
+    return Scaffold(body:Center(child:ElevatedButton(
+      
+      child: Text("Error message "),
+
+      onPressed: (){ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Default Snackbar"),
+    behavior: SnackBarBehavior.floating,));}),));
   }
 }

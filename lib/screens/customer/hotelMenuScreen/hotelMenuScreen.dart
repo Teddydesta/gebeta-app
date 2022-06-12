@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/models/Hotel.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/hotelMenuScreen/Components/menuDetailScreen.dart';
-import 'package:gebeta_food_delivery/screens/customer/searchScreen/searchScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
+
+import '../searchProductScreen/ProductSearchDcreen.dart';
 
 class HotelMenuScreen extends StatefulWidget {
   static const routeName = "/HomeScreen";
@@ -133,6 +134,7 @@ class _HotelMenuScreenState extends State<HotelMenuScreen> {
       body: Container(
         child: Column(
           children: [
+            
             Expanded(
                 child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
@@ -151,7 +153,7 @@ class _HotelMenuScreenState extends State<HotelMenuScreen> {
                                 "assets/images/restaurant_cover.png"))),
                   ),
                   
-                 // SearchProductScreen(),
+                  
                 // SearchScreen(),
                   SizedBox(height: 15),
                   MenuDetailScreen(),

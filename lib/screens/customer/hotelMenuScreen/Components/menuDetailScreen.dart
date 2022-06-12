@@ -80,6 +80,7 @@ class _MenuDetailScreenState extends State<MenuDetailScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              
                CustomText(
                 text: "Recommended",
                 fontWeight: FontWeight.bold,

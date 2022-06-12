@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/components/new_passwordscreen.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.dart';
-
 import 'package:gebeta_food_delivery/screens/restaurant/Category/CategoryPage.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Orders/Ordersscreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/addProductScreen/components/ListProducts.dart';

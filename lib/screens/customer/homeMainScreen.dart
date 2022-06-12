@@ -45,7 +45,7 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
           },
           children:  [
             HomeScreen(),
-            SearchScreen(),
+            SearchHotelScreen(),
             BasketScreen(),
             ProfileScreen(),
           ],

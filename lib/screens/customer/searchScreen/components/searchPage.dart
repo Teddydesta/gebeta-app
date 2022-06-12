@@ -5,14 +5,14 @@ import 'package:gebeta_food_delivery/screens/customer/searchScreen/components/se
 import 'package:gebeta_food_delivery/screens/customer/searchScreen/components/searchResultCard.dart';
 import 'package:gebeta_food_delivery/services/userServices.dart';
 
-class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key,}) : super(key: key);
+class SearchHotelScreen extends StatefulWidget {
+  const SearchHotelScreen({Key? key,}) : super(key: key);
 
   @override
-  _SearchScreenState createState() => _SearchScreenState();
+  _SearchHotelScreenState createState() => _SearchHotelScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _SearchHotelScreenState extends State<SearchHotelScreen> {
   UserServices _userServices = UserServices();
     List<HotelModel> hotels = [];
   bool loading = false;
@@ -58,7 +58,8 @@ class _SearchScreenState extends State<SearchScreen> {
             elevation: 0.5,
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios, color: Colors.grey.shade900),
-              onPressed: () => Navigator.pop(context),
+              onPressed: () =>Navigator.push(context, MaterialPageRoute(   
+        builder:(context) => SearchHotelScreen(),)),
             ),
             title: TextFormField(
               initialValue: search,
