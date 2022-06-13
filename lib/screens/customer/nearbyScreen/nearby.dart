@@ -79,22 +79,7 @@ print(res);
   @override
   Widget build(BuildContext context) {
     return loading
-        ? Center(child: Column(
-          children: [
-             GestureDetector(
-                      onTap: () => getNearbyHotels(),
-                      child: Container(
-                        padding: EdgeInsets.only(left: 5),
-                        child: CustomText(
-                          text: "babis",
-                          fontSize: 24,
-                          color: AppColors.mainBlackColor,
-                        ),
-                      ),
-                    ),
-            CircularProgressIndicator(),
-          ],
-        ))
+        ? Center(child: CircularProgressIndicator())
         : Container(
             margin: const EdgeInsets.only(
               left: 10,

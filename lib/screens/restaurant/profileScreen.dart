@@ -19,12 +19,7 @@ class RestaurantProfileScreen extends StatelessWidget {
       drawer: const NavDrawer(),
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const CustomText(
-          text: "Profile ",
-          color: AppColors.orange,
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
+        title: Text("Hotel Owner Profile",style: TextStyle(color: Colors.black),),
         elevation: 0,
         centerTitle: true,
       ),
@@ -40,21 +35,7 @@ class RestaurantProfileScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //Profile
-                    Center(
-                      child: Container(
-                        height: 140,
-                        width: 140,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(1000),
-                            image: const DecorationImage(
-                                fit: BoxFit.cover,
-                                image:
-                                    AssetImage("assets/images/real/user.jpg"))),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    
                     Divider(
                       color: Colors.grey[100],
                     ),

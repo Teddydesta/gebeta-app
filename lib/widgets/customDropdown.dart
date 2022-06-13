@@ -16,7 +16,7 @@ class CustomDropdown extends StatelessWidget {
       this.items,
       this.hintText,
       this.controller,
-      this.validator})
+      this.validator, required bool loading})
       : super(key: key);
 
   @override

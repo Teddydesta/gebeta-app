@@ -86,7 +86,7 @@ return {'error': json.decode(response.body)['message'], 'user': null};
       // 'lat': location['lat'],
       // 'lng': location['lng']
     };
-    var url = Uri.parse('$baseUrl/users/hotel');
+    var url = Uri.parse('$baseUrl/restaurant/register');
 
     var response = await http.post(url, body: body);
 

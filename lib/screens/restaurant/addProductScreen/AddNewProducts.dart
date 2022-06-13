@@ -1,7 +1,5 @@
-import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/restaurant/addProductScreen/components/addImages.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
@@ -11,8 +9,6 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../widgets/customText.dart';
 import '../../../services/productService.dart';
-import '../../../services/categoryService.dart';
-import '../../../models/Product.dart';
 
 class AddNewProductPage extends StatefulWidget {
   const AddNewProductPage({Key? key}) : super(key: key);
@@ -305,7 +301,7 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
                     _category = newValue;
                   });
                 },
-                items: categories),
+                items: categories, loading: loading,),
           ],
         ),
       ),

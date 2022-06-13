@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/models/DispatchedProduct.dart';
 import 'package:gebeta_food_delivery/models/Hotel.dart';
-import 'package:gebeta_food_delivery/models/Product.dart';
 
 class SearchResultCard extends StatelessWidget {
   final HotelModel hotel;
