@@ -83,6 +83,7 @@ class Location {
     );
 
     Map<String, dynamic> toJson() => {
+      
         "coordinates": List<dynamic>.from(coordinates!.map((x) => x)),
         "calculated": calculated,
     };

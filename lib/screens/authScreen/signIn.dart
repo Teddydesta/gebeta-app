@@ -99,35 +99,6 @@ class _SignInPageState extends State<SignInPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        actions: [
-          GestureDetector(
-            onTap: () => Navigator.pop(
-                context,
-                MaterialPageRoute(
-                    builder: ((BuildContext context) =>  HomeMainScreen()))),
-            child: Container(
-              height: 30,
-              width: 100,
-              margin: EdgeInsets.only(right: 10, top: 2, bottom: 7),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [AppColors.orange, Color(0xFFfbab66)],
-                    begin: FractionalOffset(0.2, 0.2),
-                    end: FractionalOffset(1.0, 1.0),
-                    stops: [0.0, 1.0],
-                    tileMode: TileMode.clamp),
-
-                borderRadius: BorderRadius.circular(10.0),
-                // color: Colors.white,
-              ),
-              child: Center(
-                  child: CustomText(
-                      text: "GUEST",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24)),
-            ),
-          ),
-        ],
       ),
       body: loading
           ? Center(
@@ -135,7 +106,7 @@ class _SignInPageState extends State<SignInPage> {
                 height: 50,
                 width: 50,
                 child: CircularProgressIndicator(
-                  color: AppColors.orange,
+                  color: Colors.black,
                 ),
               ),
             )
@@ -153,35 +124,34 @@ class _SignInPageState extends State<SignInPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Container(
-                              width: 300,
-                              height: 200,
+                              width: double.infinity,
+                              height: 240,
                               alignment: Alignment.center,
-                              child: Image.asset(
-                                "assets/images/gebeta_logo.png",
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                      image: AssetImage(
+                                        
+                                          "assets/images/gebeta_logo.png"))),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Welcome to Gebeta ',
+                                    style: TextStyle(
+                                        //wordSpacing: 8.0,
+                                        fontFamily: 'Lobster',
+                                        color: Colors.black87,
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ],
                               ),
                             ),
-                           
-                            
-
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Welcome to Gebeta ',
-                                  style: TextStyle(
-                                      //wordSpacing: 8.0,
-                                      fontFamily: 'Lobster',
-                                      color: Colors.black87,
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                               
-                              ],
-                            ),
-                          ),
-                              SizedBox(
+                            SizedBox(
                               height: 15,
                             ),
                             TextFormField(
@@ -190,7 +160,6 @@ class _SignInPageState extends State<SignInPage> {
                               maxLength: 14,
                               readOnly: false,
                               decoration: InputDecoration(
-                               
                                 hintText: "940502345",
                                 // hide max character counter
                                 counter: Offstage(),
@@ -199,7 +168,7 @@ class _SignInPageState extends State<SignInPage> {
                                     borderRadius: BorderRadius.circular(8.0)),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide:
-                                        BorderSide(color: Colors.orange),
+                                        BorderSide(color: Colors.black),
                                     borderRadius: BorderRadius.circular(8.0)),
 
                                 prefixIcon: Container(
@@ -209,7 +178,7 @@ class _SignInPageState extends State<SignInPage> {
                                     children: [
                                       CustomIcon(
                                         icon: Icons.phone,
-                                        iconColor: AppColors.orange,
+                                        iconColor: Colors.black,
                                         backgroundColor: Colors.white10,
                                         iconSize: 22,
                                       ),
@@ -252,7 +221,7 @@ class _SignInPageState extends State<SignInPage> {
                                     children: [
                                       CustomIcon(
                                         icon: Icons.key,
-                                        iconColor: AppColors.orange,
+                                        iconColor: Colors.black,
                                         backgroundColor: Colors.white10,
                                         iconSize: 22,
                                       ),
@@ -260,7 +229,7 @@ class _SignInPageState extends State<SignInPage> {
                                   ),
                                 ),
                                 suffixIcon: IconButton(
-                                    color: AppColors.orange,
+                                    color: Colors.black,
                                     icon: Icon(showPassword
                                         ? Icons.visibility
                                         : Icons.visibility_off),
@@ -272,7 +241,9 @@ class _SignInPageState extends State<SignInPage> {
                                 //labelText: "Pasword",
                               ),
                             ),
-                            const SizedBox(height: 5,),
+                            const SizedBox(
+                              height: 5,
+                            ),
                             InkWell(
                               onTap: () {
                                 Navigator.push(context,
@@ -298,8 +269,6 @@ class _SignInPageState extends State<SignInPage> {
                               loading: loading,
                               text: 'Sign in',
                             ),
-                           
-                            
                           ],
                         ),
                       ),
@@ -350,4 +319,3 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 }
-

@@ -25,15 +25,7 @@ class HotelsColumnWidget extends StatelessWidget {
         ),
         Row(
           children: [
-            Wrap(
-              children: List.generate(5, (index) {
-                return const Icon(
-                  Icons.star,
-                  size: 12,
-                  color: AppColors.orange,
-                );
-              }),
-            ),
+            
             SizedBox(
               width: 10,
             ),
@@ -65,7 +57,7 @@ class HotelsColumnWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children:  [
             Container(
-              width: 150,
+              width: 100,
               
               child: CustomText(
                
@@ -75,8 +67,10 @@ class HotelsColumnWidget extends StatelessWidget {
             ),
             CommonIcon(
               icon: Icons.location_on,
-              iconColor: AppColors.orange,
-              text: '12.4km',
+              iconColor: Colors.black,
+              
+              text: '${hotel.location!.calculated!.toStringAsFixed(2)} KM',
+              
             ),
             // CommonIcon(
             //   icon: Icons.access_time_filled_rounded,

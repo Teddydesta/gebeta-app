@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/models/Product.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/productScreen/components/productCard.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/HomeScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/addProductScreen/AddNewProducts.dart';
 import 'package:gebeta_food_delivery/services/productService.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
-
 
 class ProductsScreen extends StatefulWidget {
   final category;
@@ -21,30 +21,42 @@ class _ProductsScreenState extends State<ProductsScreen> {
   ProductServices _productServices = ProductServices();
   List<Product> products = [];
 
-getProducts()async {
-  print("start");
-      setState(() {
+  getProducts() async {
+    print("start");
+    setState(() {
       loading = true;
     });
     products.clear();
     var res = await _productServices.getProducts();
     print(res);
     if (res == null) {
-     // _showSnackBar(context, 'Error getting product, please try again');
+      // _showSnackBar(context, 'Error getting product, please try again');
       setState(() {
         loading = false;
       });
       return;
     }
-     List<Product> response = res;
+    List<Product> response = res;
     print(response);
     setState(() {
       products.clear();
       products.addAll(response);
       loading = false;
     });
+  }
+
+//Delete Product
+deleteProduct() async {
+  print("start");
+  setState(() {
+    loading=true;
+  });
 }
-@override
+
+
+
+
+  @override
   void initState() {
     getProducts();
     super.initState();
@@ -93,17 +105,20 @@ getProducts()async {
         backgroundColor: Colors.white,
         elevation: 0.0,
         centerTitle: true,
-       title: CustomText(text: "REMAS ",fontSize: 24,fontWeight: FontWeight.bold,),
-        leading: GestureDetector(
-          onTap: (() => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => HomeMainScreen()) )),
-          child: IconButton(
-              onPressed: ()=>  HomeMainScreen(),
-              icon: Icon(
-                Icons.arrow_back_ios,
-                color: Colors.black87,
-                size: 25,
-              )),
+        iconTheme: IconThemeData(color: Colors.black),
+        title: CustomText(
+          text: "REMAS ",
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
         ),
+        automaticallyImplyLeading: false,
+        leading: GestureDetector(
+          onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        RestaurantHomeScreen())),
+          child: Icon(Icons.arrow_back)),
       ),
       body: loading
           ? Center(
@@ -132,4 +147,3 @@ getProducts()async {
     );
   }
 }
-

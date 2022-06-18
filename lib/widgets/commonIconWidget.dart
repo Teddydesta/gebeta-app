@@ -27,8 +27,9 @@ class CommonIcon extends StatelessWidget {
         ),
         CustomText(
           text: text,
+          fontWeight: FontWeight.bold,
           color: AppColors.mainBlackColor,
-          fontSize: 12,
+          fontSize: 18,
         ),
       ],
     );

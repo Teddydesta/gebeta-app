@@ -446,7 +446,7 @@ class _SignUpPageState extends State<SignUpPage> {
           )
         : Scaffold(
             appBar: AppBar(
-              backgroundColor: AppColors.orange,
+              backgroundColor: Colors.white,
               elevation: 0,
               automaticallyImplyLeading: false,
               centerTitle: true,
@@ -474,7 +474,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 children: <Widget>[
                                   Container(
                                     width: 300,
-                                    height: 200,
+                                    height: 240,
                                     alignment: Alignment.center,
                                     child: Image.asset(
                                       "assets/images/gebeta_logo.png",

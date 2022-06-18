@@ -7,11 +7,11 @@ import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
-import '../searchProductScreen/ProductSearchDcreen.dart';
 
 class HotelMenuScreen extends StatefulWidget {
   static const routeName = "/HomeScreen";
-  const HotelMenuScreen({Key? key, }) : super(key: key);
+  final HotelModel hotel;
+  const HotelMenuScreen({Key? key, required this.hotel, }) : super(key: key);
 
   @override
   _HotelMenuScreenState createState() => _HotelMenuScreenState();
@@ -25,15 +25,15 @@ class _HotelMenuScreenState extends State<HotelMenuScreen> {
     return Scaffold(
       appBar: AppBar(
         
-         iconTheme: IconThemeData(color: AppColors.orange),
+         iconTheme: IconThemeData(color: Colors.black),
         leading: GestureDetector(
           onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
                   builder: ((BuildContext context) => const HomeMainScreen()))),
           child:  CustomIcon(
-            icon: Icons.arrow_back_ios,
-            iconColor: AppColors.orange,
+            icon: Icons.arrow_back,
+           
             iconSize: 24,
             backgroundColor: Colors.white,
           ),
@@ -156,7 +156,7 @@ class _HotelMenuScreenState extends State<HotelMenuScreen> {
                   
                 // SearchScreen(),
                   SizedBox(height: 15),
-                  MenuDetailScreen(),
+                  MenuDetailScreen(hotel: widget.hotel),
                 ],
               ),
             )),

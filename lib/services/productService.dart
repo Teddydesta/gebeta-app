@@ -12,6 +12,28 @@ class ProductServices {
   CommonServices _commonServices = CommonServices();
   LocationUtils locationUtils = LocationUtils();
 
+updateQuantity() async {
+
+}
+
+  Future getResturantsProducts(id) async {
+    var uri = Uri.parse('$baseUrl/products/resturant/$id');
+
+    var response = await http.get(uri);
+
+    if (response.statusCode == 200 ||
+        response.statusCode == 201 ||
+        response.statusCode == 202) {
+      List jsonResponse = json.decode(response.body);
+      var products =
+          jsonResponse.map((product) => new Product.fromJson(product)).toList();
+
+      return products;
+    }
+    print(json.decode(response.body)['message']);
+    return null;
+  }
+
   Future getProducts() async {
     var uri = Uri.parse('$baseUrl/products');
 
@@ -30,6 +52,22 @@ class ProductServices {
     return null;
   }
 
+//Delete Product
+Future deletProduct(id) async {
+  var uri=Uri.parse('$baseUrl/products/delete/:ID=$id');
+  var response=  await http.delete(uri);
+  
+    if (response.statusCode == 200 ||
+        response.statusCode == 201 ||
+        response.statusCode == 202) {
+
+        }
+         print(json.decode(response.body)['message']);
+
+}
+
+
+//search products
   Future searchProducts(name) async {
     var uri = Uri.parse('$baseUrl/products/search?name=$name');
 
@@ -82,7 +120,7 @@ class ProductServices {
 
     // if (locationNameResult['error'] == null)
     //   locationName = locationNameResult['locationName'];
-print(token);
+    print(token);
     List<http.MultipartFile> imagesMultipart = [];
     var uri = Uri.parse('$baseUrl/products/add');
     var request = http.MultipartRequest('POST', uri);
@@ -119,42 +157,22 @@ print(token);
     return {'error': true, 'result': jsonResponse['message']};
   }
 
+
+//Update product
   Future updateProduct(
-      {name,
-      description,
-      price,
-      category,
-      location,
-      images,
-      imagesLinks,
-      sellerid,
-      productId}) async {
+      {name, description, price, category, location, images, productId}) async {
     var token = await _commonServices.getToken();
-
+    
     String locationName = 'Unknown';
-    var locationNameResult = await locationUtils.getReverseGeolocation(
-        location['lat'], location['lng']);
-
-    if (locationNameResult['error'] == null)
-      locationName = locationNameResult['locationName'];
-    print(imagesLinks);
-    String concatImageLinks = '';
-    if (imagesLinks.length > 0) {
-      concatImageLinks = imagesLinks.join(',');
-    }
-
+     print(token);
     List<http.MultipartFile> imagesMultipart = [];
-    var uri = Uri.parse('$baseUrl/products/update/$productId');
-    var request = http.MultipartRequest('POST', uri);
+    var uri = Uri.parse('$baseUrl/products/:id');
+    var request = http.MultipartRequest('PUT', uri);
     request.fields['name'] = name;
     request.fields['description'] = description;
     request.fields['price'] = price;
-    request.fields['imagesLinks'] = concatImageLinks;
     request.fields['category'] = category;
-    request.fields['sellerid'] = sellerid;
     request.fields['locationName'] = locationName;
-    request.fields['lat'] = location['lat'];
-    request.fields['lng'] = location['lng'];
     request.headers.addAll({'Authorization': 'Bearer $token'});
 
     for (String imagePath in images) {
@@ -165,7 +183,10 @@ print(token);
       imagesMultipart.add(image);
     }
     request.files.addAll(imagesMultipart);
+    
     var response = await request.send();
+    print(response);
+    
     final respStr = await response.stream.bytesToString();
 
     if (response.statusCode == 200 ||
@@ -179,4 +200,7 @@ print(token);
     print('error : ${json.decode(respStr)}');
     return null;
   }
+//Delete Product
+
+
 }

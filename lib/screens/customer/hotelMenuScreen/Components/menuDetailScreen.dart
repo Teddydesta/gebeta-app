@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gebeta_food_delivery/models/Hotel.dart';
 import 'package:gebeta_food_delivery/models/Product.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/BasketScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/searchProductScreen/ProductSearchDcreen.dart';
@@ -8,8 +9,9 @@ import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 class MenuDetailScreen extends StatefulWidget {
+  final HotelModel hotel;
   const MenuDetailScreen({
-    Key? key,
+    Key? key, required this.hotel,
   }) : super(key: key);
 
   @override
@@ -30,13 +32,14 @@ class _MenuDetailScreenState extends State<MenuDetailScreen> {
 
   ProductServices _productServices = ProductServices();
   List<Product> products = [];
-  getProducts() async {
+  getResturantProduct() async {
     print("start");
     setState(() {
       loading = true;
     });
     products.clear();
-    var res = await _productServices.getProducts();
+   // var res = await _productServices.getProducts(widget.hotel.id);
+   var res = await _productServices.getResturantsProducts(widget.hotel.id);
     print(res);
     if (res == null) {
       // _showSnackBar(context, 'Error getting product, please try again');
@@ -56,7 +59,7 @@ class _MenuDetailScreenState extends State<MenuDetailScreen> {
 
   @override
   void initState() {
-    getProducts();
+    getResturantProduct();
     super.initState();
   }
 
@@ -166,7 +169,7 @@ class _MenuDetailScreenState extends State<MenuDetailScreen> {
                                         height: 5,
                                       ),
                                       Container(
-                                        width: 180,
+                                        width: 150,
                                         child: CustomText(
                                           maxLine: 2,
                                           text: products[index].description!,
@@ -186,69 +189,40 @@ class _MenuDetailScreenState extends State<MenuDetailScreen> {
                                     ],
                                   ),
                                   const SizedBox(
-                                    width: 30,
+                                    width: 20,
                                   ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                              content: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              CustomText(
-                                                text: "${1} items  | ",
-                                                color: Colors.white,
-                                              ),
-                                              CustomText(
-                                                text: "ETB 231.00",
-                                                color: Colors.white,
-                                              ),
-                                            ],
-                                          ),
-                                          GestureDetector(
-                                              onTap: () => Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: ((BuildContext
-                                                              context) =>
-                                                          const BasketScreen()))),
-                                              child: CustomText(
-                                                text: "View basket",
-                                                color: Colors.white,
-                                              ))
-                                        ],
-                                      )));
-                                    },
-                                    child: GestureDetector(
-                                      onTap: () =>
-                                          addFoodToCart(products[index].id),
+                                  
+                                    GestureDetector(
+                                      onTap: () {
+                                        addFoodToCart(products[index].id);
+                                        _cartDialog(context);
+                                      },
                                       child: Container(
                                         height: 35,
-                                        width: 80,
+                                        width: 100,
                                         decoration: BoxDecoration(
-                                          color: AppColors.orange,
+                                          color: AppColors.mainBlackColor,
                                           borderRadius:
-                                              BorderRadius.circular(20.0),
+                                              BorderRadius.circular(8.0),
                                         ),
                                         child: Center(
                                             child: GestureDetector(
-                                          onTap: () => Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          BasketScreen())),
+                                          // onTap: () => Navigator.push(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //         builder:
+                                          //             (BuildContext context) =>
+                                          //                 BasketScreen())),
                                           child: CustomText(
                                             text: "Add",
                                             color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 24,
                                           ),
                                         )),
                                       ),
                                     ),
-                                  ),
+                                  
                                 ],
                               ),
                             ],
@@ -314,6 +288,35 @@ void _menu(context) {
               child: const CustomText(text: "desert"),
             ),
           ],
+        ),
+      );
+    },
+  );
+}
+
+void _cartDialog(context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return GestureDetector(
+        onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => BasketScreen())),
+        child: Container(
+          padding: EdgeInsets.only(left: 10),
+          height: 50,
+          margin:
+              const EdgeInsets.only(top: 750, left: 15, right: 15, bottom: 25),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            children: [
+              Center(child: Center(child: CustomText(text: "View You Cart",fontWeight: FontWeight.bold,)))
+            ],
+          ),
         ),
       );
     },

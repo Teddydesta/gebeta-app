@@ -1,6 +1,8 @@
+import 'package:gebeta_food_delivery/models/Hotel.dart';
+
 class Product {
   String? id;
-  String? hotelName;
+  // HotelModel? hotelName;
   String? name;
   String? description;
   String? category;
@@ -12,7 +14,7 @@ class Product {
 
   Product(
       {this.id,
-      this.hotelName,
+      // this.hotelName,
       this.name,
       this.description,
       this.category,
@@ -25,7 +27,7 @@ class Product {
   factory Product.fromJson(Map<String, dynamic> parsedJson) {
     return Product(
         id: parsedJson['_id'],
-        hotelName: parsedJson['hotelName'],
+        // hotelName: parsedJson['hotelName'],
         name: parsedJson['name'],
         description: parsedJson['description'],
         category: parsedJson['category'],
@@ -35,4 +37,17 @@ class Product {
         availability: parsedJson['availability'],
         status: parsedJson['status']);
   }
+
+  Map<String, dynamic> toJson() => {
+        "_id": id,
+        // "hotelName": hotelName!.toJson(),
+        "name": name,
+        "description": description,
+        "category": category,
+        "images": List<dynamic>.from(images!.map((x) => x)),
+        "price": price,
+        "availability": availability,
+        "status": status,
+        "created": created,
+    };
 }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/models/Product.dart';
 import 'package:gebeta_food_delivery/screens/customer/DetailScreen/popularProductDetail.dart';
@@ -45,51 +44,43 @@ class ProductCard extends StatelessWidget {
           color: Color(0xFF0077b6), fontWeight: FontWeight.bold, fontSize: 15),
     );
 
-    return GestureDetector(
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext builder) => PopularProductDetails(
-                    product: product,
-                  ))),
-      child: Container(
-        margin: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: AppColors.orange,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.grey.shade400,
-                  offset: Offset(0.5, 1.0),
-                  blurRadius: 6.5,
-                  spreadRadius: 1.0),
-            ]),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            image,
-            Padding(
-              padding: EdgeInsets.fromLTRB(15, 5, 12, 5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  name,
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(child: category),
-                      Container(child: price),
-                    ],
-                  ),
-                ],
-              ),
+    return Container(
+      margin: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+          color: Colors.grey[100],
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.shade400,
+                offset: Offset(0.5, 1.0),
+                blurRadius: 6.5,
+                spreadRadius: 1.0),
+          ]),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          image,
+          Padding(
+            padding: EdgeInsets.fromLTRB(15, 5, 12, 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                name,
+                SizedBox(
+                  height: 3,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(child: category),
+                    Container(child: price),
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

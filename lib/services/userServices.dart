@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:gebeta_food_delivery/models/DeliveredProducts.dart';
 import 'package:gebeta_food_delivery/models/Hotel.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,7 +26,7 @@ class UserServices {
     return;
   }
 
-  Future registerUser({name, email, phone,  password}) async {
+  Future registerUser({name, email, phone, password}) async {
     // String locationName = 'Unknown';
     // var locationNameResult = await locationUtils.getReverseGeolocation(
     //     location['lat'], location['lng']);
@@ -42,31 +41,30 @@ class UserServices {
       'password': password,
       // 'locationName': locationName,
       'lat': "9.654",
-       'lng': "34.68574"
+      'lng': "34.68574"
     };
     var url = Uri.parse('$baseUrl/users');
 
-print(body);
+    print(body);
 
     var response = await http.post(url, body: body);
 
-if(response != null){
-print(response);
-print(response.statusCode);
-print(response.body);
+    if (response != null) {
+      print(response);
+      print(response.statusCode);
+      print(response.body);
 
-    if (response.statusCode == 200 ||
-        response.statusCode == 201 ||
-        response.statusCode == 202) {
-      var user = UserModel.fromJson(json.decode(response.body));
-      await saveToken(user.token, user.name, user.role, user.id);
+      if (response.statusCode == 200 ||
+          response.statusCode == 201 ||
+          response.statusCode == 202) {
+        var user = UserModel.fromJson(json.decode(response.body));
+        await saveToken(user.token, user.name, user.role, user.id);
 
-      return {'error': null, 'user': user};
+        return {'error': null, 'user': user};
+      }
+      return {'error': json.decode(response.body)['message'], 'user': null};
     }
     return {'error': json.decode(response.body)['message'], 'user': null};
-
-}
-return {'error': json.decode(response.body)['message'], 'user': null};
   }
 
   Future registerHotel({name, email, phone, location, password}) async {
@@ -109,7 +107,7 @@ return {'error': json.decode(response.body)['message'], 'user': null};
       'phone': phone,
       'password': password
     };
-    
+
     var url = Uri.parse('$baseUrl/users/admin');
 
     var response = await http.post(url, body: body);
@@ -177,7 +175,7 @@ return {'error': json.decode(response.body)['message'], 'user': null};
   }
 
   // Get User Profile
-   getUserProfile() async {
+  getUserProfile() async {
     var token = await _commonServices.getToken();
     var uri = Uri.parse('$baseUrl/users/profile/');
     var response =
@@ -186,7 +184,7 @@ return {'error': json.decode(response.body)['message'], 'user': null};
     if (response.statusCode == 200 ||
         response.statusCode == 201 ||
         response.statusCode == 202) {
-       var user = UserModel.fromJson(json.decode(response.body));
+      var user = UserModel.fromJson(json.decode(response.body));
 
       return user;
     }
@@ -194,11 +192,9 @@ return {'error': json.decode(response.body)['message'], 'user': null};
     return null;
   }
 
-
-
   //search hotel
 
-   Future searchHotels(name) async {
+  Future searchHotels(name) async {
     var uri = Uri.parse('$baseUrl/users/hotels/name?name=$name');
 
     var response = await http.get(uri);
@@ -207,8 +203,9 @@ return {'error': json.decode(response.body)['message'], 'user': null};
         response.statusCode == 201 ||
         response.statusCode == 202) {
       List jsonResponse = json.decode(response.body);
-      var hotels =
-          jsonResponse.map((product) => new HotelModel.fromJson(product)).toList();
+      var hotels = jsonResponse
+          .map((product) => new HotelModel.fromJson(product))
+          .toList();
 
       return hotels;
     }
@@ -247,15 +244,16 @@ return {'error': json.decode(response.body)['message'], 'user': null};
 
   // Phone check
   Future checkIfPhoneIsInUse({phone}) async {
-    var body = {'phone': phone, };
+    var body = {
+      'phone': phone,
+    };
     var url = Uri.parse('$baseUrl/users/checkPhone');
 
     var response = await http.post(url, body: body);
-print(response.body);
+    print(response.body);
     if (response.statusCode == 200 ||
         response.statusCode == 201 ||
         response.statusCode == 202) {
-
       return null;
     } else {
       return response.body;
@@ -266,18 +264,19 @@ print(response.body);
 
 //search Hotel
 
+  Future getNearbyHotel({lat, lng}) async {
+    var body = {'lat': lat, 'lng': lng};
+    print('dfs : $body');
+    print('asdasd $baseUrl/users/hotels/nearby?lat=$lat&lng=$lng');
 
-
-  Future getNearbyHotel({lat,lng}) async {
-    var body = {'lat':lat,'lng':lng};
     var url = Uri.parse('$baseUrl/users/hotels/nearby?lat=$lat&lng=$lng');
 
-
-  var response = await http.get(url, );
-     if (response.statusCode == 200 ||
+    var response = await http.get(
+      url,
+    );
+    if (response.statusCode == 200 ||
         response.statusCode == 201 ||
         response.statusCode == 202) {
-
       return json.decode(response.body);
     } else {
       return null;

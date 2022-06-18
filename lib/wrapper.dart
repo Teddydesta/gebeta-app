@@ -17,15 +17,14 @@ class Wrapper extends StatefulWidget {
 }
 
 class _WrapperState extends State<Wrapper> {
-        Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  bool isAuthenticated =false;
-  bool loading =false;
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  bool isAuthenticated = false;
+  bool loading = false;
   String role = '';
-  getToken() async{
-        final SharedPreferences prefs = await _prefs;
+  getToken() async {
+    final SharedPreferences prefs = await _prefs;
     setState(() {
-      loading=true;
-
+      loading = true;
     });
 
     if (prefs.containsKey('token')) {
@@ -44,19 +43,18 @@ class _WrapperState extends State<Wrapper> {
       loading = false;
     });
   }
-  
-  getRole() async {
-        final SharedPreferences prefs = await _prefs;
-     setState(() async{
-role = (await prefs.getString('role'))!;
-      loading=true;
 
+  getRole() async {
+    final SharedPreferences prefs = await _prefs;
+    String? rrole = await prefs.getString('role');
+    setState(() {
+      role = rrole!;
+      loading = true;
     });
   }
 
   @override
   void initState() {
-    
     getToken();
     getRole();
     super.initState();
@@ -65,21 +63,23 @@ role = (await prefs.getString('role'))!;
   @override
   Widget build(BuildContext context) {
     return (loading
-? Scaffold(
-  backgroundColor: Colors.white,
-  body: Center(
-    child: Container(
-      margin: EdgeInsets.all(10),
-      height: 50,
-      width: 50,
-      child: CircularProgressIndicator(
-        color: AppColors.orange,
-      ),
-    ),
-  ),
-)
-    
-    : isAuthenticated ? role == 'hotelOwner' ? RestaurantHomeScreen() : HomeMainScreen() : AuthScreen());
-     
+        ? Scaffold(
+            backgroundColor: Colors.white,
+            body: Center(
+              child: Container(
+                margin: EdgeInsets.all(10),
+                height: 50,
+                width: 50,
+                child: CircularProgressIndicator(
+                  color: AppColors.orange,
+                ),
+              ),
+            ),
+          )
+        : isAuthenticated
+            ? role == 'hotelOwner'
+                ? RestaurantHomeScreen()
+                : HomeMainScreen()
+            : AuthScreen());
   }
 }

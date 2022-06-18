@@ -53,8 +53,11 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
       ),
       //Botom Nav bar
       bottomNavigationBar: BottomNavyBar(
-        backgroundColor: Colors.grey[100],
-        showElevation: false,
+          showElevation: true,
+        itemCornerRadius: 24,
+        curve: Curves.easeIn,
+        backgroundColor: Colors.white,
+        
         selectedIndex: _currentIndex,
         onItemSelected: (index) {
           setState(() => _currentIndex = index);
@@ -62,23 +65,23 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
         },
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-              activeColor: AppColors.orange,
+              activeColor: Colors.black,
               inactiveColor: Colors.black,
               title: const Text('Nearby'),
               icon: const Icon(Icons.local_restaurant_outlined)),
           BottomNavyBarItem(
-              activeColor: AppColors.orange,
+              activeColor: Colors.black,
               inactiveColor: Colors.black,
               title: const Text('Search'),
               icon: const Icon(Icons.search)),
           BottomNavyBarItem(
-            activeColor: AppColors.orange,
+            activeColor: Colors.black,
             inactiveColor: Colors.black,
             title: const Text('Cart'),
-            icon: const Icon(Icons.shopping_basket_outlined),
+            icon: const Icon(Icons.shopping_basket_outlined,color: Colors.black,),
           ),
           BottomNavyBarItem(
-              activeColor: AppColors.orange,
+              activeColor: Colors.black,
               inactiveColor: Colors.black,
               title: const Text('Profile'),
               icon: const Icon(Icons.person)),

@@ -21,8 +21,8 @@ class UpdateProductButton extends StatelessWidget {
           decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color(0xFFE65C00),
-                  Color(0xFFF9D423),
+                  Color(0x000000),
+                  Color(0x000000),
                 ],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,

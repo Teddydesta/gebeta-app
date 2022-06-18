@@ -1,18 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:gebeta_food_delivery/models/DeliveredProducts.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/components/new_passwordscreen.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
 import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Category/CategoryPage.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/Orders/Ordersscreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/addProductScreen/components/ListProducts.dart';
+import 'package:gebeta_food_delivery/services/userServices.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/accountWidget.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
-class RestaurantProfileScreen extends StatelessWidget {
+class RestaurantProfileScreen extends StatefulWidget {
   const RestaurantProfileScreen({Key? key}) : super(key: key);
 
+  @override
+  State<RestaurantProfileScreen> createState() => _RestaurantProfileScreenState();
+}
+
+class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
+  bool loading = false;
+  final UserServices _userServices = UserServices();
+  late Hotel user;
+
+  getUserInfo() async {
+    print("start");
+    setState(() {
+      loading = true;
+    });
+    var res = await _userServices.getUserProfile();
+    if (res == null) {
+      // _showSnackBar(context, 'Error getting Information, please try again');
+
+      return;
+    }
+
+    setState(() {
+      loading = false;
+      user = res;
+    });
+
+    print(user.name);
+    setState(() {
+      loading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    getUserInfo();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

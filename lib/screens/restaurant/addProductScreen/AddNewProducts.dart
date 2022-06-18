@@ -22,7 +22,7 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
   final _formKey = GlobalKey<FormState>();
   List _images = [];
   List<XFile>? imagesFromDevice = [];
-  List<String> categories = ['dsf'];
+  List<String> categories = ['burger'];
   final ImagePicker _picker = ImagePicker();
   //final size;
   pickImage() async {
@@ -247,47 +247,42 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
             const SizedBox(height: 20.0),
 
             const SizedBox(height: 10.0),
-            Wrap(runSpacing: 5, spacing: 15, children: [
-              for (var image in _images)
-                Stack(clipBehavior: Clip.none, children: [
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundImage: FileImage(File(image)),
-                  ),
-                  Positioned(
-                    bottom: -20,
-                    right: -42,
-                    child: MaterialButton(
-                      onPressed: () => {
-                        setState(() {
-                          _images.remove(image);
-                        })
-                      },
-                      child: Icon(
-                        Icons.close,
-                        size: 30,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                ]),
-            ]),
-
-            InkWell(
+            GestureDetector(
               onTap: pickImage,
-              child: ElevatedButton(
-                  onPressed: pickImage,
-                  style: ElevatedButton.styleFrom(
-                    primary: AppColors.orange,
-                    // minimumSize: Size(size.width, 50.0),
-
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.grey.shade600),
-                        borderRadius: BorderRadius.circular(10.0)),
-                    padding: EdgeInsets.all(0.0),
-                  ),
-                  child: CustomText(text: "Pick image")),
+              child: Container(
+                height: 100,
+                decoration: BoxDecoration(
+                  color: Colors.grey
+                ),
+                child: Wrap(runSpacing: 5, spacing: 15, children: [
+                  for (var image in _images)
+                    Stack(clipBehavior: Clip.none, children: [
+                      CircleAvatar(
+                        radius: 50,
+                        backgroundImage: FileImage(File(image)),
+                      ),
+                      Positioned(
+                        bottom: -20,
+                        right: -42,
+                        child: MaterialButton(
+                          onPressed: () => {
+                            setState(() {
+                              _images.remove(image);
+                            })
+                          },
+                          child: Icon(
+                            Icons.close,
+                            size: 30,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                    ]),
+                ]),
+              ),
             ),
+
+           
             SizedBox(height: 30),
 
             CustomDropdown(

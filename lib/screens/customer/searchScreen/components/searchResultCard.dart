@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/models/Hotel.dart';
+import 'package:gebeta_food_delivery/screens/customer/hotelMenuScreen/hotelMenuScreen.dart';
 
 class SearchResultCard extends StatelessWidget {
   final HotelModel hotel;
@@ -18,11 +19,11 @@ class SearchResultCard extends StatelessWidget {
               image: NetworkImage(hotel.images![0]), fit: BoxFit.cover)),
     );
     return GestureDetector(
-      // onTap: () => Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //         builder: (BuildContext context) =>
-      //             DetailScreen(product: product))),
+     onTap: () => Navigator.push(
+        context,
+          MaterialPageRoute(
+              builder: (BuildContext context) =>
+                 HotelMenuScreen(hotel: hotel,))),
       child: Container(
         margin: EdgeInsets.fromLTRB(10, 5, 10, 8),
         height: 100,

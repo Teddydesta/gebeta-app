@@ -7,9 +7,6 @@ import 'package:gebeta_food_delivery/utils/locationUtils.dart';
 import 'package:gebeta_food_delivery/widgets/customInputText.dart';
 import 'package:image_picker/image_picker.dart';
 
-
-
-
 class UpdateProfile extends StatefulWidget {
   final String name, email, phone;
   const UpdateProfile(
@@ -30,7 +27,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
   Map _location = {};
   bool _isUser = false;
   List<String> categories = [];
-
 
   String? _name;
   TextEditingController _nameController = TextEditingController();
@@ -64,8 +60,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
   _clearState() {
     _formKey.currentState!.reset();
-    
-   
+
     _phoneController.clear();
     _nameController.clear();
     _emailController.clear();
@@ -78,8 +73,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
     value.trim();
     if (value.isEmpty) return error;
   }
-
- 
 
   _validateEmail(String value) {
     value.trim();
@@ -138,7 +131,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
         //location: _location,
       );
-
+      
       if (res == 404) {
         _showSnackBar(context, 'Error in Updating profile, please try again');
         setState(() {
@@ -147,14 +140,13 @@ class _UpdateProfileState extends State<UpdateProfile> {
         return;
       }
       _showSnackBar(context, 'Profile successfully Updated.');
-      // _clearState();
-      // setState(() {
-      //   loading = false;
-      // });
+      _clearState();
+      setState(() {
+        loading = false;
+      });
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => ProfileScreen()),
+          MaterialPageRoute(builder: (BuildContext context) => ProfileScreen()),
           ModalRoute.withName('/'));
       return;
     }
@@ -185,6 +177,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
     super.initState();
     getLocation();
     getRole();
+    _updateProfile();
   }
 
   @override
@@ -205,9 +198,12 @@ class _UpdateProfileState extends State<UpdateProfile> {
           backgroundColor: Colors.white,
           elevation: 0,
           centerTitle: true,
-          title: Text("Update User Profile",style: TextStyle(color: Colors.black),),
+          title: Text(
+            "Update User Profile",
+            style: TextStyle(color: Colors.black),
+          ),
           leading: IconButton(
-            icon: Icon(Icons.close, color: Colors.grey.shade800),
+            icon: Icon(Icons.arrow_back, color: Colors.grey.shade800),
             onPressed: loading ? null : () => Navigator.pop(context),
           ),
         ),
@@ -219,7 +215,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    
                     SizedBox(
                       height: 20,
                     ),
@@ -233,7 +228,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             });
                           },
                           obscureText: false,
-                          hintText: 'John Doe',
+                          hintText: 'Camila',
                           keyboardType: TextInputType.text,
                           validator: _validateName,
                           loading: loading,

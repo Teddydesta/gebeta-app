@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/models/Product.dart';
+import 'package:gebeta_food_delivery/models/CartModel.dart';
+import 'package:gebeta_food_delivery/screens/customer/address_screen/address_screen.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/components/PaymentScreen.dart';
-import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
-import 'package:gebeta_food_delivery/screens/customer/hotelMenuScreen/hotelMenuScreen.dart';
 import 'package:gebeta_food_delivery/services/cartService.dart';
 import 'package:gebeta_food_delivery/services/productService.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
@@ -20,385 +19,381 @@ class _BasketScreenState extends State<BasketScreen> {
   bool loading = false;
   CartServices _cartServices = CartServices();
   ProductServices _productServices = ProductServices();
+  List<CartModel> cartproducts = [];
+  var quantity = 1;
+  var totalPrice = '';
+  _showSnackBar(context, text) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(new SnackBar(content: CustomText(text: text)));
+  }
 
-  List<Product> products = [];
   getCartItems() async {
     print("start");
     setState(() {
-      loading = true;
+      loading = false;
     });
-    products.clear();
-    var res = await _cartServices.getCartItems();
+
+    var res = await _cartServices.getCartItem();
+    //  print(res);
+    if (res == null) {
+      //print("Error getting product");
+      _showSnackBar(context, 'Error getting product, please try again');
+      setState(() {
+        loading = false;
+      });
+      return;
+    }
+    totalPrice = res['totalPrice'].toString();
+
+    List<CartModel> response = (res['items']['products'] as List)
+        .map((h) => CartModel.fromJson(h))
+        .toList();
+
+    // print(res['items']['products']);
+    setState(() {
+      cartproducts.clear();
+      cartproducts.addAll(response);
+      loading = false;
+    });
+  }
+
+  increaseItems(String? id, index) async {
+    print("start");
+    var res = await _cartServices.updateQuantity(productID: id);
+    setState(() {
+      quantity++;
+      var a = int.parse(totalPrice) + cartproducts[index].price;
+      totalPrice = a.toString();
+      loading = false;
+    });
+
+    print(res);
+  }
+
+  //decreement
+  decreaseItems(String? id, index) async {
+    print("start");
+    var res = await _cartServices.updateQuantity(productID: id);
+    setState(() {
+      quantity--;
+      var a = int.parse(totalPrice) + cartproducts[index].price;
+      totalPrice = a.toString();
+      loading = false;
+    });
+
+    print(res);
+  }
+
+//delet cart items
+  deleteCartItems(String? id) async {
+    print("start");
+    setState(() {
+      loading = false;
+    });
+
+    var res = await _cartServices.deleteCartItem(productID: id);
     print(res);
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            padding: EdgeInsets.only(left: 10, top: 20),
-            height: 100,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [AppColors.orange, Color(0xFFfbab66)],
-                  begin: FractionalOffset(0.2, 0.2),
-                  end: FractionalOffset(1.0, 1.0),
-                  stops: [0.0, 1.0],
-                  tileMode: TileMode.clamp),
-            ),
-            //color: AppColors.orange,
-            margin: EdgeInsets.only(top: 0, bottom: 0),
+  void initState() {
+    getCartItems();
 
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return loading
+        ? Center(
+            child: Container(
+              height: 50,
+              width: 50,
+              child: CircularProgressIndicator(
+                color: AppColors.orange,
+              ),
+            ),
+          )
+        : Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              iconTheme: IconThemeData(color: Colors.black),
+              centerTitle: true,
+              elevation: 0,
+              title: Text(
+                "Cart Items",
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+            body: SingleChildScrollView(
+              child: Container(
+                color: Colors.white,
+                child: Column(
                   children: [
+                    Center(),
+                    ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: cartproducts.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+
+                                    blurRadius: 7,
+                                    offset: const Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.grey[50],
+                              ),
+                              margin:
+                                  EdgeInsets.only(left: 10, right: 5, top: 25),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 100,
+                                        width: 100,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: NetworkImage(
+                                                  cartproducts[index]
+                                                      .product
+                                                      .images![0])),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: 50,
+                                            
+                                            child: CustomText(
+                                              maxLine: 2,
+                                              text: cartproducts[index].name,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          CustomText(
+                                            text: "ETB${totalPrice.toString()}",
+                                            fontWeight: FontWeight.w400,
+                                            color: AppColors.orange,
+                                            fontSize: 16,
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          ElevatedButton(
+                                            onPressed: () {
+                                              decreaseItems(
+                                                  cartproducts[index].id,
+                                                  index);
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                              shape: CircleBorder(),
+                                              primary: Colors.white,
+                                              minimumSize: const Size(30, 30),
+                                            ),
+                                            child: Icon(
+                                              Icons.remove_circle_outline,
+                                              color: Colors.grey,
+                                              size: 40,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          CustomText(
+                                            text: "$quantity",
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 24,
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          ElevatedButton(
+                                            onPressed: () {
+                                              increaseItems(
+                                                  cartproducts[index].id,
+                                                  index);
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                              shape: CircleBorder(),
+                                              primary: Colors.white,
+                                              minimumSize: const Size(20, 20),
+                                            ),
+                                            child: Icon(
+                                              Icons.add_circle_outline_rounded,
+                                              color: Colors.grey,
+                                              size: 40,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      GestureDetector(
+                                        onTap: () => deleteCartItems(
+                                            cartproducts[index].id),
+                                        child: Container(
+                                          padding: EdgeInsets.only(
+                                              bottom: 50, left: 20),
+                                          child: CustomIcon(
+                                            icon: Icons.delete,
+                                            iconSize: 24,
+                                            iconColor: AppColors.orange,
+                                            backgroundColor: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                    Container(
+                      margin: EdgeInsets.only(left: 10, right: 15, top: 25),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomText(
+                            text: "Bill Details",
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          Divider(
+                            color: Colors.grey,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CustomText(text: "Item Total"),
+                              CustomText(text: "${totalPrice.toString()} Birr")
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CustomText(text: "Delivery Charges"),
+                              CustomText(text: "50 Birr")
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CustomText(text: "Total Discount"),
+                              CustomText(text: "0.0 Birr")
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        top: 300,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              CustomIcon(
+                                icon: Icons.location_on,
+                                backgroundColor: Colors.white,
+                                iconSize: 24,
+                              ),
+                              SizedBox(
+                                width: 25,
+                              ),
+                              Column(
+                                children: [
+                                  CustomText(text: "Delivery to Home"),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  CustomText(text: "Welkite, Gubye City"),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Container(
+                              margin: EdgeInsets.only(right: 10),
+                              child: ElevatedButton(
+                                  style: ButtonStyle(),
+                                  onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              MapScreen())),
+                                  child: Text("edit"))),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
                     GestureDetector(
                       onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: ((BuildContext context) =>
-                                  HotelMenuScreen()))),
-                      child: const CustomIcon(
-                        icon: Icons.arrow_back_ios,
-                        backgroundColor: AppColors.orange,
-                        iconColor: Colors.white,
-                        iconSize: 24,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 150,
-                    ),
-                    const CustomText(
-                      text: "REMAS ",
-                      fontSize: 24,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Container(
-            height: 140,
-            margin: EdgeInsets.only(right: 10),
-            decoration: BoxDecoration(
-              boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-
-                                        blurRadius: 7,
-                                        offset: const Offset(
-                                            0, 3), // changes position of shadow
-                                      ),
-                                    ],
-                                    borderRadius: BorderRadius.circular(2),
-                                    color: Colors.white38,
-            ),
-            child: Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        height: 120,
-                        width: 100,
+                                  const PaymentScreen()))),
+                      child: Container(
+                        child: Center(
+                          child: CustomText(
+                            text: "CHECKOUT",
+                            color: Colors.white,
+                          ),
+                        ),
+                        height: 50,
+                        width: double.maxFinite,
+                        margin: const EdgeInsets.only(
+                            bottom: 0, right: 20, left: 20),
                         decoration: BoxDecoration(
-                           borderRadius: BorderRadius.circular(5),
-                                    color: Colors.white38,
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                                image: AssetImage("assets/images/food0.png"))),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomText(text: "Burger",fontWeight: FontWeight.bold,),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            CustomText(text: "Description"),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            CustomText(text: "ETB123")
-                          ],
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.black,
                         ),
                       ),
-                      Container(
-                        width: 180,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            GestureDetector(
-                                onTap: getCartItems,
-                                child: CustomIcon(
-                                    icon: Icons.remove,
-                                    iconSize: 24,
-                                    backgroundColor: Colors.white)),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Container(
-                                margin: EdgeInsets.only(top: 10),
-                                child: CustomText(
-                                  fontSize: 24,
-                                  text: "0",
-                                )),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            CustomIcon(
-                              icon: Icons.add,
-                              iconSize: 24,
-                              backgroundColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-
-          // ListView.builder(
-          //         scrollDirection: Axis.vertical,
-          //         physics: const NeverScrollableScrollPhysics(),
-          //         shrinkWrap: true,
-          //         itemCount: products.length,
-          //         itemBuilder: (context, index) {
-          //           return Container(
-          //             color: Colors.grey,
-          //             child: Container(
-          //               margin: EdgeInsets.only(left: 10, right: 10),
-          //               child: Column(
-          //                 crossAxisAlignment: CrossAxisAlignment.start,
-          //                 children: [
-          //                   SizedBox(
-          //                     height: 35,
-          //                   ),
-          //                   Row(
-          //                     mainAxisAlignment:
-          //                         MainAxisAlignment.spaceBetween,
-          //                     children: [
-          //                       Container(
-          //                         height: 60,
-          //                         width: 70,
-          //                         decoration: BoxDecoration(
-          //                           image: DecorationImage(
-          //                               image: NetworkImage(
-          //                                   products[index].images![0])),
-          //                         ),
-          //                       ),
-          //                       SizedBox(
-          //                         width: 10,
-          //                       ),
-          //                       Column(
-          //                         crossAxisAlignment:
-          //                             CrossAxisAlignment.start,
-          //                         children: [
-          //                           CustomText(
-          //                             text: products[index].name!,
-          //                             fontWeight: FontWeight.bold,
-          //                           ),
-          //                           SizedBox(
-          //                             height: 5,
-          //                           ),
-          //                           Container(
-          //                             width: 180,
-          //                             child: CustomText(
-          //                               maxLine: 2,
-          //                               text: products[index].description!,
-          //                               fontSize: 15,
-          //                             ),
-          //                           ),
-          //                           SizedBox(
-          //                             height: 5,
-          //                           ),
-          //                           CustomText(
-          //                             text:
-          //                                 "ETB${products[index].price.toString()}",
-          //                             fontWeight: FontWeight.w400,
-          //                             color: AppColors.orange,
-          //                             fontSize: 16,
-          //                           ),
-          //                         ],
-          //                       ),
-          //                       const SizedBox(
-          //                         width: 30,
-          //                       ),
-
-          //                        Container(
-          //                         width: 100,
-          //                         color: Colors.grey,
-          //                         child: Row(
-          //                           children: [
-          //                             Icon(Icons.remove,),
-          //                             CustomText(text: "0"),
-          //                             Icon(Icons.add)
-          //                           ],
-          //                         ),
-          //                        ),
-
-          //                     ],
-          //                   ),
-          //                 ],
-          //               ),
-          //             ),
-          //           );
-          //         }),
-          const SizedBox(
-            height: 15,
-          ),
-          Divider(
-            color: Colors.grey[350],
-          ),
-          Container(
-              margin: const EdgeInsets.only(left: 15, right: 25),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const CustomText(
-                    text: "Bill Detail",
-                    fontWeight: FontWeight.bold,
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      CustomText(text: "Item Total"),
-                      CustomText(text: "ETB240.00")
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      CustomText(text: "Distance Range"),
-                      CustomText(text: "28 KM")
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      CustomText(text: "delivery Charges"),
-                      CustomText(text: "ETB25")
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      CustomText(text: " Total Discount"),
-                      CustomText(text: "ETB0.00")
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      CustomText(text: "To  Pay"),
-                      CustomText(text: "ETB240.00")
-                    ],
-                  ),
-                ],
-              )),
-          const SizedBox(
-            height: 15,
-          ),
-          Divider(
-            color: Colors.grey[350],
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Container(
-            margin: const EdgeInsets.only(left: 15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const CustomText(
-                  text: "Order Type",
-                ),
-                const SizedBox(height: 5),
-                Row(
-                  children: [
-                    CustomIcon(
-                      icon: Icons.circle_outlined,
-                      iconColor: AppColors.orange,
-                      backgroundColor: Colors.white,
-                      iconSize: 24,
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    CustomText(text: "Delivery"),
                   ],
                 ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 100,
-          ),
-          Divider(
-            color: Colors.grey[300],
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          GestureDetector(
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: ((BuildContext context) =>
-                        const PaymentScreen()))),
-            child: Container(
-              child: Center(
-                child: CustomText(
-                  text: "CHECKOUT",
-                  color: Colors.white,
-                ),
-              ),
-              height: 50,
-              width: double.maxFinite,
-              margin: const EdgeInsets.only(bottom: 0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)),
-                color: Colors.black,
               ),
             ),
-          ),
-        ],
-      ),
-    );
+          );
   }
 }

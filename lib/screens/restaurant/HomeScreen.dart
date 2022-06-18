@@ -4,8 +4,6 @@ import 'package:gebeta_food_delivery/screens/customer/productScreen/productScree
 import 'package:gebeta_food_delivery/screens/restaurant/Orders/Ordersscreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/addProductScreen/AddNewProducts.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/profileScreen.dart';
-import 'package:gebeta_food_delivery/screens/restaurant/Category/CategoryPage.dart';
-import 'package:gebeta_food_delivery/screens/restaurant/addProductScreen/components/ListProducts.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 
 class RestaurantHomeScreen extends StatefulWidget {
@@ -57,9 +55,11 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
             AddNewProductPage(),
             OrdersScreen(),
             RestaurantProfileScreen(),
+            
           ],
         ),
       ),
+      floatingActionButton: _getFAB(),
       //Botom Nav bar
       bottomNavigationBar: BottomNavyBar(
         backgroundColor: Colors.grey[200],
@@ -96,3 +96,18 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
     );
   }
 }
+
+Widget _getFAB() {
+    
+      return FloatingActionButton.extended(
+          label: const Text('Add Product'),
+          icon: const Icon(Icons.add),
+          backgroundColor: Colors.black,
+          onPressed: ()=>AddNewProductPage()
+
+          );
+   
+  
+}
+
+
