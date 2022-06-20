@@ -5,12 +5,10 @@ import 'package:gebeta_food_delivery/screens/customer/cartScreen/BasketScreen.da
 import 'package:gebeta_food_delivery/screens/customer/profile_screen/profile_screen.dart';
 import 'package:gebeta_food_delivery/screens/customer/searchScreen/components/searchPage.dart';
 
-
 import '../../utils/colors.dart';
 
 class HomeMainScreen extends StatefulWidget {
   const HomeMainScreen({Key? key}) : super(key: key);
-
   @override
   _HomeMainScreenState createState() => _HomeMainScreenState();
 }

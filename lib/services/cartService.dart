@@ -26,6 +26,7 @@ class CartServices {
       //     jsonResponse.map((product) => new Product.fromJson(product)).toList();
       //json.decode(response.body)['products'];
       // return products;
+      
       return json.decode(response.body);
     }
     //print(json.decode(response.body)['message']);
@@ -41,6 +42,7 @@ class CartServices {
       uri,
       headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
     );
+    
     if (response != null) {
       print(response);
       print(response.statusCode);
@@ -60,7 +62,7 @@ class CartServices {
 
     var body = {
       'productID': productID,
-      'quantity': '1',
+      'quantity': quantity.toString(),
     };
     var response = await http.put(
       url,

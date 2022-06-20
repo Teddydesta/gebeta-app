@@ -4,40 +4,55 @@ import 'package:gebeta_food_delivery/screens/customer/hotelMenuScreen/hotelMenuS
 
 class SearchResultCard extends StatelessWidget {
   final HotelModel hotel;
-  const SearchResultCard({Key? key, required this.hotel, }) : super(key: key);
+  const SearchResultCard({
+    Key? key,
+    required this.hotel,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     final image = Container(
-      height: 70,
-      width: 80,
+      height: 120,
+      width: 100,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+
+              blurRadius: 7,
+              offset: const Offset(0, 3), // changes position of shadow
+            ),
+          ],
+          borderRadius: BorderRadius.circular(2),
+          color: Colors.white38,
           image: DecorationImage(
               image: NetworkImage(hotel.images![0]), fit: BoxFit.cover)),
     );
     return GestureDetector(
-     onTap: () => Navigator.push(
-        context,
+      onTap: () => Navigator.push(
+          context,
           MaterialPageRoute(
-              builder: (BuildContext context) =>
-                 HotelMenuScreen(hotel: hotel,))),
+              builder: (BuildContext context) => HotelMenuScreen(
+                    hotel: hotel,
+                  ))),
       child: Container(
         margin: EdgeInsets.fromLTRB(10, 5, 10, 8),
-        height: 100,
+        height: 120,
         width: size.width * 0.8,
         decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.grey.shade400,
-                  offset: Offset(0.0, 1.0),
-                  blurRadius: 1.5,
-                  spreadRadius: 2.0),
-            ]),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+
+              blurRadius: 7,
+              offset: const Offset(0, 3), // changes position of shadow
+            ),
+          ],
+          borderRadius: BorderRadius.circular(2),
+          color: Colors.grey[100],
+        ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -70,7 +85,6 @@ class SearchResultCard extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
-                          
                         ],
                       ),
                     ),

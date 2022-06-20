@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/models/CartModel.dart';
 import 'package:gebeta_food_delivery/screens/customer/address_screen/address_screen.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/components/PaymentScreen.dart';
+import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/services/cartService.dart';
 import 'package:gebeta_food_delivery/services/productService.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
@@ -30,7 +31,7 @@ class _BasketScreenState extends State<BasketScreen> {
   getCartItems() async {
     print("start");
     setState(() {
-      loading = false;
+      loading = true;
     });
 
     var res = await _cartServices.getCartItem();
@@ -55,17 +56,18 @@ class _BasketScreenState extends State<BasketScreen> {
       cartproducts.addAll(response);
       loading = false;
     });
+    
   }
 
   increaseItems(String? id, index) async {
     print("start");
-    var res = await _cartServices.updateQuantity(productID: id);
     setState(() {
-      quantity++;
+       cartproducts[index].quantity = cartproducts[index].quantity + 1;
       var a = int.parse(totalPrice) + cartproducts[index].price;
       totalPrice = a.toString();
       loading = false;
     });
+    var res = await _cartServices.updateQuantity(productID: id, quantity: cartproducts[index].quantity);
 
     print(res);
   }
@@ -73,13 +75,18 @@ class _BasketScreenState extends State<BasketScreen> {
   //decreement
   decreaseItems(String? id, index) async {
     print("start");
-    var res = await _cartServices.updateQuantity(productID: id);
+      if(cartproducts[index].quantity == 1) {
+        return;
+      }
+    
     setState(() {
-      quantity--;
+      cartproducts[index].quantity = cartproducts[index].quantity - 1;
       var a = int.parse(totalPrice) + cartproducts[index].price;
       totalPrice = a.toString();
       loading = false;
     });
+
+    var res = await _cartServices.updateQuantity(productID: id, quantity: cartproducts[index].quantity);
 
     print(res);
   }
@@ -88,12 +95,13 @@ class _BasketScreenState extends State<BasketScreen> {
   deleteCartItems(String? id) async {
     print("start");
     setState(() {
-      loading = false;
+      loading = true;
     });
 
     var res = await _cartServices.deleteCartItem(productID: id);
     print(res);
   }
+
 
   @override
   void initState() {
@@ -104,20 +112,13 @@ class _BasketScreenState extends State<BasketScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return loading
-        ? Center(
-            child: Container(
-              height: 50,
-              width: 50,
-              child: CircularProgressIndicator(
-                color: AppColors.orange,
-              ),
-            ),
-          )
-        : Scaffold(
+    return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
               iconTheme: IconThemeData(color: Colors.black),
+              leading: GestureDetector(
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => HomeMainScreen())),
+                  child: CustomIcon(icon: Icons.arrow_back,iconColor: Colors.black,iconSize: 24,backgroundColor: Colors.white,)),
               centerTitle: true,
               elevation: 0,
               title: Text(
@@ -130,8 +131,10 @@ class _BasketScreenState extends State<BasketScreen> {
                 color: Colors.white,
                 child: Column(
                   children: [
-                    Center(),
-                    ListView.builder(
+                    
+                 loading
+                          ? Center(child: CircularProgressIndicator())
+                         :    ListView.builder(
                         scrollDirection: Axis.vertical,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
@@ -139,29 +142,28 @@ class _BasketScreenState extends State<BasketScreen> {
                         itemBuilder: (context, index) {
                           return Container(
                             child: Container(
+                              height: 100,
                               decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.3),
-
-                                    blurRadius: 7,
-                                    offset: const Offset(
-                                        0, 3), // changes position of shadow
-                                  ),
-                                ],
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.grey[50],
-                              ),
+                                  color: Colors.grey[100],
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.grey.shade400,
+                                        offset: Offset(0.5, 1.0),
+                                        blurRadius: 6.5,
+                                        spreadRadius: 1.0),
+                                  ]),
                               margin:
-                                  EdgeInsets.only(left: 10, right: 5, top: 25),
+                                  EdgeInsets.only(left: 10, right: 10, top: 10),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
                                     children: [
                                       Container(
-                                        height: 100,
-                                        width: 100,
+                                        margin: EdgeInsets.only(top: 10),
+                                        height: 80,
+                                        width: 80,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(20),
@@ -181,29 +183,16 @@ class _BasketScreenState extends State<BasketScreen> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Container(
-                                            width: 50,
-                                            
+                                            margin: EdgeInsets.only(top: 15,left: 10),
+                                            width: 100,
                                             child: CustomText(
-                                              maxLine: 2,
+                                              maxLine: 1,
                                               text: cartproducts[index].name,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          CustomText(
-                                            text: "ETB${totalPrice.toString()}",
-                                            fontWeight: FontWeight.w400,
-                                            color: AppColors.orange,
-                                            fontSize: 16,
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
+                                         SizedBox(height: 10,),
+                                          Row(
                                         children: [
                                           ElevatedButton(
                                             onPressed: () {
@@ -217,21 +206,15 @@ class _BasketScreenState extends State<BasketScreen> {
                                               minimumSize: const Size(30, 30),
                                             ),
                                             child: Icon(
-                                              Icons.remove_circle_outline,
+                                              Icons.remove,
                                               color: Colors.grey,
-                                              size: 40,
+                                              size: 30,
                                             ),
                                           ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
                                           CustomText(
-                                            text: "$quantity",
+                                            text: "${cartproducts[index].quantity}",
                                             fontWeight: FontWeight.bold,
                                             fontSize: 24,
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
                                           ),
                                           ElevatedButton(
                                             onPressed: () {
@@ -245,27 +228,42 @@ class _BasketScreenState extends State<BasketScreen> {
                                               minimumSize: const Size(20, 20),
                                             ),
                                             child: Icon(
-                                              Icons.add_circle_outline_rounded,
+                                              Icons.add,
                                               color: Colors.grey,
-                                              size: 40,
+                                              size: 30,
                                             ),
                                           ),
                                         ],
                                       ),
-                                      GestureDetector(
+                                      
+                                        ],
+                                      ),
+                                      
+                                       Column(
+                                        children: [
+                                          GestureDetector(
                                         onTap: () => deleteCartItems(
                                             cartproducts[index].id),
                                         child: Container(
                                           padding: EdgeInsets.only(
-                                              bottom: 50, left: 20),
+                                              bottom: 10, left: 100),
                                           child: CustomIcon(
                                             icon: Icons.delete,
                                             iconSize: 24,
                                             iconColor: AppColors.orange,
-                                            backgroundColor: Colors.white,
+                                            backgroundColor: Colors.white30,
                                           ),
                                         ),
                                       ),
+                                      SizedBox(width: 50,),
+                                      CustomText(
+                                            text: "ETB${totalPrice.toString()}",
+                                            fontWeight: FontWeight.w400,
+                                            color: AppColors.orange,
+                                            fontSize: 16,
+                                          ),
+                                        ],
+                                      )
                                     ],
                                   ),
                                 ],

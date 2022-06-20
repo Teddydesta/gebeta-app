@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
+
 class UpdateProductButton extends StatelessWidget {
   final loading;
   final onPressed;
+  final String text;
+  final Color color;
+  final double height;
+  final double width;
+  final double borderRadius;
   final size;
-  const UpdateProductButton({Key? key, this.loading, this.onPressed, this.size})
+  const UpdateProductButton(
+      {Key? key,
+      this.loading,
+      this.onPressed,
+      this.size,
+      required this.text,
+      required this.color,
+      required this.height,
+      required this.width,
+      required this.borderRadius})
       : super(key: key);
 
   @override
@@ -19,14 +34,7 @@ class UpdateProductButton extends StatelessWidget {
         ),
         child: Ink(
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0x000000),
-                  Color(0x000000),
-                ],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ),
+              color: Colors.black,
               borderRadius: BorderRadius.circular(10.0)),
           child: Container(
             constraints: BoxConstraints(maxWidth: size.width, minHeight: 40.0),
@@ -40,7 +48,7 @@ class UpdateProductButton extends StatelessWidget {
                     ),
                   )
                 : Text(
-                    'Update Product',
+                    text,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white,

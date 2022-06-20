@@ -167,6 +167,16 @@ class UserServices {
 
     if (prefs.containsKey('token')) {
       await prefs.remove('token');
+      await prefs.remove('token');
+      await prefs.remove(
+        'role',
+      );
+      await prefs.remove(
+        'name',
+      );
+      await prefs.remove(
+        'id',
+      );
       await prefs.remove('isFirstLaunch');
       return {'error': null};
     } else {
@@ -180,20 +190,34 @@ class UserServices {
     var uri = Uri.parse('$baseUrl/users/profile/');
     var response =
         await http.get(uri, headers: {'Authorization': 'Bearer $token'});
-
+    print(token);
     if (response.statusCode == 200 ||
         response.statusCode == 201 ||
         response.statusCode == 202) {
       var user = UserModel.fromJson(json.decode(response.body));
-
       return user;
     }
 
     return null;
   }
 
-  //search hotel
+  //get hotel profile
+  getHotelProfile() async {
+    var token = await _commonServices.getToken();
+    var uri = Uri.parse('$baseUrl/users/hotel/profile/');
+    var response =
+        await http.get(uri, headers: {'Authorization': 'Bearer $token'});
+    print(token);
+    if (response.statusCode == 200 ||
+        response.statusCode == 201 ||
+        response.statusCode == 202) {
+      var hotel = HotelModel.fromJson(json.decode(response.body));
+      return hotel;
+    }
+    return null;
+  }
 
+  //search hotel
   Future searchHotels(name) async {
     var uri = Uri.parse('$baseUrl/users/hotels/name?name=$name');
 

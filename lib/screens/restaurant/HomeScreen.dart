@@ -1,10 +1,13 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:gebeta_food_delivery/screens/customer/productScreen/productScreen.dart';
-import 'package:gebeta_food_delivery/screens/restaurant/Orders/Ordersscreen.dart';
+import 'package:gebeta_food_delivery/models/Hotel.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/Orders/OrderScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/addProductScreen/AddNewProducts.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/productScreen/productScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/profileScreen.dart';
-import 'package:gebeta_food_delivery/utils/colors.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/updateProdutScreen/updateProductScreen.dart';
+import 'package:gebeta_food_delivery/services/userServices.dart';
+import 'package:geolocator/geolocator.dart';
 
 class RestaurantHomeScreen extends StatefulWidget {
   const RestaurantHomeScreen({Key? key}) : super(key: key);
@@ -14,6 +17,13 @@ class RestaurantHomeScreen extends StatefulWidget {
 }
 
 class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
+  var locationMessage = "";
+  bool loading = true;
+  UserServices _userServices = UserServices();
+  List<HotelModel> hotels = [];
+  var lat = 0.0;
+  var lng = 0.0;
+
   int _currentIndex = 0;
   late PageController _pageController;
 
@@ -29,17 +39,7 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
     super.dispose();
   }
 
-  //late final int _selectedIndex = 0;
-  //List pages = [
-  //const HomeMainScreen(),
-  //const Center(child: Text('Next page')),
-  //Container(
-  // child: const Center(child: Text('Second page')),
-  // ),
-  //Container(
-  //  child: const Center(child: Text('Third page')),
-  //),
-  // ];
+//
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,16 +50,16 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
           onPageChanged: (index) {
             setState(() => _currentIndex = index);
           },
-          children:  <Widget>[
+          children: <Widget>[
             ProductsScreen(),
             AddNewProductPage(),
-            OrdersScreen(),
-            RestaurantProfileScreen(),
-            
+            HotelOrderScreen(),
+            HotelProfileScreen(),
           ],
         ),
       ),
-      floatingActionButton: _getFAB(),
+
+      //floatingActionButton: _getFAB(),
       //Botom Nav bar
       bottomNavigationBar: BottomNavyBar(
         backgroundColor: Colors.grey[200],
@@ -71,23 +71,23 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
         },
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-              activeColor: AppColors.orange,
+              activeColor: Colors.black,
               inactiveColor: Colors.black,
-              title: const Text('Product'),
+              title: const Text('Home'),
+              icon: const Icon(Icons.home)),
+          BottomNavyBarItem(
+              activeColor: Colors.black,
+              inactiveColor: Colors.black87,
+              title: const Text('Add'),
               icon: const Icon(Icons.add)),
           BottomNavyBarItem(
-              activeColor: AppColors.orange,
-              inactiveColor: Colors.black87,
-              title: const Text('Menu'),
-              icon: const Icon(Icons.menu_outlined)),
-          BottomNavyBarItem(
-            activeColor: AppColors.orange,
+            activeColor: Colors.black,
             inactiveColor: Colors.black87,
             title: const Text('Orders'),
             icon: const Icon(Icons.checklist_outlined),
           ),
           BottomNavyBarItem(
-              activeColor: AppColors.orange,
+              activeColor: Colors.black,
               inactiveColor: Colors.black87,
               title: const Text('Profile'),
               icon: const Icon(Icons.person)),
@@ -98,16 +98,16 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
 }
 
 Widget _getFAB() {
-    
-      return FloatingActionButton.extended(
-          label: const Text('Add Product'),
-          icon: const Icon(Icons.add),
-          backgroundColor: Colors.black,
-          onPressed: ()=>AddNewProductPage()
-
-          );
-   
-  
+  return FloatingActionButton.extended(
+      label: const Text('Add Product'),
+      icon: const Icon(Icons.add),
+      backgroundColor: Colors.black,
+      onPressed: () {
+        AddNewProductPage();
+      }
+      // Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //         builder: (BuildContext context) => AddNewProductPage())),
+      );
 }
-
-

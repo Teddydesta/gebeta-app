@@ -70,11 +70,11 @@ class SelectRoleScreen extends StatelessWidget {
                   height: 10.0,
                 ),
                 GestureDetector(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((BuildContext context) =>
-                              const RestaurantHomeScreen()))),
+                  // onTap: () => Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: ((BuildContext context) =>
+                  //             const RestaurantHomeScreen()))),
                   child: CustomBtn(
                     text: "RESTAURANT",
                     color: Colors.grey,
@@ -85,11 +85,11 @@ class SelectRoleScreen extends StatelessWidget {
                     textColor: Colors.white,
                     fontWeight: FontWeight.bold,
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((BuildContext context) =>
-                                  const RestaurantHomeScreen())));
+                    //   Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //           builder: ((BuildContext context) =>
+                    //               const RestaurantHomeScreen())));
                     },
                   ),
                 ),

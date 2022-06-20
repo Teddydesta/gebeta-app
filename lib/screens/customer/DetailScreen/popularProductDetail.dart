@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/models/Product.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/BasketScreen.dart';
-import 'package:gebeta_food_delivery/screens/customer/productScreen/productScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/columnWidget.dart';
@@ -38,11 +37,11 @@ class PopularProductDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((BuildContext context) =>
-                               ProductsScreen()))),
+                  // onTap: () => Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: ((BuildContext context) =>
+                  //              ProductsScreen()))),
                   child: const CustomIcon(
                     icon: Icons.arrow_back_ios,
                     iconColor: Colors.white,

@@ -10,6 +10,7 @@ import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/utils/helpers.dart';
 import 'package:gebeta_food_delivery/utils/locationUtils.dart';
 import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
+import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customInputText.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -32,8 +33,10 @@ class _SignUpPageState extends State<SignUpPage> {
   Map _location = {};
   bool _isCustomer = true;
   bool showPassword = false;
+  String verificationIda = '';
   bool isOtp = false;
-  String verificationId = '';
+  bool isSigningUp = false;
+  bool I = false;
   String? _name;
   TextEditingController _nameController = TextEditingController();
   String? _email;
@@ -74,7 +77,7 @@ class _SignUpPageState extends State<SignUpPage> {
       return null;
   }
 
-   _validateEmail(String value) {
+  _validateEmail(String value) {
     value.trim();
     String pattern =
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
@@ -85,24 +88,26 @@ class _SignUpPageState extends State<SignUpPage> {
       return null;
   }
 
-
   _validatePhone(String value) {
     if (value.length < 10 || value.length > 13)
       return 'Phone must greater than 9 and less than 13';
-   
 
     return null;
   }
 
   _showSnackBar(context, text) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(new SnackBar(content: new Text(text)));
+    ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
+        content: new Text(text, style: TextStyle(color: Colors.black)),
+        backgroundColor: Colors.orange));
   }
 
   onSubmitForm(context) async {
     if (_location.isEmpty) {
       await getLocation();
-      _showSnackBar(context, 'Location coordinates are required');
+      _showSnackBar(
+        context,
+        'Location coordinates are required',
+      );
     }
     if (_formKey.currentState!.validate()) {
       setState(() {
@@ -172,34 +177,51 @@ class _SignUpPageState extends State<SignUpPage> {
 
   handleVerifyOtp() async {
     String phone = '+251${_phoneController.text.trim()}';
+    if (_otpController.text == '') {
+      _showSnackBar(context, "Please enter otp");
+      return;
+    }
+    print(phone);
     setState(() {
       loading = true; // setstate
+      isSigningUp = true; 
     });
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: verificationId, smsCode: _otpController.text);
+        verificationId: verificationIda, smsCode: _otpController.text);
 
     _otpController.text = credential.smsCode!;
     UserCredential result = await auth.signInWithCredential(credential);
     User? user = result.user;
     if (user != null) {
-      if (_isCustomer) {
-        var regres = await userServices.registerUser(
-            name: _name,
-            email: _email,
-            phone: '+251${_phoneController.text.trim()}',
-            // location: _location,
-            password: _password); // save token and redirect
-      } else {
-        var regres = await userServices.registerHotel(
-            name: _name,
-            email: _email,
-            phone: '+251${_phoneController.text.trim()}',
-            // location: _location,
-            password: _password);
+      var res = await userServices.registerUser(
+          name: _name,
+          email: _email,
+          phone: '+251${_phoneController.text.trim()}',
+          // location: _location,
+          password: _password);
 
-        // save token and redirect
+      if (res['error'] == null) {
+        await Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => HomeMainScreen()),
+            ModalRoute.withName('/'));
+        _showSnackBar(
+            context,
+            _isCustomer
+                ? 'Customer successfully registered'
+                : 'Resturant successfully registered');
+        setState(() {
+          loading = false;
+        });
+        return;
       }
+      setState(() {
+        loading = false;
+      });
+      _showSnackBar(context, res['error']);
     } else {
+      _showSnackBar(context, 'server error, please try again');
       print('error');
     }
   }
@@ -210,11 +232,12 @@ class _SignUpPageState extends State<SignUpPage> {
       print(_nameController.text.trim());
       print(_phoneController.text.trim());
       print(_passwordController.text.trim());
-
+      isSigningUp = true;
       var res = await userServices.checkIfPhoneIsInUse(
           phone: '${_phoneController.text.trim()}');
       if (res != null) {
-        print('user exist with this phone number');
+        isSigningUp = false;
+        _showSnackBar(context, 'user exist with this phone number');
         return;
       } else {
         await auth.verifyPhoneNumber(
@@ -223,13 +246,15 @@ class _SignUpPageState extends State<SignUpPage> {
             setState(() {
               loading = true; // setstate
             });
-            verificationId = verificationId;
+            verificationIda = verificationId;
             setState(() {
               isOtp = true;
             });
             setState(() {
               loading = false; // setstate
             });
+            isSigningUp = false;
+
             // // Update the UI - wait for the user to enter the SMS code
             // String smsCode = _otpController.text;
 
@@ -244,13 +269,15 @@ class _SignUpPageState extends State<SignUpPage> {
           codeAutoRetrievalTimeout: (String verificationId) {
             setState(() {
               loading = false; // setstate
+              isSigningUp = false; // setstate
             }); // Auto-resolution timed out...
           },
           verificationCompleted:
               (PhoneAuthCredential phoneAuthCredential) async {
             String phone = '+251${_phoneController.text.trim()}';
             setState(() {
-              loading = true; // setstate
+              loading = true;
+              isSigningUp = true; // setstate
             });
             print(phoneAuthCredential.smsCode);
             setState(() {
@@ -262,38 +289,47 @@ class _SignUpPageState extends State<SignUpPage> {
             print(user);
             if (user != null) {
               ///if (_isCustomer) {
-                var registerRes = await userServices.registerUser(
-                    name: _name,
-                    email: _email,
-                    phone: '+251${_phoneController.text.trim()}',
-                    // location: _location,
-                    password: _password);
-                    
-                     if (registerRes['error'] == null) {
-        _showSnackBar(context, 'Successfully registtered');
-        
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => HomeMainScreen()),
-            ModalRoute.withName('/'));
-        return;
-      }
-                // save token and redirect
-                print(registerRes);
-      
+              var registerRes = await userServices.registerUser(
+                  name: _name,
+                  email: _email,
+                  phone: '+251${_phoneController.text.trim()}',
+                  // location: _location,
+                  password: _password);
+
+              if (registerRes['error'] == null) {
+                _showSnackBar(context, 'Successfully registtered');
+                isSigningUp = false; // setstate
+
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => HomeMainScreen()),
+                    ModalRoute.withName('/'));
+                return;
+              }
+              isSigningUp = false; // setstate
+
+              // save token and redirect
+              print(registerRes);
             } else {
               setState(() {
-                loading = false; // setstate
+                loading = false;
+                isSigningUp = false; // setstate
+                // setstate
               });
               print('error');
             }
             setState(() {
+              isSigningUp = false; // setstate
+
               loading = false; // setstate
             });
           },
           verificationFailed: (FirebaseAuthException error) {
             // show error message
+            isSigningUp = false; // setstate
+
+            _showSnackBar(context, 'Verification error');
           },
         );
       }
@@ -320,7 +356,12 @@ class _SignUpPageState extends State<SignUpPage> {
 
     String defaultFontFamily = 'Roboto-Light.ttf';
     double defaultFontSize = 14;
-
+    if (isSigningUp)
+      return Container(
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
     return isOtp
         ? Scaffold(
             //  appBar: AppBar(),
@@ -504,12 +545,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                       hintText: "Full Name",
                                     ),
                                   ),
-                                   CustomTextField(
-                                     
+                                  CustomTextField(
                                     hintText: "johndoe@gmail.com",
                                     controller: _emailController,
                                     keyboardType: TextInputType.emailAddress,
-                                    
                                     name: 'Email',
                                     validator: _validateEmail,
                                     loading: loading,
@@ -520,21 +559,66 @@ class _SignUpPageState extends State<SignUpPage> {
                                       });
                                     },
                                   ),
-                                  CustomTextField(
-                                    hintText: "090000000",
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  // CustomTextField(
+                                  //   hintText: "090000000",
+                                  //   controller: _phoneController,
+                                  //   keyboardType: TextInputType.number,
+                                  //   maxLength: 13,
+                                  //   name: 'Phone',
+                                  //   validator: _validatePhone,
+                                  //   loading: loading,
+                                  //   obscureText: false,
+                                  //   onChange: (val) {
+                                  //     setState(() {
+                                  //       _phone = val;
+                                  //     });
+                                  //   },
+                                  // ),
+                                  TextFormField(
                                     controller: _phoneController,
                                     keyboardType: TextInputType.number,
-                                    maxLength: 13,
-                                    name: 'Phone',
-                                    validator: _validatePhone,
-                                    loading: loading,
-                                    obscureText: false,
-                                    onChange: (val) {
-                                      setState(() {
-                                        _phone = val;
-                                      });
-                                    },
+                                    maxLength: 14,
+                                    readOnly: false,
+                                    decoration: InputDecoration(
+                                      hintText: "940502345",
+                                      // hide max character counter
+                                      counter: Offstage(),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.grey),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0)),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0)),
+
+                                      prefixIcon: Container(
+                                        margin: EdgeInsets.only(left: 10),
+                                        width: 80,
+                                        child: Row(
+                                          children: [
+                                            CustomIcon(
+                                              icon: Icons.phone,
+                                              iconColor: Colors.black,
+                                              backgroundColor: Colors.white10,
+                                              iconSize: 22,
+                                            ),
+                                            SizedBox(width: 5),
+                                            Text(
+                                              '+251',
+                                              style: TextStyle(fontSize: 17),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
+
                                   CustomTextField(
                                       name: 'Password',
                                       showPassword: showPassword,

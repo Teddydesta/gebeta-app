@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/models/Product.dart';
-import 'package:gebeta_food_delivery/screens/customer/DetailScreen/popularProductDetail.dart';
-import 'package:gebeta_food_delivery/utils/colors.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -45,6 +43,7 @@ class ProductCard extends StatelessWidget {
     );
 
     return Container(
+      height: 200,
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
           color: Colors.grey[100],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/models/CartModel.dart';
+import 'package:gebeta_food_delivery/screens/customer/address_screen/address_screen.dart';
+import 'package:gebeta_food_delivery/screens/customer/cartScreen/components/PaymentScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/services/cartService.dart';
 import 'package:gebeta_food_delivery/services/productService.dart';
@@ -7,14 +9,14 @@ import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
-class UserOrderScreen extends StatefulWidget {
-  const UserOrderScreen({Key? key}) : super(key: key);
+class OrderDetailScreen extends StatefulWidget {
+  const OrderDetailScreen({Key? key}) : super(key: key);
 
   @override
-  State<UserOrderScreen> createState() => _BasketScreenState();
+  State<OrderDetailScreen> createState() => _OrderDetailScreenState();
 }
 
-class _BasketScreenState extends State<UserOrderScreen> {
+class _OrderDetailScreenState extends State<OrderDetailScreen> {
   bool loading = false;
   CartServices _cartServices = CartServices();
   ProductServices _productServices = ProductServices();
@@ -156,9 +158,9 @@ class _BasketScreenState extends State<UserOrderScreen> {
                                         borderRadius: BorderRadius.circular(10),
                                         boxShadow: [
                                           BoxShadow(
-                                              color: Colors.white38,
+                                              color: Colors.grey.shade400,
                                               offset: Offset(0.5, 1.0),
-                                              blurRadius: 3,
+                                              blurRadius: 6.5,
                                               spreadRadius: 1.0),
                                         ]),
                                     margin: EdgeInsets.only(
@@ -191,24 +193,99 @@ class _BasketScreenState extends State<UserOrderScreen> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                CustomText(
-                                                  maxLine: 1,
-                                                  text:
-                                                      cartproducts[index].name,
-                                                  fontWeight: FontWeight.bold,
+                                                Container(
+                                                  margin: EdgeInsets.only(
+                                                      top: 15, left: 10),
+                                                  width: 100,
+                                                  child: CustomText(
+                                                    maxLine: 1,
+                                                    text: cartproducts[index]
+                                                        .name,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
                                                 SizedBox(
-                                                  height: 15,
+                                                  height: 10,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    ElevatedButton(
+                                                      onPressed: () {
+                                                        decreaseItems(
+                                                            cartproducts[index]
+                                                                .id,
+                                                            index);
+                                                      },
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        shape: CircleBorder(),
+                                                        primary: Colors.white,
+                                                        minimumSize:
+                                                            const Size(30, 30),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.remove,
+                                                        color: Colors.grey,
+                                                        size: 30,
+                                                      ),
+                                                    ),
+                                                    CustomText(
+                                                      text: "$quantity",
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 24,
+                                                    ),
+                                                    ElevatedButton(
+                                                      onPressed: () {
+                                                        increaseItems(
+                                                            cartproducts[index]
+                                                                .id,
+                                                            index);
+                                                      },
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        shape: CircleBorder(),
+                                                        primary: Colors.white,
+                                                        minimumSize:
+                                                            const Size(20, 20),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.add,
+                                                        color: Colors.grey,
+                                                        size: 30,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              children: [
+                                                GestureDetector(
+                                                  onTap: () => deleteCartItems(
+                                                      cartproducts[index].id),
+                                                  child: Container(
+                                                    padding: EdgeInsets.only(
+                                                        bottom: 20, left: 10),
+                                                    child: CustomIcon(
+                                                      icon: Icons.delete,
+                                                      iconSize: 24,
+                                                      iconColor:
+                                                          AppColors.orange,
+                                                      backgroundColor:
+                                                          Colors.white30,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 100,
                                                 ),
                                                 CustomText(
                                                   text:
                                                       "ETB${totalPrice.toString()}",
                                                   fontWeight: FontWeight.w400,
-                                                  color: Colors.black,
+                                                  color: AppColors.orange,
                                                   fontSize: 16,
-                                                ),
-                                                SizedBox(
-                                                  height: 10,
                                                 ),
                                               ],
                                             ),
@@ -226,7 +303,7 @@ class _BasketScreenState extends State<UserOrderScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(
-                            text: "PAYMENT DETAIL",
+                            text: "Bill Details",
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                           ),
@@ -239,7 +316,7 @@ class _BasketScreenState extends State<UserOrderScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              CustomText(text: "Total Charge"),
+                              CustomText(text: "Item Total"),
                               CustomText(text: "${totalPrice.toString()} Birr")
                             ],
                           ),

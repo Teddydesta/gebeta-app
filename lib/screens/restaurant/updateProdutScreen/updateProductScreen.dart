@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/models/Product.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/HomeScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/updateProdutScreen/components/updateProductButton.dart';
 import 'package:gebeta_food_delivery/services/productService.dart';
 import 'package:gebeta_food_delivery/widgets/customDropdown.dart';
@@ -8,8 +9,9 @@ import 'package:gebeta_food_delivery/widgets/customInputText.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UpdateProductScreen extends StatefulWidget {
-  final Product? product;
-  const UpdateProductScreen({Key? key, this.product}) : super(key: key);
+  const UpdateProductScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _UpdateProductScreenState createState() => _UpdateProductScreenState();
@@ -22,7 +24,7 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
   final ImagePicker _picker = ImagePicker();
   bool loading = false;
   Map _location = {};
-  List<String> categories = ['burger'];
+  List<String> categories = ['burger', 'Salad', 'Pizza'];
   List<XFile>? imagesFromDevice = [];
   List _images = [];
   String? _name;
@@ -44,7 +46,6 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
 
   _validateCategory(String value) {
     if (value.isEmpty) return 'Please choose category';
-
     return null;
   }
 
@@ -68,7 +69,7 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
   _clearState() {
     _formKey.currentState!.reset();
     _images.clear();
-    imagesFromDevice!.clear();
+
     _priceController.clear();
     _nameController.clear();
     _descriptionController.clear();
@@ -88,25 +89,16 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
           description: _descriptionController.text,
           price: _priceController.text,
           category: _category,
-          images: _images,
-          productId: widget.product!.id);
-      print(res);
-      if (res == null) {
-        _showSnackBar(context, 'Error adding product, please try again');
-        setState(() {
-          loading = false;
-        });
-        return;
-      }
-
-      // _showSnackBar(context, 'Product successfully added.');
-      // _clearState();
-      // setState(() {
-      //   loading = false;
-      // });
+          images: _images);
+          print(res);
+          
+      _showSnackBar(context, 'Product successfully updated.');
+      _clearState();
+      setState(() {
+        loading = false;
+      });
     }
   }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -114,13 +106,24 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
     return Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
+          elevation: 0.5,
+          backgroundColor: Colors.white,
           centerTitle: true,
           title: GestureDetector(
-              onTap: handleUpdateProduct, child: Text('Update Product')),
+              onTap: handleUpdateProduct,
+              child: Text(
+                'Update Product',
+                style: TextStyle(color: Colors.black),
+              )),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.grey.shade800),
-            onPressed: loading ? null : () => Navigator.pop(context),
-          ),
+              icon: Icon(Icons.arrow_back, color: Colors.grey.shade800),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            RestaurantHomeScreen()));
+              }),
         ),
         body: loading
             ? Center(
@@ -258,11 +261,16 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
                           SizedBox(height: 30),
 
                           UpdateProductButton(
+                            color: Colors.black,
+                            width: 200,
+                            height: 50,
+                            borderRadius: 5,
+                            text: "Update Product",
                             loading: loading,
                             onPressed: loading
                                 ? null
                                 : () {
-                                    //handleUpdateProduct();
+                                    handleUpdateProduct();
                                   },
                             size: size,
                           )

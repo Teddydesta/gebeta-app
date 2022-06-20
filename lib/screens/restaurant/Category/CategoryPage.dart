@@ -26,11 +26,11 @@ class CategoriesScreen extends StatelessWidget {
         centerTitle: true,
         leadingWidth: 80,
         leading: InkWell(
-          onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: ((BuildContext context) =>
-                      const RestaurantHomeScreen()))),
+         // onTap: () => Navigator.push(
+             // context,
+             // MaterialPageRoute(
+                  //builder: ((BuildContext context) =>
+                      // const RestaurantHomeScreen()))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [

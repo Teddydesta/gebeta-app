@@ -5,7 +5,6 @@ import 'package:gebeta_food_delivery/services/userServices.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/utils/locationUtils.dart';
 import 'package:gebeta_food_delivery/widgets/customInputText.dart';
-import 'package:image_picker/image_picker.dart';
 
 class UpdateProfile extends StatefulWidget {
   final String name, email, phone;
@@ -16,6 +15,7 @@ class UpdateProfile extends StatefulWidget {
   @override
   State<UpdateProfile> createState() => _UpdateProfileState();
 }
+
 class _UpdateProfileState extends State<UpdateProfile> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   LocationUtils _locationUtils = new LocationUtils();
@@ -26,7 +26,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   Map _location = {};
   bool _isUser = false;
   List<String> categories = [];
-bool _isCustomer = true;
+
   String? _name;
   TextEditingController _nameController = TextEditingController();
   String? _email;
@@ -47,16 +47,14 @@ bool _isCustomer = true;
     ));
   }
 
-  _roleIsCustomer() {
-    _isCustomer = true;
-    print(_isCustomer);
+  _roleIsUser() {
+    _isUser = true;
+    print(_isUser);
   }
-
-  _roleIsHotel() {
-    _isCustomer = false;
-    print(_isCustomer);
+  _roleIBroker() {
+    _isUser = false;
+    print(_isUser);
   }
-
   _clearState() {
     _formKey.currentState!.reset();
 
@@ -110,7 +108,7 @@ bool _isCustomer = true;
     });
   }
 
-  updateProfile() async {
+  _updateProfile() async {
     if (_location.isEmpty) {
       await getLocation();
       if (_location.isEmpty) {
@@ -130,7 +128,7 @@ bool _isCustomer = true;
 
     
       );
-      print(res);
+      
       if (res == 404) {
         _showSnackBar(context, 'Error in Updating profile, please try again');
         setState(() {
@@ -141,7 +139,7 @@ bool _isCustomer = true;
       _showSnackBar(context, 'Profile successfully Updated.');
       _clearState();
       setState(() {
-        loading = true;
+        loading = false;
       });
       Navigator.pushAndRemoveUntil(
           context,
@@ -150,6 +148,7 @@ bool _isCustomer = true;
       return;
     }
   }
+
   getLocation() async {
     print('Fetching location ... ');
     var result = await _locationUtils.getCurrentPosition();
@@ -159,6 +158,7 @@ bool _isCustomer = true;
       return;
     }
     print('result : $result');
+
     _location.addAll({
       'lat': result['result']['lat'].toString(),
       'lng': result['result']['lng'].toString()
@@ -287,7 +287,7 @@ bool _isCustomer = true;
                       minWidth: 340,
                       shape: RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(12)),
-                      onPressed: () => updateProfile(),
+                      onPressed: () => _updateProfile(),
                       child: Text(
                         "Update",
                         style: TextStyle(

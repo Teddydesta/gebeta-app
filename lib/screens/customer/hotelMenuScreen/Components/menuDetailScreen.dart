@@ -21,7 +21,11 @@ class MenuDetailScreen extends StatefulWidget {
 class _MenuDetailScreenState extends State<MenuDetailScreen> {
   bool loading = false;
   CartServices _cartServices = CartServices();
-
+ _showSnackBar(context, text) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(new SnackBar(content: CustomText(text: text)));
+  }
+  
   addFoodToCart(String? id) async {
     // var addToCart = await _productServices.addProduct(
 
@@ -196,6 +200,7 @@ class _MenuDetailScreenState extends State<MenuDetailScreen> {
                                       onTap: () {
                                         addFoodToCart(products[index].id);
                                         _cartDialog(context);
+                                          
                                       },
                                       child: Container(
                                         height: 35,

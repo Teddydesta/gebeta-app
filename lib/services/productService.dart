@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:gebeta_food_delivery/models/DeliveredProducts.dart';
 import 'package:gebeta_food_delivery/models/Product.dart';
 import 'package:gebeta_food_delivery/services/common.dart';
 import 'package:gebeta_food_delivery/utils/locationUtils.dart';
@@ -12,13 +12,54 @@ class ProductServices {
   CommonServices _commonServices = CommonServices();
   LocationUtils locationUtils = LocationUtils();
 
-updateQuantity() async {
+//Delete Product
+  Future deletProduct({productID}) async {
+    var uri = Uri.parse('$baseUrl/products/:id');
+    var token = await _commonServices.getToken();
+    print("token::$token");
 
-}
+    var response = await http.delete(
+      uri,
+      headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
+    );
+    print('response : ${response.body}');
+    if (response != null) {
+      print(response);
+      print(response.statusCode);
+      print(response.body);
+      print("Token ${token}");
+
+      if (response.statusCode == 200 ||
+          response.statusCode == 201 ||
+          response.statusCode == 202) {}
+    }
+  }
+
+  Future getHotelOWnProduct() async {
+    var uri = Uri.parse('$baseUrl/products/resturant/product');
+    print(uri);
+
+    var token = await _commonServices.getToken();
+    var response = await http.get(
+      uri,
+      headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
+    );
+    print('response : ${response.body}');
+    if (response.statusCode == 200 ||
+        response.statusCode == 201 ||
+        response.statusCode == 202) {
+      List jsonResponse = json.decode(response.body);
+      var products =
+          jsonResponse.map((product) => new Product.fromJson(product)).toList();
+
+      return products;
+    }
+    print(json.decode(response.body)['message']);
+    return null;
+  }
 
   Future getResturantsProducts(id) async {
     var uri = Uri.parse('$baseUrl/products/resturant/$id');
-
     var response = await http.get(uri);
 
     if (response.statusCode == 200 ||
@@ -30,6 +71,7 @@ updateQuantity() async {
 
       return products;
     }
+
     print(json.decode(response.body)['message']);
     return null;
   }
@@ -38,7 +80,6 @@ updateQuantity() async {
     var uri = Uri.parse('$baseUrl/products');
 
     var response = await http.get(uri);
-
     if (response.statusCode == 200 ||
         response.statusCode == 201 ||
         response.statusCode == 202) {
@@ -49,23 +90,9 @@ updateQuantity() async {
       return products;
     }
     print(json.decode(response.body)['message']);
+
     return null;
   }
-
-//Delete Product
-Future deletProduct(id) async {
-  var uri=Uri.parse('$baseUrl/products/delete/:ID=$id');
-  var response=  await http.delete(uri);
-  
-    if (response.statusCode == 200 ||
-        response.statusCode == 201 ||
-        response.statusCode == 202) {
-
-        }
-         print(json.decode(response.body)['message']);
-
-}
-
 
 //search products
   Future searchProducts(name) async {
@@ -157,14 +184,12 @@ Future deletProduct(id) async {
     return {'error': true, 'result': jsonResponse['message']};
   }
 
-
 //Update product
   Future updateProduct(
-      {name, description, price, category, location, images, productId}) async {
+      {name, description, price, category, images, productId}) async {
     var token = await _commonServices.getToken();
-    
-    String locationName = 'Unknown';
-     print(token);
+    print(token);
+    print(token);
     List<http.MultipartFile> imagesMultipart = [];
     var uri = Uri.parse('$baseUrl/products/:id');
     var request = http.MultipartRequest('PUT', uri);
@@ -172,7 +197,6 @@ Future deletProduct(id) async {
     request.fields['description'] = description;
     request.fields['price'] = price;
     request.fields['category'] = category;
-    request.fields['locationName'] = locationName;
     request.headers.addAll({'Authorization': 'Bearer $token'});
 
     for (String imagePath in images) {
@@ -183,10 +207,10 @@ Future deletProduct(id) async {
       imagesMultipart.add(image);
     }
     request.files.addAll(imagesMultipart);
-    
+
     var response = await request.send();
     print(response);
-    
+
     final respStr = await response.stream.bytesToString();
 
     if (response.statusCode == 200 ||
@@ -201,6 +225,5 @@ Future deletProduct(id) async {
     return null;
   }
 //Delete Product
-
 
 }

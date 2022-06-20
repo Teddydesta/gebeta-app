@@ -53,6 +53,7 @@ class ProductCard extends StatelessWidget {
                     product: product,
                   ))),
       child: Container(
+        height: 400,
         margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
             color: AppColors.orange,

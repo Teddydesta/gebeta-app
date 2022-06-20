@@ -10,11 +10,11 @@ class CategoryServices {
   CommonServices _commonServices = CommonServices();
   LocationUtils locationUtils = LocationUtils();
 
+
+//Get Categories
   Future getCategories() async {
     var uri = Uri.parse('$baseUrl/category');
-
     var response = await http.get(uri);
-
     if (response.statusCode == 200 ||
         response.statusCode == 201 ||
         response.statusCode == 202) {
@@ -24,10 +24,12 @@ class CategoryServices {
           .toList();
       print(json.decode(response.body));
       return categories;
+
     }
     print(json.decode(response.body)['message']);
     return null;
   }
+
 
   Future getCategoryByName(name) async {
     var uri = Uri.parse('$baseUrl/category/search?name=$name');

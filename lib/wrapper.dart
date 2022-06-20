@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/authScreen.dart';
+import 'package:gebeta_food_delivery/screens/authScreen/signUp.dart';
 import 'package:gebeta_food_delivery/screens/customer/homeMainScreen.dart';
 import 'package:gebeta_food_delivery/screens/restaurant/HomeScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
@@ -46,11 +47,14 @@ class _WrapperState extends State<Wrapper> {
 
   getRole() async {
     final SharedPreferences prefs = await _prefs;
-    String? rrole = await prefs.getString('role');
-    setState(() {
-      role = rrole!;
-      loading = true;
-    });
+    if(prefs.containsKey('role')) {
+
+    // String? rrole = await prefs.getString('role');
+    // setState(() {
+    //   role = rrole!;
+    //   loading = true;
+    // });
+    }
   }
 
   @override
@@ -80,6 +84,6 @@ class _WrapperState extends State<Wrapper> {
             ? role == 'hotelOwner'
                 ? RestaurantHomeScreen()
                 : HomeMainScreen()
-            : AuthScreen());
+            : SignUpPage());
   }
 }

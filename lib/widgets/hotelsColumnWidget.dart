@@ -20,37 +20,10 @@ class HotelsColumnWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CustomText(text: text,fontWeight: FontWeight.bold,),
+        
+
         SizedBox(
           height: 10,
-        ),
-        Row(
-          children: [
-            
-            SizedBox(
-              width: 10,
-            ),
-            const CustomText(
-              text: "4.6",
-              fontSize: 12,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            const CustomText(
-              text: "99",
-              fontSize: 12,
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            const CustomText(
-              text: "comments",
-              fontSize: 12,
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 20,
         ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,

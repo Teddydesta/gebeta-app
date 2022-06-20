@@ -64,7 +64,7 @@ class _SignInPageState extends State<SignInPage> {
         loading = true;
       });
       var res = await userServices.loginUser_Phone(
-          phone: _phoneController.text.toString(),
+          phone: '+251${_phoneController.text.toString()}',
           password: _passwordController.text.toString());
       setState(() {
         loading = false;

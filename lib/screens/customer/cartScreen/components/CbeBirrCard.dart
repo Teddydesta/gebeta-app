@@ -31,11 +31,11 @@ class CbeBirrCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((BuildContext context) =>
-                              const PaymentScreen()))),
+                  // onTap: () => Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: ((BuildContext context) =>
+                  //             const PaymentScreen()))),
                   child: const CustomIcon(
                     icon: Icons.arrow_back_ios,
                     iconColor: Colors.white,

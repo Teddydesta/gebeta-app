@@ -1,4 +1,3 @@
-import 'package:gebeta_food_delivery/models/Hotel.dart';
 
 class Product {
   String? id;

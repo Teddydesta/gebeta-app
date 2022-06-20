@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/authScreen/signIn.dart';
-import 'package:gebeta_food_delivery/screens/authScreen/signUp.dart';
 
 class AuthScreen extends StatefulWidget {
   AuthScreen({Key? key}) : super(key: key);

@@ -24,7 +24,6 @@ class _SplashScreenState extends State<SplashScreen> {
     });
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Align(
               alignment: Alignment.center,
               child: Image.asset(
-                Helper.getAssetName("MealMonkeyLogo.png", "virtual"),
+                Helper.getAssetName("gebeta_logo.png", "real"),
               ),
             ),
           ],

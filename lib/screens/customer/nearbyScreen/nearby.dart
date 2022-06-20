@@ -2,13 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/models/Hotel.dart';
-import 'package:gebeta_food_delivery/models/Product.dart';
-import 'package:gebeta_food_delivery/models/UserModel.dart';
+
 import 'package:gebeta_food_delivery/screens/customer/hotelMenuScreen/hotelMenuScreen.dart';
-import 'package:gebeta_food_delivery/screens/customer/productScreen/productScreen.dart';
-import 'package:gebeta_food_delivery/utils/colors.dart';
-import 'package:gebeta_food_delivery/widgets/customText.dart';
-//import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:gebeta_food_delivery/widgets/hotelsColumnWidget.dart';
 import "package:gebeta_food_delivery/services/userServices.dart";
 import 'package:geolocator/geolocator.dart';
@@ -36,12 +32,12 @@ class _NearByScreenState extends State<NearByScreen> {
     setState(() {
       loading = true;
     });
-     var position = await Geolocator.getCurrentPosition(
+    var position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     var lastPosition = await Geolocator.getLastKnownPosition();
     print(lastPosition);
-     lat = position.latitude;
-     lng = position.longitude;
+    lat = position.latitude;
+    lng = position.longitude;
     debugPrint("$lat, $lng");
     setState(() {
       locationMessage = "Latitude : $lat , Longitide : $lng";
@@ -71,8 +67,8 @@ class _NearByScreenState extends State<NearByScreen> {
         desiredAccuracy: LocationAccuracy.high);
     var lastPosition = await Geolocator.getLastKnownPosition();
     print(lastPosition);
-     lat = position.latitude;
-     lng = position.longitude;
+    lat = position.latitude;
+    lng = position.longitude;
     debugPrint("$lat, $lng");
     setState(() {
       locationMessage = "Latitude : $lat , Longitide : $lng";
@@ -134,7 +130,7 @@ class _NearByScreenState extends State<NearByScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: ((BuildContext context) =>
-                                    HotelMenuScreen(hotel:hotels[index])))),
+                                    HotelMenuScreen(hotel: hotels[index])))),
                         child: Container(
                           padding: EdgeInsets.only(bottom: 10),
                           margin:

@@ -7,14 +7,14 @@ import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
-class UserOrderScreen extends StatefulWidget {
-  const UserOrderScreen({Key? key}) : super(key: key);
+class HotelOrderScreen extends StatefulWidget {
+  const HotelOrderScreen({Key? key}) : super(key: key);
 
   @override
-  State<UserOrderScreen> createState() => _BasketScreenState();
+  State<HotelOrderScreen> createState() => _BasketScreenState();
 }
 
-class _BasketScreenState extends State<UserOrderScreen> {
+class _BasketScreenState extends State<HotelOrderScreen> {
   bool loading = false;
   CartServices _cartServices = CartServices();
   ProductServices _productServices = ProductServices();

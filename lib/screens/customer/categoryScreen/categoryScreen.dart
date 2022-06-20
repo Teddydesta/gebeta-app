@@ -74,7 +74,7 @@ getProducts()async {
                     width: 120,
                     margin: const EdgeInsets.only(right: 10.0),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(15),
                       image:  DecorationImage(
                           image: NetworkImage(products[i].images![0]),
                           fit: BoxFit.cover),

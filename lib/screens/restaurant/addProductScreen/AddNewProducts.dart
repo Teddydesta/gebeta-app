@@ -1,5 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:gebeta_food_delivery/models/Hotel.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/productScreen/productScreen.dart';
+import 'package:gebeta_food_delivery/screens/restaurant/updateProdutScreen/components/updateProductButton.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
@@ -20,6 +23,7 @@ class AddNewProductPage extends StatefulWidget {
 class _AddNewProductPageState extends State<AddNewProductPage> {
   final _keyForm = GlobalKey<FormState>();
   final _formKey = GlobalKey<FormState>();
+  List<HotelModel> hotels = [];
   List _images = [];
   List<XFile>? imagesFromDevice = [];
   List<String> categories = ['burger'];
@@ -112,15 +116,14 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
           category: _category,
           images: _images);
       if (addProduct['error'] == false) {
-        
         _showSnackBar(context, 'Successfully added');
         _nameController.text = "";
         _descriptionController.text = "";
         _priceController.text = "";
-    setState(() {
-    _images = [];
-      imagesFromDevice = [];
-    });
+        setState(() {
+          _images = [];
+          imagesFromDevice = [];
+        });
         return;
       } else {}
     }
@@ -128,6 +131,8 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -139,48 +144,17 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
           fontWeight: FontWeight.bold,
         ),
         centerTitle: true,
+        leading: GestureDetector(
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: ((BuildContext context) => ProductsScreen()))),
+            child: CustomText(
+              text: "List",
+              color: Colors.black,
+            )),
         leadingWidth: 80,
-        leading: TextButton(
-          child: const CustomText(
-            text: 'Cancel',
-            color: Colors.black,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        elevation: 0,
-        actions: [
-          GestureDetector(
-            onTap: () => handleaddProduct(),
-            
-            child: Container(
-              margin: EdgeInsets.only(right: 5, top: 10),
-              height: 30,
-              width: 80,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                gradient: LinearGradient(
-                    colors: [AppColors.orange, Color(0xFFfbab66)],
-                    begin: FractionalOffset(0.2, 0.2),
-                    end: FractionalOffset(1.0, 1.0),
-                    stops: [0.0, 1.0],
-                    tileMode: TileMode.clamp),
-                // color: AppColors.orange,
-              ),
-              child: Center(
-                child: const CustomText(
-                  text: 'Add',
-                  color: Colors.black,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ],
+        elevation: 1,
       ),
       body: Form(
         key: _formKey,
@@ -251,9 +225,7 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
               onTap: pickImage,
               child: Container(
                 height: 100,
-                decoration: BoxDecoration(
-                  color: Colors.grey
-                ),
+                decoration: BoxDecoration(color: Colors.grey[200]),
                 child: Wrap(runSpacing: 5, spacing: 15, children: [
                   for (var image in _images)
                     Stack(clipBehavior: Clip.none, children: [
@@ -282,21 +254,39 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
               ),
             ),
 
-           
             SizedBox(height: 30),
 
             CustomDropdown(
-                validator: _validateCategory,
-                titleText: 'Category',
-                controller: _categoryController,
-                hintText: 'Choose category',
-                value: _category,
-                onChange: (String? newValue) {
-                  setState(() {
-                    _category = newValue;
-                  });
-                },
-                items: categories, loading: loading,),
+              validator: _validateCategory,
+              titleText: 'Category',
+              controller: _categoryController,
+              hintText: 'Choose category',
+              value: _category,
+              onChange: (String? newValue) {
+                setState(() {
+                  _category = newValue;
+                });
+              },
+              items: categories,
+              loading: loading,
+            ),
+            SizedBox(
+              height: 35,
+            ),
+            UpdateProductButton(
+              color: Colors.black,
+              width: 200,
+              height: 50,
+              borderRadius: 5,
+              text: "Add Product",
+              loading: loading,
+              onPressed: loading
+                  ? null
+                  : () {
+                      handleaddProduct();
+                    },
+              size: size,
+            )
           ],
         ),
       ),

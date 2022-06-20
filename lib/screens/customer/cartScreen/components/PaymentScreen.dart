@@ -1,12 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:gebeta_food_delivery/screens/customer/DrawerScreen/DrawerScreen.dart';
 import 'package:gebeta_food_delivery/screens/customer/cartScreen/BasketScreen.dart';
+import 'package:gebeta_food_delivery/screens/customer/orderScreen/orderScreen.dart';
 import 'package:gebeta_food_delivery/utils/colors.dart';
 import 'package:gebeta_food_delivery/widgets/CustomBtn.dart';
 import 'package:gebeta_food_delivery/widgets/app_Icon.dart';
 import 'package:gebeta_food_delivery/widgets/customText.dart';
 
 class PaymentScreen extends StatelessWidget {
+  
+   _showSnackBar(context, text) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(new SnackBar(content: CustomText(text: text)));
+    }
+    void _orderButtonDialog(context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return GestureDetector(
+        //Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => UserOrderScreen()))
+        onTap: () => _showSnackBar(context, 'Order Submitted'),
+
+        child: Container(
+          margin: EdgeInsets.only(top: 760,bottom: 0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(8),
+              topLeft: Radius.circular(8),
+            ),
+            color: Colors.black
+          ),
+          child: Center(
+            child: CustomText(text: "Order",color: Colors.white,),
+          ),
+          
+        ),
+      );
+    },
+  );
+}
   const PaymentScreen({Key? key}) : super(key: key);
 
   @override
@@ -33,16 +65,19 @@ class PaymentScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Container(
-                    margin: const EdgeInsets.only(left: 10),
-                    height: 30,
-                    width: 40,
-                    decoration: BoxDecoration(
-                     
-                      image: const DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(
-                            "assets/images/real/cash on delivery.png"),
+                  
+                   
+                    Container(
+                      margin: const EdgeInsets.only(left: 10),
+                      height: 30,
+                      width: 40,
+                      decoration: BoxDecoration(
+                       
+                        image: const DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                              "assets/images/real/cash on delivery.png"),
+                        
                       ),
                     ),
                   ),
@@ -53,10 +88,13 @@ class PaymentScreen extends StatelessWidget {
                   const SizedBox(
                     width: 165,
                   ),
-                  const CustomIcon(
-                    icon: Icons.circle_outlined,
-                    iconSize: 24,
-                    backgroundColor: Colors.white,
+                  GestureDetector(
+                    onTap: () => _orderButtonDialog(context),
+                    child: const CustomIcon(
+                      icon: Icons.circle_outlined,
+                      iconSize: 24,
+                      backgroundColor: Colors.white,
+                    ),
                   ),
                 ],
               ),
@@ -621,3 +659,5 @@ void _cbeBirr(context) {
     },
   );
 }
+
+
