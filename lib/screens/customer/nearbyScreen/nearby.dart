@@ -63,22 +63,47 @@ class _NearByScreenState extends State<NearByScreen> {
   }
 
   void getCurrentLocation() async {
-    var position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    var lastPosition = await Geolocator.getLastKnownPosition();
-    print(lastPosition);
-    lat = position.latitude;
-    lng = position.longitude;
-    debugPrint("$lat, $lng");
-    setState(() {
-      locationMessage = "Latitude : $lat , Longitide : $lng";
-    });
+    LocationPermission locationPermission = await Geolocator.checkPermission();
+    if (locationPermission == LocationPermission.denied) {
+      await Geolocator.requestPermission();
+    } else {
+      var position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      var lastPosition = await Geolocator.getLastKnownPosition();
+
+      print(lastPosition);
+      lat = position.latitude;
+      lng = position.longitude;
+      debugPrint("$lat, $lng");
+      setState(() {
+        locationMessage = "Latitude : $lat , Longitide : $lng";
+      });
+    }
+  }
+
+  initFn() async {
+    LocationPermission locationPermission = await Geolocator.checkPermission();
+    if (locationPermission == LocationPermission.denied ||
+        locationPermission == LocationPermission.deniedForever) {
+      LocationPermission res = await Geolocator.requestPermission();
+      if (res == LocationPermission.always ||
+          res == LocationPermission.whileInUse) {
+        getCurrentLocation();
+        getNearbyHotels();
+      } else {
+        setState(() {
+          locationMessage = "Latitude : ${0.0} , Longitide : ${0.0}";
+        });
+      }
+    } else {
+      getCurrentLocation();
+      getNearbyHotels();
+    }
   }
 
   @override
   void initState() {
-    getCurrentLocation();
-    getNearbyHotels();
+    initFn();
     super.initState();
   }
 

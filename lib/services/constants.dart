@@ -1,3 +1,3 @@
-String baseUrl = 'https://gebeta-food-delivery-et.herokuapp.com/api';
+String baseUrl = 'http://192.168.1.198:5000/api';
 
 

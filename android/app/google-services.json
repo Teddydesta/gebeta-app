@@ -1,44 +1,35 @@
 {
   "project_info": {
-    "project_number": "611270842590",
-    "project_id": "gebeta-food-app",
-    "storage_bucket": "gebeta-food-app.appspot.com"
+    "project_number": "494827528025",
+    "project_id": "gebeta-66b29",
+    "storage_bucket": "gebeta-66b29.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:611270842590:android:c5292fca80589de8170a4f",
+        "mobilesdk_app_id": "1:494827528025:android:eca940a3c36f26c5d5f648",
         "android_client_info": {
           "package_name": "com.example.gebeta_food_delivery"
         }
       },
       "oauth_client": [
         {
-          "client_id": "611270842590-b6e6pf35816itn8q1jtp6tb610a15o3q.apps.googleusercontent.com",
+          "client_id": "494827528025-2hckfgf5hboo6s5n5gqqenvoutk9dtsv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.gebeta_food_delivery",
-            "certificate_hash": "48301b0781ca12c4a1f12e6e6e6bf1a87d112915"
+            "certificate_hash": "c36eb3758894ae2d309ad045870c74eded43ee54"
           }
-        },
-        {
-          "client_id": "611270842590-42ddegei3aooipnc5udhru60gt6pk8v1.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCAhSzrvSu801FWHfgnqjC2vVwLRkaSC-4"
+          "current_key": "AIzaSyBv_0lBft2KnR0R2ar31EzIUk7zIxCQEKg"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "611270842590-42ddegei3aooipnc5udhru60gt6pk8v1.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

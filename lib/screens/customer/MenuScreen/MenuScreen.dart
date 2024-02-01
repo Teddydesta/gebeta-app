@@ -15,13 +15,13 @@ class MenuScreen extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Container(
-            child: Center(
-              child: FlatButton(
-                onPressed: () => _showFeedback(
-                    context), // this will trigger the feedback modal
-                child: const Text('Menu'),
-              ),
-            ),
+              // child: Center(
+              //   child: FlatButton(
+              //     onPressed: () => _showFeedback(
+              //         context), // this will trigger the feedback modal
+              //     child: const Text('Menu'),
+              //   ),
+              // ),
           ),
         ),
       ),
