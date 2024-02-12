@@ -184,7 +184,7 @@ class _SignUpPageState extends State<SignUpPage> {
     print(phone);
     setState(() {
       loading = true; // setstate
-      isSigningUp = true; 
+      isSigningUp = true;
     });
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationIda, smsCode: _otpController.text);
@@ -227,6 +227,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   handleSignUp() async {
+    print('sign upppp');
     if (_formKey.currentState!.validate()) {
       print(_emailController.text.trim());
       print(_nameController.text.trim());
@@ -235,6 +236,7 @@ class _SignUpPageState extends State<SignUpPage> {
       isSigningUp = true;
       var res = await userServices.checkIfPhoneIsInUse(
           phone: '${_phoneController.text.trim()}');
+      print("res :  $res");
       if (res != null) {
         isSigningUp = false;
         _showSnackBar(context, 'user exist with this phone number');
